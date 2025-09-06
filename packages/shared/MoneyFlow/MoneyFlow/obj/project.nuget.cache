@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "VlnOyTVIObQ=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Victor Mendes\\Documents\\code\\faculdade\\money-flow\\packages\\shared\\MoneyFlow\\MoneyFlow\\MoneyFlow.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Victor Mendes\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.7\\microsoft.aspnetcore.openapi.9.0.7.nupkg.sha512",
+    "C:\\Users\\Victor Mendes\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
