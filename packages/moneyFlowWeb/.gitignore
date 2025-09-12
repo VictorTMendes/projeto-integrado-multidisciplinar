@@ -28,6 +28,7 @@ yarn-error.log*
 *.sln
 *.sw?
 /.vs/
+/.vscode/
 
 # OS generated files
 .DS_Store

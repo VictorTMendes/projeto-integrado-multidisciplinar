@@ -8,8 +8,11 @@
 }
 
 body{
-    background-color: #0F0F0F;
-    background: linear-gradient(to right, #0F0F0F, #202020 );
+    background-image: url('../../img/background-login.png');
+    background-repeat: no-repeat;       /* evita repetição */
+    background-size: cover;             /* cobre toda a tela */
+    background-position: center center; /* centraliza a imagem */
+    background-attachment: fixed;       /* fixa o fundo durante o scroll */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,8 +30,9 @@ body{
     min-height: 480px;
 }
 
-.container h1{
+.container h2{
   color: #f8f8f8;
+  margin-bottom: 20px;
 }
 
 .container p{
@@ -51,7 +55,7 @@ body{
 }
 
 .container button{
-    background-color: #5dd62c;
+    background-color: #337418;
     color: #f8f8f8;
     font-size: 12px;
     padding: 10px 45px;
@@ -139,7 +143,7 @@ body{
 
 .social-icons a{
     color: #f8f8f8;
-    border: 1px solid #5dd62c;
+    border: 1px solid #337418;
     border-radius: 20%;
     display: inline-flex;
     justify-content: center;
@@ -167,9 +171,9 @@ body{
 }
 
 .toggle{
-    background-color: #5dd62c;
+    background-color: #4fff45;
     height: 100%;
-    background: linear-gradient(to right, #337418, #5dd62c);
+    background: linear-gradient(to right, #337418, #337418);
     color: #f8f8f8;
     position: relative;
     left: -100%;
