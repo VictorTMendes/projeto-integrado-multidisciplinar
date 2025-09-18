@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using MoneyFlow.Models.Usuario;
+using MoneyFlow.DTO;
 
 namespace MoneyFlow.Controllers
 {
@@ -15,9 +16,9 @@ namespace MoneyFlow.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequest loginRequest)
+        public IActionResult Login([FromBody] UserDTO userDTO)
         {
-            return Ok();
+            return Ok(userDTO);
         }
     }
 }
