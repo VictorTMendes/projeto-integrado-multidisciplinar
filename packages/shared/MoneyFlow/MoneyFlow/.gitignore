@@ -53,3 +53,26 @@ Thumbs.db
 .env.test.local
 .env.production.local
 packages/shared/MoneyFlow/MoneyFlow/Models/Usuario/Usuario.cs
+
+# Arquivos de build do Visual Studio / .NET
+bin/
+obj/
+*.exe
+*.dll
+*.cache
+*.pdb
+*.log
+*.user
+*.vs/
+*.dbmdl
+*.opendb
+
+# Arquivos de build do MSBuild
+*.AssemblyInfoInputs.cache
+*.AssemblyReference.cache
+*.GeneratedMSBuildEditorConfig.editorconfig
+
+# Outros temporários
+*.suo
+*.tmp
+*.bak
