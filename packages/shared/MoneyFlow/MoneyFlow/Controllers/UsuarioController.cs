@@ -7,7 +7,7 @@ namespace MoneyFlow.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UserController : ControllerBase
+    public class UsuarioController : ControllerBase
     {
         [HttpPost("registro")]
         public IActionResult Registro([FromBody] Usuario user)
