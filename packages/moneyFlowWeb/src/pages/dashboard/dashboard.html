@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    
+    <link rel="stylesheet" href="./dashboard.css">
+    
+    <!--Puxa fonts e arquivos binários da font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+
+    <!--Link principal que aponta para um CSS hospedado no Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Puxa icones do site que pode ser usado diretamente no HTML -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+</head>
+<body>
+    <div class="container"> 
+        <aside class="sidebar"> <!--Menu lateral-->
+            <div>
+                <div class="sidebar-header">
+                    <img src="./Crescimento_Financeiro_Gráfico-removebg-preview.png" alt="Logo da Aplicação" class="logo"> 
+                    <h2>Money Flow</h2>
+                </div>
+                <nav class="nav-menu"> 
+                    <ul>
+                        <li><a href="" class="active"><i class=""></i> Início</a></li>
+                        <li><a href=""><i class=""></i> Rendas</a></li>
+                        <li><a href=""><i class=""></i> Relatórios</a></li>
+                        <li><a href=""><i class=""></i> Objetivos</a></li>
+                        <li><a href=""><i class=""></i> Configurações</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://i.pravatar.cc/40" alt="Foto do Usuário">
+                    <div class="user-info">
+                        <h4>Wagner Springer</h4>
+                        <p>email@exemplo.com</p>
+                    </div>
+                </div>
+                <button class="logout-button">
+                    <i class="ph-fill ph-sign-out"></i>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Painel Principal</h1>
+                <p>Última atualização: 12 de Setembro de 2025</p>
+            </header>
+            
+            <div class="dashboard-grid">
+
+                <section class="card featured-card">
+                    <div class="card-header">
+                        <h3>Receita x Despesas</h3>
+                        <div class="card-actions">
+                           <span>Mensal</span>
+                        </div>
+                    </div>
+                    <div class="placeholder-content large">
+                        Área para gráfico ou conteúdo principal.
+                    </div>
+                </section>
+
+                <section class="card">
+                    <div class="card-header">
+                        <h3>Fluxo de Caixa</h3>
+                    </div>
+                    <div class="placeholder-content medium">
+                         Área para gráfico menor ou estatísticas.
+                    </div>
+                </section>
+
+                <section class="card list-card">
+                     <div class="card-header">
+                        <h3>Itens Recentes</h3>
+                        <button class="action-button">Ver Todos</button>
+                    </div>
+                    <div class="list">
+                        <div class="list-item">
+                            <div class="item-info">
+                                <div class="item-icon"><i class="ph ph-check-circle"></i></div>
+                                <div class="item-text">
+                                    <h4>Item de Exemplo 1</h4>
+                                    <p>Descrição curta do item</p>
+                                </div>
+                            </div>
+                            <span class="item-status">Concluído</span>
+                        </div>
+                         <div class="list-item">
+                            <div class="item-info">
+                                <div class="item-icon"><i class="ph ph-arrows-clockwise"></i></div>
+                                <div class="item-text">
+                                    <h4>Item de Exemplo 2</h4>
+                                    <p>Descrição curta do item</p>
+                                </div>
+                            </div>
+                            <span class="item-status">Em Progresso</span>
+                        </div>
+                         <div class="list-item">
+                            <div class="item-info">
+                                <div class="item-icon"><i class="ph ph-warning-circle"></i></div>
+                                <div class="item-text">
+                                    <h4>Item de Exemplo 3</h4>
+                                    <p>Descrição curta do item</p>
+                                </div>
+                            </div>
+                            <span class="item-status">Atenção</span>
+                        </div>
+                    </div>
+                </section>
+
+                 <section class="card">
+                     <div class="card-header">
+                        <h3>Outra Métrica</h3>
+                    </div>
+                    <p>Você pode colocar qualquer tipo de conteúdo aqui, como textos, formulários ou outras informações.</p>
+                </section>
+                
+                <section class="card">
+                     <div class="card-header">
+                        <h3>Mais Dados</h3>
+                    </div>
+                    <p>Adapte os cards conforme a necessidade da sua aplicação.</p>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>
