@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios</title>
+    
+    <link rel="stylesheet" href="../dashboard/dashboard.css">
+    <link rel="stylesheet" href="./relatorios.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+    <div class="container"> 
+        <aside class="sidebar">
+            <div>
+                <div class="sidebar-header">
+                    <img src="./Crescimento_Financeiro_Gráfico-removebg-preview.png" alt="Logo da Aplicação" class="logo"> 
+                    <h2>Money Flow</h2>
+                </div>
+                <nav class="nav-menu"> 
+                    <ul>
+                        <li><a href="../dashboard/dashboard.html"><i class=""></i> Início</a></li>
+                        <li><a href="#"><i class=""></i> Rendas</a></li>
+                        <li><a href="relatorios.html" class="active"><i class=""></i> Relatórios</a></li>
+                        <li><a href="#"><i class=""></i> Objetivos</a></li>
+                        <li><a href="#"><i class=""></i> Configurações</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://i.pravatar.cc/40" alt="Foto do Usuário">
+                    <div class="user-info">
+                        <h4>Wagner Springer</h4>
+                        <p>email@exemplo.com</p>
+                    </div>
+                </div>
+                <button class="logout-button">
+                    <i class="ph-fill ph-sign-out"></i>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Relatórios</h1>
+                <p>Análise detalhada do período de Setembro</p>
+            </header>
+            
+            <div class="dashboard-grid">
+
+                <section class="card">
+                    <div class="card-header">
+                        <h3>Receita do Mês</h3>
+                    </div>
+                    <p class="card-value income">+ R$ 5.850,00</p>
+                </section>
+                
+                <section class="card">
+                    <div class="card-header">
+                        <h3>Despesa do Mês</h3>
+                    </div>
+                    <p class="card-value expense">- R$ 3.280,50</p>
+                </section>
+                
+                <section class="card">
+                    <div class="card-header">
+                        <h3>Saldo Final</h3>
+                    </div>
+                    <p class="card-value balance">R$ 2.569,50</p>
+                </section>
+                
+                <section class="card list-card">
+                    <div class="card-header">
+                        <h3>Despesas por Categoria</h3>
+                    </div>
+                    <div class="category-list">
+                        <div class="category-item">
+                            <div class="item-info">
+                                <div class="item-icon"><i class="ph ph-house-line"></i></div>
+                                <div class="item-text"><h4>Moradia</h4></div>
+                            </div>
+                            <div class="category-details">
+                                <span>R$ 1.200,25</span>
+                            </div>
+                        </div>
+                        <div class="category-item">
+                            <div class="item-info">
+                                <div class="item-icon"><i class="ph ph-fork-knife"></i></div>
+                                <div class="item-text"><h4>Alimentação</h4></div>
+                            </div>
+                            <div class="category-details">
+                                <span>R$ 850,75</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 26%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="category-item">
+                             <div class="item-info">
+                                <div class="item-icon"><i class="ph ph-car"></i></div>
+                                <div class="item-text"><h4>Transporte</h4></div>
+                            </div>
+                            <div class="category-details">
+                                <span>R$ 550,00</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 17%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- <section class="card list-card" style="grid-column: 1 / -1;">
+                       <div class="card-header">
+                           <h3>Últimas Transações</h3>
+                           <button class="action-button">Ver Todas</button>
+                       </div>
+                       <div class="list">
+                           <div class="list-item">
+                               <div class="item-info">
+                                   <div class="item-icon income"><i class="ph-fill ph-plus-circle"></i></div>
+                                   <div class="item-text">
+                                       <h4>Salário Mensal</h4>
+                                       <p>Receita Fixa</p>
+                                   </div>
+                               </div>
+                               <span class="item-status income">+ R$ 5.850,00</span>
+                           </div>
+                           <div class="list-item">
+                               <div class="item-info">
+                                   <div class="item-icon expense"><i class="ph-fill ph-minus-circle"></i></div>
+                                   <div class="item-text">
+                                       <h4>Aluguel</h4>
+                                       <p>Moradia</p>
+                                   </div>
+                               </div>
+                               <span class="item-status expense">- R$ 1.200,00</span>
+                           </div>
+                       </div>
+                   </section> -->
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>

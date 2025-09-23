@@ -230,7 +230,10 @@ body {
 .placeholder-content.large { min-height: 250px; }
 .placeholder-content.medium { min-height: 150px; }
 
-.list-card { grid-column: 1 / 4; }
+.list-card { 
+    grid-column: span 1;
+}
+
 
 .list-item {
     display: flex;
@@ -253,7 +256,7 @@ body {
 .item-text p { font-size: 13px; color: var(--text-secondary); }
 
 .item-status { 
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500; 
     padding: 4px 8px;
     border-radius: 6px;

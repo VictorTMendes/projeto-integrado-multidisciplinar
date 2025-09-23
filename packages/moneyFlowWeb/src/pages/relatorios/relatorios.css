@@ -1,0 +1,54 @@
+/* Valor em destaque nos cards de resumo */
+.card-value {
+    font-size: 26px;
+    font-weight: 600;
+} 
+
+.card-value.income { color: var(--accent-primary); }
+.card-value.expense { color: var(--red); }
+.card-value.balance { color: var(--blue); }
+
+/* Lista de categorias com barra de progresso */
+.category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--border-color);
+}
+.category-item:last-child { border-bottom: none; }
+
+.category-details {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.category-details span {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 14px;
+    min-width: 200px;
+    text-align: right;
+}
+
+/* Cores para ícones e status de transações */
+.item-icon.income { color: var(--accent-primary); }
+.item-icon.expense { color: var(--red); }
+
+/* Reutilizando a classe .item-status para consistência */
+.item-status.income {
+    color: var(--accent-primary);
+    background-color: rgba(51, 116, 24, 0.15);
+    font-weight: 600;
+}
+.item-status.expense {
+    color: var(--red);
+    background-color: rgba(255, 69, 58, 0.1);
+    font-weight: 600;
+}
