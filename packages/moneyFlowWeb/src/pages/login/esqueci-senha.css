@@ -70,7 +70,7 @@ button:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* button:disabled {
+button:disabled {
     background-color: rgba(32, 32, 32, 0.7);
     color: rgba(248, 248, 248, 0.4);
     cursor: not-allowed;
@@ -85,9 +85,12 @@ button:hover {
     width: 100%;
     display: none; 
     font-weight: 500;
+    text-align: center;
+    transform: translate(-1rem);
 }
 
 .success {
+    width: 5px;
     display: block !important;
     background-color: rgba(51, 116, 24, 0.15);
     color: #a7e0b8; 
@@ -99,4 +102,4 @@ button:hover {
     background-color: rgba(220, 53, 69, 0.1); 
     color: #f5c6cb; 
     border: 1px solid rgba(220, 53, 69, 0.3);
-} */
+}
