@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha</title>
+    <link rel="stylesheet" href="./esqueci-senha.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Esqueceu sua senha?</h1>
+        <p>Não se preocupe. Insira seu e-mail abaixo e enviaremos um link para você criar uma nova senha.</p>
+        
+        <form id="forgot-password-form">
+            <input type="email" id="email" name="email" placeholder="email" required>
+            
+            <button type="submit" id="submit-button">Enviar link de recuperação</button>
+        </form>
+        
+        <div id="message-container"></div>
+    </div>
+
+    <script src="../../../assets/js/esqueci-senha.js"></script>
+</body>
+</html>

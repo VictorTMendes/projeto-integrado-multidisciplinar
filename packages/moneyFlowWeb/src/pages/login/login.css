@@ -50,9 +50,15 @@ body{
 .container a{
     color: #F8F8F8;
     font-size: 13px;
-    text-decoration: none;
+    text-decoration: underline;
     margin: 15px 0 10px;
 }
+
+.container a:hover{
+    color: #337418;
+    transition-delay: 0.03s;
+}
+
 
 .container button{
     background-color: #337418;
@@ -66,6 +72,11 @@ body{
     text-transform: uppercase;
     margin-top: 10px;
     cursor: pointer;
+}
+
+.container button:hover{
+    background-color: #164b00;
+    transition-delay: 0.03s;
 }
 
 .container button.hiden{

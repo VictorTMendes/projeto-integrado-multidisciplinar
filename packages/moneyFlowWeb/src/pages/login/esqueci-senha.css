@@ -1,0 +1,102 @@
+body {
+    background-image: url('../img/background-login.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    font-family: 'Montserrat', sans-serif; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.form-container {
+    background-color: #202020; 
+    color: #f8f8f8; 
+    padding: 2.5rem; 
+    border-radius: 15px; 
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); 
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.form-container h1, .form-container h2 {
+    margin-bottom: 1rem;
+}
+
+.form-container p {
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    color: rgba(248, 248, 248, 0.8); 
+}
+
+input {
+    width: 85%;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    background-color: #0f0f0f; 
+    color: #f8f8f8; 
+    border: 1px solid transparent; 
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none; 
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #337418;
+}
+
+button {
+    width: 70%;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 8px;
+    color: #122b10;
+    background-color: #337418; 
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease; 
+}
+
+button:hover {
+    background-color: #164b00; 
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* button:disabled {
+    background-color: rgba(32, 32, 32, 0.7);
+    color: rgba(248, 248, 248, 0.4);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#message-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
+    display: none; 
+    font-weight: 500;
+}
+
+.success {
+    display: block !important;
+    background-color: rgba(51, 116, 24, 0.15);
+    color: #a7e0b8; 
+    border: 1px solid rgba(51, 116, 24, 0.4);
+}
+
+.error {
+    display: block !important;
+    background-color: rgba(220, 53, 69, 0.1); 
+    color: #f5c6cb; 
+    border: 1px solid rgba(220, 53, 69, 0.3);
+} */
