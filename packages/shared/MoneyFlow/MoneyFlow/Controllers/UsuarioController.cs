@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using MoneyFlow.DTO;
-using MoneyFlow.Models.Usuario;
+using MoneyFlow.Models;
 using MoneyFlow.Services;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,12 +29,12 @@ namespace MoneyFlow.Controllers
         [HttpPost("login")]
         public ActionResult Login([FromBody] UsuarioDTO request)
         {
-            var usuario = _usuarioService.Login(request.Email, request.Password);
+            var usuario = _usuarioService.Login(request.Email, request.Senha);
 
             if (usuario == null)
                 return Unauthorized("Email ou senha incorretos!");
 
-            return Ok(new { message = $"Bem-vindo {usuario.Name}!" });
+            return Ok(new { message = $"Bem-vindo {usuario.Nome}!" });
         }
 
         [HttpGet("usuarios")]

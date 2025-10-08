@@ -1,4 +1,4 @@
-using MoneyFlow.Models.Usuario;
+using MoneyFlow.Models;
 
 namespace MoneyFlow.Services
 {
@@ -16,7 +16,7 @@ namespace MoneyFlow.Services
 
         public Usuario? Login(string email, string senha)
         {
-            return _usuarios.FirstOrDefault(u => u.Email == email && u.Password == senha);
+            return _usuarios.FirstOrDefault(u => u.Email == email && u.Senha == senha);
         }
 
         public IEnumerable<Usuario> Listar()
