@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MF Dashboard</title>
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="./newdashboard.css">
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header">
+                <h1>Money Flow</h1>
+                <p>Controle suas finanças de forma intelingente</p>
+            </div>
+            <div class="ações">
+                <button class="btn Atualizar">Atualizar</button>
+                <button class="btn Limpar-histórico">Limpar Histórico</button>
+            </div>
+        </header>
+
+        <section class="cards">
+            <div class="card">
+                <div class="card-titulo">
+                    <h3>Entradas</h3>
+                    <i class="ph-bold ph-arrow-circle-up icon-entrada"></i>
+                </div>
+                <p>R$ 2.050,00</p>
+            </div>
+            <div class="card">
+                <div class="card-titulo">
+                    <h3>Saídas</h3>
+                    <i class="ph-bold ph-arrow-circle-down icon-saida"></i>
+                </div>
+                <p>R$ 500,00</p>
+            </div>
+            <div class="card">
+                <div class="card-titulo">
+                    <h3>Saldo</h3>
+                    <i class="ph-bold ph-scales icon-saldo"></i>
+                </div>
+                <p>R$ 1.550,00</p>
+            </div>
+        </section>
+
+    <main>
+        <div class="transacoes">
+            <h2>Ultimas Atualizações/</h2>
+            <ul>
+                <li>
+                    <div class="transacao-info">
+                        <span class="tag-saida">Saída</span>
+                        <p>Mercado</p>
+                    </div>
+                    <div class="transacao-valor">
+                        <span>R$ 250,00</span>
+                        <small>29/09/2025</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="nova-transacao">
+            <h2>Nova Transação</h2>
+            <form>
+                <label>Tipo de Transação</label>
+                <div class="tipo-transacao">
+                    <input type="radio" id="entrada" name="tipo" value="entrada" checked>
+                    <label for="entrada">Entrada</label>
+
+                    <input type="radio" id="saida" name="tipo" value="saida">
+                    <label for="saida">Saída</label>
+                </div>
+
+                <label for="valor">Valor</label>
+                <input type="number" id="valor" placeholder="R$ 0,00">
+
+                <label for="descricao">Descrição</label>
+                <input type="text" id="descricao" placeholder="Descreva a transação...">
+
+                <button type="submit">Adicionar</button>
+            </form>
+        </div>
+    </main>
+  </div>
+</body>
+</html>
