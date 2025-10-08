@@ -1,4 +1,4 @@
-﻿namespace MoneyFlow.Models.Usuario
+﻿ namespace MoneyFlow.Models.Usuario
 {
     public class Usuario
     {
