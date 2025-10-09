@@ -16,7 +16,7 @@ body{
     padding: 40px 20px;
 }
 
-.header{
+header{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,9 +24,76 @@ body{
 }
 
 .header h1{
-    font-size: 26px;   
+    font-size: 24px;   
 }
 
 .header p{
     font-size: 16px;
+    color: #c3c3c3;
+}
+
+/* .btn-atualizar, .btn-limpar-historico {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #f8f8f8;
+    transition: filter 0.2s; 
+}
+
+.btn-atualizar:hover, .btn-limpar-historico:hover {
+    filter: brightness(0.9);
+}
+
+.btn-atualizar {
+    background-color: #313131;  
+    margin-right: 10px; 
+}
+
+.btn-limpar-historico {
+    background-color: #e45454;
+} */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.card {
+    background-color: #25252c;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.card p {
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.card-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.card-titulo h3 {
+    color: #c3c3c3;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.card-titulo i {
+    font-size: 32px;
+}
+
+.icon-entrada { color: green;}
+.icon-saida { color: red;}
+.icon-saldo { color: purple;}
+
+main{
+    display: grid;
 }
