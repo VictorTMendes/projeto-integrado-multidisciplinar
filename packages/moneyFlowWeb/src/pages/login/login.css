@@ -8,7 +8,7 @@
 }
 
 body{
-    background-image: url('../img/background-login.png');
+    background-image: url(../../img/background-login.png);
     background-repeat: no-repeat;       /* evita repetição */
     background-size: cover;             /* cobre toda a tela */
     background-position: center center; /* centraliza a imagem */
