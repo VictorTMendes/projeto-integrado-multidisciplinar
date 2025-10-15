@@ -6,6 +6,7 @@
     <title>MF Dashboard</title>
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="./newdashboard.css">
 
 </head>
@@ -53,8 +54,8 @@
     <main>
         <div class="transacoes">
             <div class="transacoes-header">
-            <h2>Ultimas Atualizações</h2>
-            <button id="btn-ver-mais" class="link-button">Ver Mais</button>
+                <h2>Ultimas Atualizações</h2>
+                <a href="../historico/historico.html">Ver mais</a>
             </div>
             <ul>
                 <li>
@@ -62,19 +63,52 @@
                         <span class="tag-saida">Saida</span>
                         <p>Mercado</p>
                     </div>
-                    <div class="transacao-valor">
-                        <span>R$ 250,00</span>
-                        <small>29/09/2025</small>
+                        <div class="transacao-valor-saida">
+                            <div class="transacao-valor">
+                            <span>- R$ 500,00</span>
+                            <small>15/10/2025</small>
+                        </div>
+                    </div>
+
+                    <div class="transacao-acoes">
+                        <button class="acoes-button">
+                            <i class="fas fa-ellipsis-v"></i> 
+                        </button>
+
+                        <div class="dropdown-acoes">
+                            <a href="#" class="btn-editar"> 
+                                <i class="fas fa-pencil-alt"></i> Editar 
+                            </a>
+                            <a href="#" class="btn-excluir">
+                                <i class="fas fa-trash"></i> Excluir
+                            </a>
+                        </div>
                     </div>
                 </li>
+                
                 <li>
                     <div class="transacao-info">
                         <span class="tag-entrada">Entrada</span>
                         <p>Salário</p>
                     </div>
-                    <div class="transacao-valor">
-                        <span>+R$ 2.050,00</span>
-                        <small>28/09/2025</small>
+                    <div class="transacao-valor-entrada">
+                        <div class="transacao-valor">
+                            <span>+ R$ 2.050,00</span>
+                            <small>28/09/2025</small>
+                        </div>
+                    </div>
+                
+                    <div class="transacao-acoes">
+                            <button class="acoes-button">
+                                <i class="fas fa-ellipsis-v"></i> 
+                            </button>
+
+                        <div class="dropdown-acoes"> 
+                            <a href="#" class="btn-editar"> 
+                                <i class="fas fa-pencil-alt"></i> Editar </a>
+
+                                <a href="#" class="btn-excluir"><i class="fas fa-trash"></i> Excluir</a>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -101,27 +135,32 @@
                 <button type="submit">Adicionar</button>
             </form>
         </div>
+
+         <!-- apenas models  -->
+
+        <div id="modal-edicao" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Editar Transação</h2>
+                    <button class="modal-close-btn">&times;</button>
+                </div>
+
+                <form id="form-edicao">
+                    <label for="valor-edicao">Valor</label>
+                    <input type="number" id="valor-edicao" required>
+
+                    <label for="descricao-edicao">Descrição</label>
+                    <input type="text" id="descricao-edicao" required>
+
+                    <button type="submit">Salvar Alterações</button>
+                </form>
+                
+            </div>
+        </div>
+
+        <script src="../../../assets/js/edicao-transacoes.js"></script>
     </main>
   </div>
-
-  <!-- Base para o pop-up geral -->
-
-  <!-- <div id="modal-historico" class="modal">
-        <div class="modal-janela">
-
-            <div class="modal-header">
-                <h2>Histórico Completo</h2>
-                <button class="modal-close-btn">&times;</button>
-            </div>
-
-            <div class="modal-body">
-                <p>Lista que vai ser carregada pelo JavaScript</p>
-            </div>
-
-        </div>
-    </div>
-
-<script src="../../../assets/js/ultimas-transacoes.js"></script> -->
 
 </body>
 </html>
