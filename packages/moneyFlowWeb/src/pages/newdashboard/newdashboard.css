@@ -33,6 +33,31 @@ header p {
     color: #c3c3c3; 
 }
 
+.header-acoes {
+    display: flex;
+    gap: 20px; /* Espaçamento entre o link e o botão */
+    align-items: center;
+}
+
+.link-button {
+    background: none;
+    border: none;
+    color: #5DD62C; 
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaço entre o ícone e o texto */
+    text-decoration: none; /* Remove o sublinhado */
+    transition: filter 0.2s;
+}
+
+.link-button:hover {
+    filter: brightness(0.85); /* Efeito de hover sutil */
+}
+
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -131,18 +156,18 @@ main {
 }
 
 
-.tag-entrada, .tag-saida {
+.tag-categoria-entrada, .tag-categoria-saida {
     padding: 5px 10px;
     border-radius: 12px;
     font-size: 12px;
     font-weight: bold;
 }
 
-.tag-entrada { 
+.tag-categoria-entrada { 
     background-color: rgba(93, 214, 44, 0.1); 
     color: #5DD62C; 
 }
-.tag-saida { 
+.tag-categoria-saida { 
     background-color: rgba(228, 84, 84, 0.1); 
     color: #e45454; 
 }
@@ -231,6 +256,51 @@ main {
 
 .nova-transacao button[type="submit"]:hover {
     filter: brightness(0.9);
+}
+
+/* Estilos para o elemento SELECT de categoria */
+
+select {
+    background-color: #0F0F0F; 
+    border: 1px solid #333333; 
+    padding: 15px; 
+    border-radius: 6px; 
+    color: #F8F8F8; 
+    font-size: 16px;
+    width: 100%;
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer; 
+
+    /*ícone de seta para o select */
+
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23F8F8F8%22%20d%3D%22M6%2C9L0%2C3h12z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 15px center; 
+    background-size: 10px; 
+}
+
+select option {
+    background-color: #0f0f0f; 
+    color: #F8F8F8; 
+    padding: 10px;
+}
+
+
+select:focus {
+    outline: none; 
+    border-color: #5DD62C; 
+}
+
+
+.nova-transacao select {
+    margin-top: 5px; 
+}
+
+
+#form-edicao select {
+    margin-top: 5px;
 }
 
 
@@ -327,7 +397,7 @@ main {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fundo preto semi-transparente */
+    background-color: rgba(0, 0, 0, 0.808); /* Fundo preto semi-transparente */
 
     /* Usando flexbox para centralizar o conteúdo do modal na tela */
     justify-content: center;
@@ -341,7 +411,7 @@ main {
 
 /* A caixa de conteúdo do pop-up */
 .modal-content {
-    background-color: #25252c; /* Mesma cor de fundo dos cards e transações */
+    background-color: #202020; /* Mesma cor de fundo dos cards e transações */
     padding: 30px;
     border-radius: 8px; /* Bordas arredondadas consistentes */
     width: 90%;
@@ -427,7 +497,7 @@ main {
    /* teste tema claro/escluro */
 
 #trocar-tema {
-  position: absolute;
+  /* position: absolute; */
   top: 20px;
   right: 20px;
   padding: 10px 15px;
@@ -441,32 +511,147 @@ main {
 #trocar-tema:hover {
   background-color: #f0f0f0;
   color: #1e1e1e;
-}
+}   
 
-/* 2. Estilos que SOBRESCREVEM para o Tema Claro */
-/* Quando o body tiver a classe .light-mode, estas regras serão aplicadas */
 
+/*ESTILOS PARA O TEMA CLARO*/
+
+
+/* 1. Estilos Gerais */
 body.light-mode {
-  background-color: #f5f5f5; /* Sobrescreve para fundo claro */
-  color: #333333;            /* Sobrescreve para texto escuro */
+  background-color: #dbdbdb; /* Um cinza muito claro, mais suave que branco puro */
+  color: #333333;             /* Cor de texto principal escura */
 }
 
-body.light-mode .header {
-  background-color: #ffffff; /* Sobrescreve o fundo do header */
-  border-bottom: 1px solid #ddd;
-}
-
-body.light-mode .header h1,
-body.light-mode .header p {
-  color: #333333; /* Sobrescreve a cor do texto do header */
+/* 2. Cabeçalho e Botão de Tema */
+body.light-mode header p {
+  color: #666666; /* Cinza mais escuro para o subtítulo */
 }
 
 body.light-mode #trocar-tema {
-  color: #333333;            /* Sobrescreve a cor do texto do botão */
-  border: 1px solid #333333; /* Sobrescreve a cor da borda do botão */
+  color: #333333;
+  border-color: #333333;
 }
 
 body.light-mode #trocar-tema:hover {
   background-color: #333333;
   color: #ffffff;
+}
+
+/* 3. Cards de Resumo */
+body.light-mode .card {
+  background-color: #f1f1f1;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08); /* Sombra suave para destacar */
+}
+
+body.light-mode .card-titulo h3 {
+  color: #5a5a5a; /* Cor para "Entradas", "Saídas", "Saldo" */
+}
+
+/* 4. Lista de Transações */
+body.light-mode .transacoes li {
+  background-color: #f1f1f1;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+body.light-mode .transacoes-acoes .acoes-button {
+  color: #666666;
+}
+
+body.light-mode .transacoes-acoes .acoes-button:hover {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+body.light-mode .dropdown-acoes {
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+}
+
+body.light-mode .dropdown-acoes a {
+  color: #333;
+}
+
+body.light-mode .dropdown-acoes a:hover {
+  background-color: #f1f1f1;
+}
+
+body.light-mode .dropdown-acoes a.btn-excluir:hover {
+  background-color: #e45454;
+  color: #fff;
+}
+
+body.light-mode .dropdown-acoes a.btn-editar:hover {
+    background-color: #c9c9c981;
+}
+
+
+/* 5. Formulário de Nova Transação */
+body.light-mode .nova-transacao {
+  background: #f1f1f1;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+body.light-mode .nova-transacao input[type="text"], 
+body.light-mode .nova-transacao input[type="number"] {
+  background-color: #4aac2334;
+  border: 1px solid #cccccc;
+  color: #333333;
+}
+
+body.light-mode .tipo-transacao label {
+  background-color: #f1f1f1;
+  color: #666666;
+  border: 1px solid #cccccc;
+}
+
+body.light-mode .tipo-transacao input[type="radio"]:checked + label {
+  background-color: #5DD62C; /* Mantém o verde para indicar seleção */
+  color: #f1f1f1;
+  border-color: #4aac23;
+}
+
+body.light-mode .nova-transacao button[type="submit"] {
+  color: #f1f1f1; /* Garante que o texto do botão seja branco/claro */
+}
+
+/* 6. Estilos do Modal de Edição */
+body.light-mode .modal-content {
+  background-color: #f1f1f1;
+}
+
+body.light-mode .modal-header {
+  border-bottom: 1px solid #dddddd;
+}
+
+body.light-mode .modal-close-btn {
+  color: #333333;
+}
+
+body.light-mode #form-edicao label {
+  color: #666666;
+}
+
+body.light-mode #form-edicao input[type="text"],
+body.light-mode #form-edicao input[type="number"] {
+  background-color: #f0f0f0;
+  border: 1px solid #cccccc;
+  color: #333333;
+}
+
+body.light-mode select {
+    background-color: #f0f0f0; 
+    border: 1px solid #cccccc; 
+    color: #333333; 
+    
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M6%2C9L0%2C3h12z%22%2F%3E%3C%2Fsvg%3E'); /* Cor da seta para #333333 */
+}
+
+body.light-mode select option {
+    background-color: #f0f0f0; 
+    color: #333333; 
+}
+
+body.light-mode select:focus {
+    border-color: #4aac23; 
 }

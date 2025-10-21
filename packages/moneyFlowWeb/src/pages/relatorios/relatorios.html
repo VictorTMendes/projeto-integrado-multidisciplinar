@@ -1,150 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="PT-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatórios</title>
-    
-    <link rel="stylesheet" href="../dashboard/dashboard.css">
+    <title>Money Flow - Relatórios</title>
+
     <link rel="stylesheet" href="./relatorios.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+   
 </head>
 <body>
-    <div class="container"> 
-        <aside class="sidebar">
-            <div>
-                <div class="sidebar-header">
-                    <img src="./Crescimento_Financeiro_Gráfico-removebg-preview.png" alt="Logo da Aplicação" class="logo"> 
-                    <h2>Money Flow</h2>
-                </div>
-                <nav class="nav-menu"> 
-                    <ul>
-                        <li><a href="../dashboard/dashboard.html"><i class=""></i> Início</a></li>
-                        <li><a href="#"><i class=""></i> Rendas</a></li>
-                        <li><a href="relatorios.html" class="active"><i class=""></i> Relatórios</a></li>
-                        <li><a href="#"><i class=""></i> Objetivos</a></li>
-                        <li><a href="#"><i class=""></i> Configurações</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="sidebar-footer">
-                <div class="user-profile">
-                    <img src="https://i.pravatar.cc/40" alt="Foto do Usuário">
-                    <div class="user-info">
-                        <h4>Wagner Springer</h4>
-                        <p>email@exemplo.com</p>
-                    </div>
-                </div>
-                <button class="logout-button">
-                    <i class="ph-fill ph-sign-out"></i>
-                </button>
-            </div>
-        </aside>
-
-        <main class="main-content">
-            <header class="main-header">
+    <div class="container">
+        
+        <header>
+            <div class="header">
                 <h1>Relatórios</h1>
-                <p>Análise detalhada do período de Setembro</p>
-            </header>
-            
-            <div class="dashboard-grid">
-
-                <section class="card">
-                    <div class="card-header">
-                        <h3>Receita do Mês</h3>
-                    </div>
-                    <p class="card-value income">+ R$ 5.850,00</p>
-                </section>
-                
-                <section class="card">
-                    <div class="card-header">
-                        <h3>Despesa do Mês</h3>
-                    </div>
-                    <p class="card-value expense">- R$ 3.280,50</p>
-                </section>
-                
-                <section class="card">
-                    <div class="card-header">
-                        <h3>Saldo Final</h3>
-                    </div>
-                    <p class="card-value balance">R$ 2.569,50</p>
-                </section>
-                
-                <section class="card list-card">
-                    <div class="card-header">
-                        <h3>Despesas por Categoria</h3>
-                    </div>
-                    <div class="category-list">
-                        <div class="category-item">
-                            <div class="item-info">
-                                <div class="item-icon"><i class="ph ph-house-line"></i></div>
-                                <div class="item-text"><h4>Moradia</h4></div>
-                            </div>
-                            <div class="category-details">
-                                <span>R$ 1.200,25</span>
-                            </div>
-                        </div>
-                        <div class="category-item">
-                            <div class="item-info">
-                                <div class="item-icon"><i class="ph ph-fork-knife"></i></div>
-                                <div class="item-text"><h4>Alimentação</h4></div>
-                            </div>
-                            <div class="category-details">
-                                <span>R$ 850,75</span>
-                                <div class="progress-bar">
-                                    <div class="progress" style="width: 26%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="category-item">
-                             <div class="item-info">
-                                <div class="item-icon"><i class="ph ph-car"></i></div>
-                                <div class="item-text"><h4>Transporte</h4></div>
-                            </div>
-                            <div class="category-details">
-                                <span>R$ 550,00</span>
-                                <div class="progress-bar">
-                                    <div class="progress" style="width: 17%;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- <section class="card list-card" style="grid-column: 1 / -1;">
-                       <div class="card-header">
-                           <h3>Últimas Transações</h3>
-                           <button class="action-button">Ver Todas</button>
-                       </div>
-                       <div class="list">
-                           <div class="list-item">
-                               <div class="item-info">
-                                   <div class="item-icon income"><i class="ph-fill ph-plus-circle"></i></div>
-                                   <div class="item-text">
-                                       <h4>Salário Mensal</h4>
-                                       <p>Receita Fixa</p>
-                                   </div>
-                               </div>
-                               <span class="item-status income">+ R$ 5.850,00</span>
-                           </div>
-                           <div class="list-item">
-                               <div class="item-info">
-                                   <div class="item-icon expense"><i class="ph-fill ph-minus-circle"></i></div>
-                                   <div class="item-text">
-                                       <h4>Aluguel</h4>
-                                       <p>Moradia</p>
-                                   </div>
-                               </div>
-                               <span class="item-status expense">- R$ 1.200,00</span>
-                           </div>
-                       </div>
-                   </section> -->
-
+                <p>Analise suas finanças visualmente</p>
             </div>
-        </main>
+            <div class="header-acoes" style="display: flex; gap: 15px; align-items: center;">
+                <a href="../newdashboard/newdashboard.html" class="link-button" style="font-size: 16px;">Voltar ao Dashboard</a>
+                <button id="trocar-tema">Alternar Tema</button>
+            </div>
+        </header>
+
+        <section class="charts-container">
+
+            <div class="chart-box">
+                <h2>Gastos por Categoria</h2>
+                <div class="chart-canvas-container">
+                    <canvas id="graficoPizzaCategorias"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-box">
+                <h2>Receitas vs. Despesas (Últimos 6 Meses)</h2>
+                <div class="chart-canvas-container">
+                    <canvas id="graficoBarrasMensal"></canvas>
+                </div>
+            </div>
+
+        </section>
     </div>
-</body>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script src="../../../assets/js/tema.js"></script> 
+    <script src="../../../assets/js/relatorios.js"></script> 
+
+ </body>
 </html>

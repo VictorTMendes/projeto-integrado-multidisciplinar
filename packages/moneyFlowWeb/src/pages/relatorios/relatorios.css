@@ -1,54 +1,184 @@
-/* Valor em destaque nos cards de resumo */
-.card-value {
-    font-size: 26px;
-    font-weight: 600;
-} 
-
-.card-value.income { color: var(--accent-primary); }
-.card-value.expense { color: var(--red); }
-.card-value.balance { color: var(--blue); }
-
-/* Lista de categorias com barra de progresso */
-.category-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.category-item {
+
+body {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    background-color: #0F0F0F; 
+    color: #F8F8F8; 
+    /* Adiciona transição suave para a troca de tema */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+/* ===================================== */
+/* ========= ESTILOS DO CABEÇALHO ======== */
+/* ===================================== */
+
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 4px;
-    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 25px;
 }
-.category-item:last-child { border-bottom: none; }
 
-.category-details {
-    width: 60%;
+header h1 {
+    font-size: 24px;   
+}
+
+header p {
+    font-size: 16px;
+    color: #c3c3c3; 
+    transition: color 0.3s;
+}
+
+/* Container para os botões à direita */
+.header-acoes {
+    display: flex;
+    gap: 20px; 
+    align-items: center;
+}
+
+/* Botão "Voltar ao Dashboard" (reutilizando sua classe) */
+.link-button {
+    background: none;
+    border: none;
+    color: #5DD62C; 
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    
+    /* Para alinhar ícone e texto, se houver */
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
+    text-decoration: none;
+    transition: filter 0.2s;
 }
-.category-details span {
-    color: var(--text-primary);
-    font-weight: 500;
+
+.link-button:hover {
+    filter: brightness(0.85); 
+}
+
+/* Botão de trocar tema */
+#trocar-tema {
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: transparent;
+    color: #f0f0f0;         
+    border: 1px solid #f0f0f0; 
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
-    min-width: 200px;
-    text-align: right;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Cores para ícones e status de transações */
-.item-icon.income { color: var(--accent-primary); }
-.item-icon.expense { color: var(--red); }
+#trocar-tema:hover {
+    background-color: #f0f0f0;
+    color: #1e1e1e;
+} 
 
-/* Reutilizando a classe .item-status para consistência */
-.item-status.income {
-    color: var(--accent-primary);
-    background-color: rgba(51, 116, 24, 0.15);
-    font-weight: 600;
+/* ===================================== */
+/* ======= ESTILOS DOS GRÁFICOS ======== */
+/* ===================================== */
+
+.charts-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dois gráficos lado a lado */
+    gap: 20px;
+    margin-top: 40px;
 }
-.item-status.expense {
-    color: var(--red);
-    background-color: rgba(255, 69, 58, 0.1);
-    font-weight: 600;
+
+.chart-box {
+    background-color: #202020; /* Fundo padrão (dark) */
+    padding: 30px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.chart-box h2 {
+    font-size: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #F8F8F8; /* Cor do título (dark) */
+    transition: color 0.3s;
+}
+
+/* Este container ajuda a manter a proporção do gráfico */
+.chart-canvas-container {
+    position: relative;
+    width: 100%;
+    max-height: 400px; /* Ajuste conforme necessário */
+}
+
+
+/* =================================================== */
+/* ========== ESTILOS PARA O TEMA CLARO ============== */
+/* =================================================== */
+
+body.light-mode {
+    background-color: #f4f4f4; 
+    color: #333333;             
+}
+
+body.light-mode header p {
+    color: #666666; 
+}
+
+body.light-mode #trocar-tema {
+    color: #333333;
+    border-color: #333333;
+}
+
+body.light-mode #trocar-tema:hover {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+/* Tema claro para os gráficos */
+body.light-mode .chart-box {
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+body.light-mode .chart-box h2 {
+    color: #333333; /* Cor do título (light) */
+}
+
+
+/* =================================================== */
+/* ============ ESTILOS RESPONSIVOS ================== */
+/* =================================================== */
+
+@media (max-width: 1250px) {
+    .container {
+        width: 95%; /* Mais fluido em telas menores */
+    }
+}
+
+@media (max-width: 900px) {
+    .charts-container {
+        grid-template-columns: 1fr; /* Um gráfico abaixo do outro */
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Empilha o título e os botões */
+        align-items: flex-start; /* Alinha tudo à esquerda */
+        gap: 20px;
+    }
+
+    .header-acoes {
+        width: 100%;
+        justify-content: space-between; /* Espalha os botões */
+    }
 }

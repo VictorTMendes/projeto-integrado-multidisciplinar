@@ -1,17 +1,13 @@
 
 .link-voltar {
-    background-color: #202020;
-    color: #F8F8F8;
-    padding: 10px 20px;
-    border-radius: 6px;
-    text-decoration: none;
+    background: none;
+    border: none;
+    color: #5DD62C; 
     font-weight: bold;
-    transition: background-color 0.2s;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
 }
-
-.link-voltar:hover {
-    background-color: #333;
-}   
 
 .transacao-valor .entrada { color: #5DD62C; }
 .transacao-valor .saida { color: #e45454; }
