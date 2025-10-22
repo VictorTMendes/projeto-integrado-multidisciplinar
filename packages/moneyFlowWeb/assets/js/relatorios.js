@@ -1,28 +1,60 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Tenta carregar as transações do localStorage
-    const transacoes = JSON.parse(localStorage.getItem('transactions')) || [];
+    // LINHA ORIGINAL (comentada para guardá-la):
+    // const transacoes = JSON.parse(localStorage.getItem('transactions')) || [];
 
-    // Variáveis globais para os gráficos, para podermos atualizá-los
+    // ====== INÍCIO DOS DADOS FICTÍCIOS PARA TESTE ======
+    console.log("!!! USANDO DADOS FICTÍCIOS PARA TESTE !!!");
+    const transacoes = [
+        // Mês atual (Outubro/2025) - Estou assumindo que hoje é Outubro/2025 para os testes
+        { valor: 500, tipo: "saida", categoria: "Alimentacao", data: "2025-10-20" },
+        { valor: 150, tipo: "saida", categoria: "Transporte", data: "2025-10-15" },
+        { valor: 3000, tipo: "entrada", categoria: "Salario", data: "2025-10-05" },
+
+        // Mês passado (Setembro/2025)
+        { valor: 450, tipo: "saida", categoria: "Alimentacao", data: "2025-09-20" },
+        { valor: 80, tipo: "saida", categoria: "Lazer", data: "2025-09-15" },
+        { valor: 150, tipo: "saida", categoria: "Transporte", data: "2025-09-12" },
+        { valor: 3000, tipo: "entrada", categoria: "Salario", data: "2025-09-05" },
+
+        // Mês retrasado (Agosto/2025)
+        { valor: 600, tipo: "saida", categoria: "Alimentacao", data: "2025-08-20" },
+        { valor: 200, tipo: "saida", categoria: "Lazer", data: "2025-08-18" },
+        { valor: 1200, tipo: "saida", categoria: "Moradia", data: "2025-08-10" },
+        { valor: 3000, tipo: "entrada", categoria: "Salario", data: "2025-08-05" },
+        { valor: 500, tipo: "entrada", categoria: "Outros", data: "2025-08-02" },
+        
+        // Outros meses (para preencher o gráfico de barras)
+        { valor: 2500, tipo: "entrada", categoria: "Salario", data: "2025-07-05" },
+        { valor: 800, tipo: "saida", categoria: "Moradia", data: "2025-07-10" },
+        { valor: 2500, tipo: "entrada", categoria: "Salario", data: "2025-06-05" },
+        { valor: 1000, tipo: "saida", categoria: "Saude", data: "2025-06-20" },
+        { valor: 2500, tipo: "entrada", categoria: "Salario", data: "2025-05-05" },
+        { valor: 400, tipo: "saida", categoria: "Alimentacao", data: "2025-05-15" },
+    ];
+    // ====== FIM DOS DADOS FICTÍCIOS ======
+
+
+    // ==========================================================
+    // ESTE É O "RESTO DO CÓDIGO" QUE ESTAVA FALTANDO
+    // ==========================================================
+
     let graficoPizza = null;
     let graficoBarras = null;
 
     // --- Funções de Processamento de Dados ---
 
-    /**
-     * Processa os dados para o gráfico de pizza (Gastos por Categoria)
-     */
     function prepararDadosPizza() {
-        const gastosPorCategoria = {}; // Ex: { Alimentacao: 100, Transporte: 50 }
+        const gastosPorCategoria = {}; 
 
-        // Filtra apenas saídas e soma os valores por categoria
         transacoes
             .filter(t => t.tipo === 'saida')
             .forEach(t => {
-                if (gastosPorCategoria[t.categoria]) {
-                    gastosPorCategoria[t.categoria] += t.valor;
+                const categoria = t.categoria || 'Sem Categoria'; // Garante uma categoria
+                if (gastosPorCategoria[categoria]) {
+                    gastosPorCategoria[categoria] += parseFloat(t.valor) || 0;
                 } else {
-                    gastosPorCategoria[t.categoria] = t.valor;
+                    gastosPorCategoria[categoria] = parseFloat(t.valor) || 0;
                 }
             });
 
@@ -32,37 +64,35 @@ document.addEventListener('DOMContentLoaded', () => {
         return { labels, data };
     }
 
-    /**
-     * Processa os dados para o gráfico de barras (Receitas vs Despesas Mensal)
-     */
     function prepararDadosBarras() {
-        const labels = []; // Nomes dos meses (ex: "Maio", "Junho", ...)
+        const labels = [];
         const dataReceitas = [];
         const dataDespesas = [];
 
-        const hoje = new Date();
+        // Fixamos a data de "hoje" para 21/10/2025 para que o teste seja consistente
+        const hoje = new Date(2025, 9, 21); // Mês 9 é Outubro (0-11)
         const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 
-        for (let i = 5; i >= 0; i--) { // Começa de 5 para pegar os últimos 6 meses (0-5)
-            // Cria uma data para o mês 'i' meses atrás
+        for (let i = 5; i >= 0; i--) { 
             const dataAlvo = new Date(hoje.getFullYear(), hoje.getMonth() - i, 1);
             
             const nomeMes = meses[dataAlvo.getMonth()];
-            const ano = dataAlvo.getFullYear();
-            labels.push(`${nomeMes}/${ano}`); // Adiciona "Out/2025" ao label
+            const ano = dataAlvo.getFullYear().toString().substr(-2); // Pega só os 2 últimos dígitos
+            labels.push(`${nomeMes}/${ano}`); 
 
             let receitaMes = 0;
             let despesaMes = 0;
 
-            // Filtra transações para o mês e ano específicos
             transacoes.forEach(t => {
-                const dataTransacao = new Date(t.data + "T00:00:00"); // Adiciona T00:00 para evitar problemas de fuso
+                if (!t.data) return; 
+                const dataTransacao = new Date(t.data + "T00:00:00"); 
                 
                 if (dataTransacao.getMonth() === dataAlvo.getMonth() && dataTransacao.getFullYear() === dataAlvo.getFullYear()) {
+                    const valor = parseFloat(t.valor) || 0;
                     if (t.tipo === 'entrada') {
-                        receitaMes += t.valor;
+                        receitaMes += valor;
                     } else if (t.tipo === 'saida') {
-                        despesaMes += t.valor;
+                        despesaMes += valor;
                     }
                 }
             });
@@ -91,9 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Funções de Renderização dos Gráficos ---
 
-    /**
-     * Define as opções globais dos gráficos (cores de fonte, etc.)
-     */
     function getChartOptions() {
         const isLightMode = document.body.classList.contains('light-mode');
         const corTexto = isLightMode ? '#333333' : '#F8F8F8';
@@ -105,53 +132,31 @@ document.addEventListener('DOMContentLoaded', () => {
             plugins: {
                 legend: {
                     labels: {
-                        color: corTexto, // Cor do texto da legenda
-                        font: {
-                            size: 14,
-                            family: 'Roboto, Arial, sans-serif'
-                        }
+                        color: corTexto,
+                        font: { size: 14, family: 'Roboto, Arial, sans-serif' }
                     }
                 }
             },
-            scales: { // Usado pelo gráfico de barras
+            scales: { 
                 y: {
-                    ticks: {
-                        color: corTexto, // Cor dos números no eixo Y
-                        font: {
-                            size: 12,
-                            family: 'Roboto, Arial, sans-serif'
-                        }
-                    },
-                    grid: {
-                        color: corGrid // Cor das linhas de grade
-                    }
+                    ticks: { color: corTexto, font: { size: 12, family: 'Roboto, Arial, sans-serif' }},
+                    grid: { color: corGrid }
                 },
                 x: {
-                    ticks: {
-                        color: corTexto, // Cor dos meses no eixo X
-                        font: {
-                            size: 12,
-                            family: 'Roboto, Arial, sans-serif'
-                        }
-                    },
-                    grid: {
-                        color: 'transparent' // Linhas de grade do eixo X transparentes
-                    }
+                    ticks: { color: corTexto, font: { size: 12, family: 'Roboto, Arial, sans-serif' }},
+                    grid: { color: 'transparent' }
                 }
             }
         };
     }
 
-
-    /**
-     * Cria ou atualiza o gráfico de pizza
-     */
     function renderizarGraficoPizza() {
-        const ctx = document.getElementById('graficoPizzaCategorias').getContext('2d');
+        const ctxPizza = document.getElementById('graficoPizzaCategorias');
+        if (!ctxPizza) return; 
+
         const dadosPizza = prepararDadosPizza();
         const options = getChartOptions();
 
-        // Se o gráfico já existe, atualiza os dados
         if (graficoPizza) {
             graficoPizza.data.labels = dadosPizza.labels;
             graficoPizza.data.datasets[0].data = dadosPizza.data;
@@ -160,22 +165,16 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Se não existe, cria um novo
-        graficoPizza = new Chart(ctx, {
-            type: 'doughnut', // Tipo 'doughnut' (rosquinha) é mais moderno que 'pie' (pizza)
+        graficoPizza = new Chart(ctxPizza.getContext('2d'), {
+            type: 'doughnut', 
             data: {
                 labels: dadosPizza.labels,
                 datasets: [{
                     label: 'Gastos',
                     data: dadosPizza.data,
-                    backgroundColor: [ // Adicione mais cores se tiver mais categorias
-                        '#e45454',
-                        '#5DD62C',
-                        '#337418',
-                        '#3498db',
-                        '#9b59b6',
-                        '#e67e22',
-                        '#f1c40f',
+                    backgroundColor: [ 
+                        '#e45454', '#3498db', '#9b59b6', '#e67e22', 
+                        '#f1c40f', '#1abc9c', '#2ecc71'
                     ],
                     hoverOffset: 4
                 }]
@@ -184,11 +183,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /**
-     * Cria ou atualiza o gráfico de barras
-     */
     function renderizarGraficoBarras() {
-        const ctx = document.getElementById('graficoBarrasMensal').getContext('2d');
+        const ctxBarras = document.getElementById('graficoBarrasMensal');
+        if (!ctxBarras) return; 
+
         const dadosBarras = prepararDadosBarras();
         const options = getChartOptions();
 
@@ -200,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        graficoBarras = new Chart(ctx, {
+        graficoBarras = new Chart(ctxBarras.getContext('2d'), {
             type: 'bar',
             data: {
                 labels: dadosBarras.labels,
@@ -210,24 +208,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Execução Inicial ---
+    // --- Execução Inicial e Integração com Tema ---
     
-    // Renderiza os gráficos quando a página carrega
     renderizarGraficoPizza();
     renderizarGraficoBarras();
 
-    // --- Integração com o Tema ---
-    
-    // Ouve o clique no botão de tema (que já está na página)
     const themeToggleButton = document.getElementById('trocar-tema');
     if(themeToggleButton) {
         themeToggleButton.addEventListener('click', () => {
-            // Espera um instante para o body.classList.toggle() do outro script rodar
             setTimeout(() => {
-                // E então atualiza os gráficos com as novas cores
                 renderizarGraficoPizza();
                 renderizarGraficoBarras();
-            }, 10); // 10ms é o suficiente
+            }, 10); 
         });
     }
-});
+
+}); // <-- O ERRO ESTAVA AQUI! Esta linha fecha o addEventListener. l

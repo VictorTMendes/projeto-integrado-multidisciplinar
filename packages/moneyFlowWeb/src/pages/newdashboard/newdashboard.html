@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./newdashboard.css">
 
 </head>
-<body>
+  <body>
     <div class="container">
        <header>
     <div class="header">
@@ -54,119 +54,90 @@
         </section>
 
     <main>
-        <div class="transacoes">
-            <div class="transacoes-header">
-                <h2>Ultimas Atualizações</h2>
-                <a href="../historico/historico.html">Ver mais</a>
-            </div>
-            <ul>
-                <li>
-                    <div class="transacao-info">
-                        <span class="tag-categoria-saida">Alimentação</span>
-                        <p>Mercado</p>
-                    </div>
-                        <div class="transacao-valor-saida">
-                            <div class="transacao-valor">
-                                <span>- R$ 500,00</span>
-                                <small>15/10/2025</small>
-                            </div>
-                    </div>
-
-                    <div class="transacao-acoes">
-                        <button class="acoes-button">
-                            <i class="fas fa-ellipsis-v"></i> 
-                        </button>
-
-                        <div class="dropdown-acoes">
-                            <a href="#" class="btn-editar"> 
-                                <i class="fas fa-pencil-alt"></i> Editar 
-                            </a>
-                            <a href="#" class="btn-excluir">
-                                <i class="fas fa-trash"></i> Excluir
-                            </a>
+        <div class="main-content">
+            <div class="transacoes">
+                <div class="transacoes-header">
+                    <h2>Ultimas Atualizações</h2>
+                    <a href="../historico/historico.html">Ver mais</a>
+                </div>
+                <ul>
+                    <li>
+                        <div class="transacao-info">
+                            <span class="tag-categoria-saida">Alimentação</span>
+                            <p>Mercado</p>
                         </div>
-                    </div>
-                </li>
-                
-                <li>
-                    <div class="transacao-info">
-                        <span class="tag-categoria-entrada">Salário</span>
-                        <p>Recebimento</p>
-                    </div>
-                    <div class="transacao-valor-entrada">
-                        <div class="transacao-valor">
-                            <span>+ R$ 2.050,00</span>
-                            <small>28/09/2025</small>
+                            <div class="transacao-valor-saida">
+                                <div class="transacao-valor">
+                                    <span>- R$ 500,00</span>
+                                    <small>15/10/2025</small>
+                                </div>
                         </div>
-                    </div>
-                
-                    <div class="transacao-acoes">
+
+                        <div class="transacao-acoes">
                             <button class="acoes-button">
                                 <i class="fas fa-ellipsis-v"></i> 
                             </button>
 
-                        <div class="dropdown-acoes"> 
-                            <a href="#" class="btn-editar"> 
-                                <i class="fas fa-pencil-alt"></i> Editar </a>
-
-                                <a href="#" class="btn-excluir"><i class="fas fa-trash"></i> Excluir</a>
+                            <div class="dropdown-acoes">
+                                <a href="#" class="btn-editar"> 
+                                    <i class="fas fa-pencil-alt"></i> Editar 
+                                </a>
+                                <a href="#" class="btn-excluir">
+                                    <i class="fas fa-trash"></i> Excluir
+                                </a>
+                            </div>
                         </div>
+                    </li>
+                    
+                    <li>
+                        <div class="transacao-info">
+                            <span class="tag-categoria-entrada">Salário</span>
+                            <p>Recebimento</p>
+                        </div>
+                        <div class="transacao-valor-entrada">
+                            <div class="transacao-valor">
+                                <span>+ R$ 2.050,00</span>
+                                <small>28/09/2025</small>
+                            </div>
+                        </div>
+                    
+                        <div class="transacao-acoes">
+                                <button class="acoes-button">
+                                    <i class="fas fa-ellipsis-v"></i> 
+                                </button>
+
+                            <div class="dropdown-acoes"> 
+                                <a href="#" class="btn-editar"> 
+                                    <i class="fas fa-pencil-alt"></i> Editar </a>
+
+                                    <a href="#" class="btn-excluir"><i class="fas fa-trash"></i> Excluir</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nova-transacao">
+                <h2>Nova Transação</h2>
+                <form>
+                    <label>Tipo de Transação</label>
+                    <div class="tipo-transacao">
+                        <input type="radio" id="entrada" name="tipo" value="entrada" checked>
+                        <label for="entrada">Entrada</label>
+
+                        <input type="radio" id="saida" name="tipo" value="saida">
+                        <label for="saida">Saída</label>
                     </div>
-                </li>
-            </ul>
-        </div>
 
-        <div class="nova-transacao">
-            <h2>Nova Transação</h2>
-            <form>
-                <label>Tipo de Transação</label>
-                <div class="tipo-transacao">
-                    <input type="radio" id="entrada" name="tipo" value="entrada" checked>
-                    <label for="entrada">Entrada</label>
+                    <label for="valor">Valor</label>
+                    <input type="number" id="valor" placeholder="R$ 0,00" onkeydown="return event.key !== 'e' && event.key !== 'E' && event.key !== '+' && event.key !== '-';">
 
-                    <input type="radio" id="saida" name="tipo" value="saida">
-                    <label for="saida">Saída</label>
-                </div>
+                    <label for="descricao">Descrição</label>
+                    <input type="text" id="descricao" placeholder="Descreva a transação...">
 
-                <label for="valor">Valor</label>
-                <input type="number" id="valor" placeholder="R$ 0,00" onkeydown="return event.key !== 'e' && event.key !== 'E' && event.key !== '+' && event.key !== '-';">
-
-                <label for="descricao">Descrição</label>
-                <input type="text" id="descricao" placeholder="Descreva a transação...">
-
-                <label for="categoria">Categoria</label>
-                <select name="Categoria" id="categoria" required>
-                    <option value="" disabled selected>Selecione uma categoria</option>
-                    <option value="Salario">Salário</option>
-                    <option value="Alimentacao">Alimentação</option>
-                    <option value="Transporte">Transporte</option>
-                    <option value="Moradia">Moradia</option>
-                    <option value="Lazer">Lazer</option>
-                    <option value="Saude">Saúde</option>
-                    <option value="Outros">Outros</option>
-                </select> 
-
-                <button type="submit">Adicionar</button>
-            </form>
-        </div>
-
-         <div id="modal-edicao" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Editar Transação</h2>
-                    <button class="modal-close-btn">&times;</button>
-                </div>
-
-                <form id="form-edicao">
-                    <label for="valor-edicao">Valor</label>
-                    <input type="number" id="valor-edicao" onkeydown="return event.key !== 'e' && event.key !== 'E' && event.key !== '+' && event.key !== '-';" required>
-
-                    <label for="descricao-edicao">Descrição</label>
-                    <input type="text" id="descricao-edicao" required>
-
-                    <label for="categoria-edicao">Categoria</label>
-                    <select id="categoria-edicao" name="CategoriaEdicao" required>
-                        <option value="" disabled>Selecione uma categoria</option>
+                    <label for="categoria">Categoria</label>
+                    <select name="Categoria" id="categoria" required>
+                        <option value="" disabled selected>Selecione uma categoria</option>
                         <option value="Salario">Salário</option>
                         <option value="Alimentacao">Alimentação</option>
                         <option value="Transporte">Transporte</option>
@@ -174,18 +145,69 @@
                         <option value="Lazer">Lazer</option>
                         <option value="Saude">Saúde</option>
                         <option value="Outros">Outros</option>
-                    </select>
+                    </select> 
 
-                    <button type="submit">Salvar Alterações</button>
+                    <button type="submit">Adicionar</button>
                 </form>
-                
             </div>
+
+            <div id="modal-edicao" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Editar Transação</h2>
+                        <button class="modal-close-btn">&times;</button>
+                    </div>
+
+                    <form id="form-edicao">
+                        <label for="valor-edicao">Valor</label>
+                        <input type="number" id="valor-edicao" onkeydown="return event.key !== 'e' && event.key !== 'E' && event.key !== '+' && event.key !== '-';" required>
+
+                        <label for="descricao-edicao">Descrição</label>
+                        <input type="text" id="descricao-edicao" required>
+
+                        <label for="categoria-edicao">Categoria</label>
+                        <select id="categoria-edicao" name="CategoriaEdicao" required>
+                            <option value="" disabled>Selecione uma categoria</option>
+                            <option value="Salario">Salário</option>
+                            <option value="Alimentacao">Alimentação</option>
+                            <option value="Transporte">Transporte</option>
+                            <option value="Moradia">Moradia</option>
+                            <option value="Lazer">Lazer</option>
+                            <option value="Saude">Saúde</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+
+                        <button type="submit">Salvar Alterações</button>
+                    </form>
+                    
+                </div>
+            </div>
+
+            <!-- <section class="charts-container">
+
+                <div class="chart-box">
+                    <h2>Gastos por Categoria</h2>
+                    <div class="chart-canvas-container">
+                        <canvas id="graficoPizzaCategorias"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-box">
+                    <h2>Receitas vs. Despesas (Últimos 6 Meses)</h2>
+                    <div class="chart-canvas-container">
+                        <canvas id="graficoBarrasMensal"></canvas>
+                    </div>
+                </div>
+
+            </section>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="../../../assets/js/relatorios.js"></script>  -->
+
+            <script src="../../../assets/js/tema.js"></script>
+            <script src="../../../assets/js/edicao-transacoes.js"></script>
         </div>
-
-        <script src="../../../assets/js/tema.js"></script>
-        <script src="../../../assets/js/edicao-transacoes.js"></script>
     </main>
-    </div>
-
+  </div>
 </body>
 </html>

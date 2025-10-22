@@ -100,6 +100,12 @@ header p {
 
 /* Conteúdo Principal */
 main {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.main-content {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 20px;
@@ -302,6 +308,7 @@ select:focus {
 #form-edicao select {
     margin-top: 5px;
 }
+
 
 
 /* IA */
