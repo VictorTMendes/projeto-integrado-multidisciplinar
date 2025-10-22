@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const botoesEditar = document.querySelectorAll('.btn-editar');
     const modalEdicao = document.getElementById('modal-edicao');
     const formEdicao = document.getElementById('form-edicao');
-    const btnFecharModal = document.querySelector('.modal-close-btn'); // Supondo que você tenha um botão de fechar no modal
+    const btnFecharModal = document.querySelector('.modal-close-btn');
 
     botoesEditar.forEach(botao => {
         botao.addEventListener('click', (event) => {

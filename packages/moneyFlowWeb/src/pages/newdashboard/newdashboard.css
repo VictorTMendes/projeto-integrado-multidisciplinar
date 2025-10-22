@@ -130,16 +130,6 @@ main {
     font-weight: bold;
 }
 
-.link-button {
-    background: none;
-    border: none;
-    color: #5DD62C; /* Verde vibrante da sua paleta */
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    font-family: 'Roboto', sans-serif;
-}
-
 .transacoes ul {
     list-style: none;
 }
@@ -661,4 +651,33 @@ body.light-mode select option {
 
 body.light-mode select:focus {
     border-color: #4aac23; 
+}
+
+/* =================================================== */
+/* ====== TEMA CLARO PARA A PÁGINA DE HISTÓRICO ====== */
+/* =================================================== */
+
+/* Ajusta o header da página de histórico */
+body.light-mode header .link-voltar {
+    color: #4aac23; /* Garante que o link "voltar" fique verde */
+}
+
+/* Estiliza a lista de transações no modo claro */
+body.light-mode .transacoes h2 {
+    color: #333333;
+}
+
+body.light-mode .transacoes li {
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+body.light-mode .tag-categoria-saida {
+    background-color: rgba(228, 84, 84, 0.1); 
+    color: #e45454;
+}
+
+body.light-mode .tag-categoria-entrada {
+    background-color: rgba(93, 214, 44, 0.1); 
+    color: #5DD62C;
 }

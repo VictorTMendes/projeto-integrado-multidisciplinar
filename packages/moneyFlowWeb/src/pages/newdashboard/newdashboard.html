@@ -130,7 +130,7 @@
                     </div>
 
                     <label for="valor">Valor</label>
-                    <input type="number" id="valor" placeholder="R$ 0,00" onkeydown="return event.key !== 'e' && event.key !== 'E' && event.key !== '+' && event.key !== '-';">
+                    <input type="text" id="valor" placeholder="R$ 0,00">
 
                     <label for="descricao">Descrição</label>
                     <input type="text" id="descricao" placeholder="Descreva a transação...">
@@ -160,7 +160,7 @@
 
                     <form id="form-edicao">
                         <label for="valor-edicao">Valor</label>
-                        <input type="number" id="valor-edicao" onkeydown="return event.key !== 'e' && event.key !== 'E' && event.key !== '+' && event.key !== '-';" required>
+                        <input type="text" id="valor-edicao" onkeydown="return event.key !== 'e' && event.key !== 'E' && event.key !== '+' && event.key !== '-';" required>
 
                         <label for="descricao-edicao">Descrição</label>
                         <input type="text" id="descricao-edicao" required>
@@ -206,6 +206,10 @@
 
             <script src="../../../assets/js/tema.js"></script>
             <script src="../../../assets/js/edicao-transacoes.js"></script>
+            <script src="../../../assets/js/mascaras.js"></script>
+
+            <script src="https://unpkg.com/imask"></script>
+
         </div>
     </main>
   </div>
