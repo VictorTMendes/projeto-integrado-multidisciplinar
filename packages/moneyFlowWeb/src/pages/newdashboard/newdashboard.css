@@ -6,8 +6,10 @@
 
 body {
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    background-color: #0F0F0F; 
-    color: #F8F8F8; 
+    background-color: #0F0F0F;
+    color: #F8F8F8;
+    /* Adiciona transição para a troca de tema */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
@@ -25,12 +27,13 @@ header {
 }
 
 header h1 {
-    font-size: 24px;   
+    font-size: 24px;
 }
 
 header p {
     font-size: 16px;
-    color: #c3c3c3; 
+    color: #c3c3c3;
+    transition: color 0.3s;
 }
 
 .header-acoes {
@@ -39,10 +42,24 @@ header p {
     align-items: center;
 }
 
+.header-icon-btn {
+    background: none;
+    border: none;
+    color: #f8f8f8; /* Cor do ícone (dark mode) */
+    font-size: 24px; /* Tamanho do ícone */
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+    transition: color 0.3s;
+}
+.header-icon-btn:hover {
+    color: #c3c3c3;
+}
+
 .link-button {
     background: none;
     border: none;
-    color: #5DD62C; 
+    color: #5DD62C;
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
@@ -66,9 +83,10 @@ header p {
 }
 
 .card {
-    background-color: #202020; 
+    background-color: #202020;
     padding: 25px;
     border-radius: 8px;
+    transition: background-color 0.3s;
 }
 
 .card p {
@@ -87,6 +105,7 @@ header p {
     color: #c3c3c3;
     font-size: 16px;
     font-weight: normal;
+    transition: color 0.3s;
 }
 
 .card-titulo i {
@@ -94,9 +113,9 @@ header p {
 }
 
 /* Cores dos Ícones dos Cards */
-.icon-entrada { color: #5DD62C; } 
-.icon-saida { color: #e45454; } 
-.icon-saldo { color: #337418; } 
+.icon-entrada { color: #5DD62C; }
+.icon-saida { color: #e45454; }
+.icon-saldo { color: #337418; }
 
 /* Conteúdo Principal */
 main {
@@ -114,6 +133,7 @@ main {
 .transacoes h2, .nova-transacao h2 {
     font-size: 20px;
     margin-bottom: 20px;
+    transition: color 0.3s;
 }
 
 
@@ -126,16 +146,17 @@ main {
 
 .transacoes-header a {
     text-decoration: none;
-    color: #5DD62C; 
+    color: #5DD62C;
     font-weight: bold;
 }
 
 .transacoes ul {
     list-style: none;
+    padding: 0; /* Adicionado para garantir */
 }
 
 .transacoes li {
-    background-color: #202020; 
+    background-color: #202020;
     padding: 15px;
     border-radius: 6px;
     display: flex;
@@ -143,6 +164,7 @@ main {
     align-items: center;
     margin-bottom: 10px;
     position: relative;
+    transition: background-color 0.3s;
 }
 
 .transacao-info {
@@ -151,7 +173,7 @@ main {
     gap: 15px;
 }
 
-
+/* Renomeado: Use as classes específicas se precisar de estilos diferentes */
 .tag-categoria-entrada, .tag-categoria-saida {
     padding: 5px 10px;
     border-radius: 12px;
@@ -159,15 +181,14 @@ main {
     font-weight: bold;
 }
 
-.tag-categoria-entrada { 
-    background-color: rgba(93, 214, 44, 0.1); 
-    color: #5DD62C; 
+.tag-categoria-entrada {
+    background-color: rgba(93, 214, 44, 0.1);
+    color: #5DD62C;
 }
-.tag-categoria-saida { 
-    background-color: rgba(228, 84, 84, 0.1); 
-    color: #e45454; 
+.tag-categoria-saida {
+    background-color: rgba(228, 84, 84, 0.1);
+    color: #e45454;
 }
-
 
 .transacao-valor {
     text-align: right;
@@ -178,19 +199,22 @@ main {
     font-weight: bold;
 }
 
-
+/* Renomeado: Use classes específicas se precisar */
 .transacao-valor-entrada span {color: #5DD62C;}
 .transacao-valor-saida span {color: #e45454;}
+span.entrada { color: #5DD62C; } /* Para o histórico */
+span.saida { color: #e45454; }   /* Para o histórico */
 
 .transacao-valor small {
     color: #c3c3c3;
+    transition: color 0.3s;
 }
-
 
 .nova-transacao {
     background: #202020;
     padding: 30px;
     border-radius: 8px;
+    transition: background-color 0.3s;
 }
 
 .nova-transacao form {
@@ -199,13 +223,16 @@ main {
     gap: 15px;
 }
 
-.nova-transacao input[type="text"], .nova-transacao input[type="number"] {
+.nova-transacao input[type="text"],
+.nova-transacao input[type="number"],
+.nova-transacao select { /* Adicionado select aqui */
     background-color: #0F0F0F;
-    border: 1px solid #333; 
+    border: 1px solid #333;
     padding: 15px;
     border-radius: 6px;
     color: #F8F8F8;
     font-size: 16px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 /* Estilo para Botões de Rádio */
@@ -232,17 +259,17 @@ main {
 }
 
 .tipo-transacao input[type="radio"]:checked + label {
-    background-color: #337418; 
-    color: #c3c3c3;
-    border-color: #5DD62C; 
+    background-color: #337418;
+    color: #F8F8F8; /* Melhor contraste */
+    border-color: #5DD62C;
 }
 
 .nova-transacao button[type="submit"] {
     padding: 15px;
     border: none;
     border-radius: 6px;
-    background-color: #4aac23; 
-    color: #c3c3c3; 
+    background-color: #4aac23;
+    color: #ffffff; /* Melhor contraste */
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
@@ -255,169 +282,123 @@ main {
 }
 
 /* Estilos para o elemento SELECT de categoria */
-
 select {
-    background-color: #0F0F0F; 
-    border: 1px solid #333333; 
-    padding: 15px; 
-    border-radius: 6px; 
-    color: #F8F8F8; 
+    background-color: #0F0F0F;
+    border: 1px solid #333333;
+    padding: 15px;
+    border-radius: 6px;
+    color: #F8F8F8;
     font-size: 16px;
     width: 100%;
-    appearance: none; 
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    cursor: pointer; 
-
-    /*ícone de seta para o select */
-
+    cursor: pointer;
     background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23F8F8F8%22%20d%3D%22M6%2C9L0%2C3h12z%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
-    background-position: right 15px center; 
-    background-size: 10px; 
+    background-position: right 15px center;
+    background-size: 10px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 select option {
-    background-color: #0f0f0f; 
-    color: #F8F8F8; 
+    background-color: #0f0f0f;
+    color: #F8F8F8;
     padding: 10px;
 }
-
-
 select:focus {
-    outline: none; 
-    border-color: #5DD62C; 
+    outline: none;
+    border-color: #5DD62C;
 }
+/* Removidos seletores específicos, estilo geral é suficiente */
 
-
-.nova-transacao select {
-    margin-top: 5px; 
-}
-
-
-#form-edicao select {
-    margin-top: 5px;
-}
-
-
-
-/* IA */
-
- /* ===================================== */
+/* ===================================== */
 /* ==== ESTILOS DAS AÇÕES DA TRANSAÇÃO ==== */
 /* ===================================== */
-
-/* 1. Prepara o item da lista para ser o "pai" do menu flutuante */
 .transacoes li {
-    /* Esta propriedade é ESSENCIAL. 
-       Ela cria um ponto de referência para o menu flutuante. */
-    position: relative; 
+    position: relative;
 }
-
-/* 2. Posiciona a área de ações inteira (botão + menu) */
 .transacoes-acoes {
-    position: absolute; /* Tira o menu do fluxo normal da página */
-    right: 15px;      /* Alinha no canto direito do item da lista */
-    top: 50%;         /* Desce o topo da div até a metade da altura do item */
-    transform: translateY(-50%); /* Sobe a div pela metade da sua própria altura, centralizando perfeitamente */
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
 }
-
-/* 3. Estiliza o botão de três pontos */
 .acoes-button {
     background: none;
     border: none;
-    color: #c3c3c3; /* Cinza claro, sutil */
+    color: #c3c3c3;
     cursor: pointer;
     font-size: 16px;
     padding: 5px 10px;
     border-radius: 4px;
     transition: background-color 0.2s;
 }
-
 .acoes-button:hover {
     background-color: #333;
     color: #f8f8f8;
 }
-
-/* 4. O menu dropdown (o mais importante) */
 .dropdown-acoes {
-    display: none; /* ESCONDIDO POR PADRÃO. O JavaScript vai controlar isso. */
-    position: absolute; /* Faz o menu 'flutuar' sobre o resto da página */
-    right: 0;           /* Alinha à direita do botão de três pontos */
-    top: 35px;          /* Posição um pouco abaixo do botão */
-    background-color: #313131; /* Um cinza um pouco mais escuro */
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 35px;
+    background-color: #313131;
     min-width: 120px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
-    z-index: 10;        /* Garante que o menu fique na frente de outros elementos */
+    z-index: 10;
     border-radius: 6px;
-    overflow: hidden;   /* Garante que os links respeitem as bordas arredondadas */
+    overflow: hidden;
 }
-
-/* 5. Estiliza os links ("Editar", "Excluir") dentro do dropdown */
 .dropdown-acoes a {
     color: #f8f8f8;
     padding: 10px 15px;
     text-decoration: none;
-    display: flex; /* Para alinhar o ícone e o texto */
+    display: flex;
     align-items: center;
-    gap: 8px; /* Espaço entre o ícone e o texto */
+    gap: 8px;
     font-size: 14px;
     transition: background-color 0.2s;
 }
-
 .dropdown-acoes a:hover {
-    background-color: #25252c; /* Cor de fundo ao passar o mouse */
+    background-color: #25252c;
 }
-
-/* Cor especial de "perigo" para o botão de excluir */
 .dropdown-acoes a.btn-excluir:hover {
     background-color: #e45454;
     color: #fff;
 }
-
-/* 6. A "Mágica" do JavaScript */
-/* Esta classe será adicionada e removida pelo seu script para mostrar o menu */
 .dropdown-acoes.show {
     display: block;
 }
 
- /* ===================================== */
+/* ===================================== */
 /* ========= ESTILOS DO MODAL ========== */
 /* ===================================== */
-
-/* O fundo escurecido (overlay) do modal */
 .modal {
-    display: none; /* Escondido por padrão. O JavaScript vai mudar para 'flex' */
-    position: fixed; /* Fica fixo na tela, cobrindo tudo */
-    z-index: 1000; /* Garante que fique na frente de todos os outros elementos */
+    display: none;
+    position: fixed;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.808); /* Fundo preto semi-transparente */
-
-    /* Usando flexbox para centralizar o conteúdo do modal na tela */
+    background-color: rgba(0, 0, 0, 0.808);
     justify-content: center;
     align-items: center;
 }
-
-/* Classe que será adicionada via JS para mostrar o modal */
 .modal.show {
     display: flex;
 }
-
-/* A caixa de conteúdo do pop-up */
 .modal-content {
-    background-color: #202020; /* Mesma cor de fundo dos cards e transações */
+    background-color: #202020;
     padding: 30px;
-    border-radius: 8px; /* Bordas arredondadas consistentes */
+    border-radius: 8px;
     width: 90%;
-    max-width: 500px; /* Largura máxima para não ficar muito grande em telas maiores */
+    max-width: 500px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    position: relative; /* Ponto de referência para o botão de fechar */
+    position: relative;
+    transition: background-color 0.3s;
 }
-
-/* Cabeçalho do modal (título e botão de fechar) */
 .modal-header {
     display: flex;
     justify-content: space-between;
@@ -425,14 +406,12 @@ select:focus {
     border-bottom: 1px solid #333;
     padding-bottom: 15px;
     margin-bottom: 20px;
+    transition: border-color 0.3s;
 }
-
 .modal-header h2 {
-    margin: 0; /* Remove a margem padrão do título */
+    margin: 0;
     font-size: 22px;
 }
-
-/* Botão de fechar (o "X") */
 .modal-close-btn {
     background: none;
     border: none;
@@ -441,243 +420,483 @@ select:focus {
     color: #f8f8f8;
     cursor: pointer;
     padding: 0 5px;
-    line-height: 1; /* Alinha o 'x' melhor */
+    line-height: 1;
+    transition: color 0.3s;
 }
-
 .modal-close-btn:hover {
     color: #c3c3c3;
 }
-
-/* Estilos do formulário de edição dentro do modal */
 #form-edicao {
     display: flex;
-    flex-direction: column; /* Empilha os elementos do formulário */
-    gap: 15px; /* Espaço entre os elementos */
+    flex-direction: column;
+    gap: 15px;
 }
-
 #form-edicao label {
     font-size: 16px;
     color: #c3c3c3;
-    margin-bottom: -5px; /* Aproxima o label do input */
+    margin-bottom: -5px;
+    transition: color 0.3s;
 }
-
-/* Estilo dos inputs (reaproveitando o estilo do seu formulário principal) */
 #form-edicao input[type="text"],
-#form-edicao input[type="number"] {
+#form-edicao input[type="number"],
+#form-edicao select { /* ADICIONADO SELECT AQUI */
     background-color: #0F0F0F;
     border: 1px solid #333;
     padding: 15px;
     border-radius: 6px;
     color: #f8f8f8;
     font-size: 16px;
-    width: 100%; /* Garante que o input ocupe todo o espaço */
+    width: 100%;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
-
-/* Estilo do botão (reaproveitando o estilo do seu formulário principal) */
 #form-edicao button[type="submit"] {
     padding: 15px;
     border: none;
     border-radius: 6px;
-    background-color: #4aac23; /* Cor de destaque verde */
-    color: #ffffff; /* Texto escuro para melhor contraste */
+    background-color: #4aac23;
+    color: #ffffff;
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
     margin-top: 10px;
     transition: filter 0.2s;
 }
-
 #form-edicao button[type="submit"]:hover {
     filter: brightness(0.9);
 }
 
-   /* teste tema claro/escluro */
+/* =================================================== */
+/* ============= ESTILOS DA SIDEBAR ================== */
+/* =================================================== */
 
-#trocar-tema {
-  /* position: absolute; */
-  top: 20px;
-  right: 20px;
-  padding: 10px 15px;
-  cursor: pointer;
-  background-color: transparent;
-  color: #f0f0f0;            /* Cor do texto do botão */
-  border: 1px solid #f0f0f0; /* Cor da borda do botão */
-  border-radius: 5px;
+#sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
-#trocar-tema:hover {
-  background-color: #f0f0f0;
-  color: #1e1e1e;
-}   
+#sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    max-width: 80%;
+    height: 100%;
+    background-color: #202020;
+    z-index: 1002;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    transform: translateX(100%);
+    transition: transform 0.3s ease, background-color 0.3s;
+    /* CORRIGIDO: Esconde o painel do sub-menu */
+    overflow-x: hidden;
+}
+
+/* O Estado "Aberto" (controlado via JS) */
+body.sidebar-open #sidebar {
+    transform: translateX(0);
+}
+body.sidebar-open #sidebar-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Conteúdo da Sidebar */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid #333;
+    /* CORRIGIDO: Altura fixa para alinhar sub-menu */
+    height: 71px; /* Ajuste se o padding mudar */
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 22px;
+}
+.sidebar-header #close-sidebar-btn {
+    font-size: 30px; /* Herda cor e estilo de .header-icon-btn */
+}
+
+/* Wrapper dos painéis */
+.sidebar-content-wrapper {
+    position: relative;
+    height: calc(100% - 71px); /* Preenche o resto da sidebar */
+}
+
+/* Estilo base para AMBOS os painéis */
+.sidebar-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+    /* Adicionado padding interno */
+    padding: 20px;
+    box-sizing: border-box; /* Para padding não aumentar tamanho */
+}
+
+/* Posição Padrão (Menu Principal visível) */
+#sidebar-main-menu {
+    transform: translateX(0);
+}
+#sidebar-settings-menu {
+    transform: translateX(100%); /* Escondido à direita */
+}
+
+/* Posição "Aberta" (Sidebar com classe .settings-open) */
+#sidebar.settings-open #sidebar-main-menu {
+    transform: translateX(-100%); /* Desliza menu para esquerda */
+}
+#sidebar.settings-open #sidebar-settings-menu {
+    transform: translateX(0); /* Traz sub-menu */
+}
+
+/* Cabeçalho do Sub-Menu (fica DENTRO do painel agora) */
+.sidebar-header-submenu {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* Removido padding, border, height daqui */
+    margin-bottom: 20px; /* Espaço abaixo do cabeçalho */
+}
+.sidebar-header-submenu h2 {
+    margin: 0;
+    font-size: 20px;
+}
+.back-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+}
+.settings-description {
+    font-size: 14px;
+    color: #c3c3c3;
+    margin-bottom: 15px; /* Espaço abaixo da descrição */
+    transition: color 0.3s;
+}
+
+/* Nova regra UNIFICADA para links e botões na sidebar */
+.sidebar-button-link,
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+}
+.sidebar-button-link:hover,
+.sidebar-nav a:hover {
+    background-color: #333; /* Fundo do hover (dark mode) */
+}
+
+/* Remove padding/gap antigo do sidebar-nav se ele contiver APENAS .sidebar-button-link ou a */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* Removido padding geral */
+    gap: 10px; /* Reduzido gap entre itens */
+}
+
+#sidebar-profile-menu {
+    transform: translateX(100%); /* Começa escondido à direita */
+}
+
+/* 2. Posição "Aberta" (Quando #sidebar ganha a classe .profile-open) */
+#sidebar.profile-open #sidebar-main-menu {
+    transform: translateX(-100%); /* Desliza menu principal para a esquerda */
+}
+#sidebar.profile-open #sidebar-profile-menu {
+    transform: translateX(0); /* Traz o painel de perfil para a tela */
+}
+
+/* 3. Estilos do conteúdo do perfil */
+.sidebar-profile-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* Removido padding geral */
+    gap: 10px; /* Reduzido gap entre itens */
+}
+.profile-info p {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #c3c3c3; /* Cor mais suave para os dados */
+}
+.profile-info strong {
+    color: inherit; /* Pega a cor principal (claro/escuro) */
+}
+
+.sidebar-divider {
+    border: none;
+    border-top: 1px solid #333; /* Linha divisória (dark mode) */
+    margin: 15px 0; /* Espaçamento */
+}
+
+/* Estilo específico para o botão de logout (vermelho no hover) */
+.logout-btn:hover {
+    background-color: rgba(228, 84, 84, 0.8); /* Vermelho translúcido */
+    color: #ffffff;
+}
+
+.profile-edit {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 1px solid #444; /* Borda dark mode */
+    background-color: #0F0F0F; /* Fundo dark mode */
+    color: #f8f8f8; /* Texto dark mode */
+    border-radius: 4px;
+    margin-top: 5px; /* Espaço do label */
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* 2. Lógica de Mostrar/Esconder (Controlado pela classe 'editing' no painel) */
+
+/* Esconde inputs e botões Salvar/Cancelar por padrão */
+#sidebar-profile-menu .profile-edit {
+    display: none;
+}
+/* Mostra spans e botões Editar/Logout por padrão */
+#sidebar-profile-menu .profile-display {
+    display: flex; /* Usamos flex para .sidebar-button-link */
+    /* Para os spans, o display padrão (inline) funciona */
+}
+#sidebar-profile-menu span.profile-display { display: inline; } /* Garante spans inline */
 
 
-/*ESTILOS PARA O TEMA CLARO*/
+/* QUANDO ESTIVER EDITANDO (.editing adicionado ao #sidebar-profile-menu): */
+
+/* Esconde spans e botões Editar/Logout */
+#sidebar-profile-menu.editing .profile-display {
+    display: none;
+}
+/* Mostra inputs e botões Salvar/Cancelar */
+#sidebar-profile-menu.editing .profile-edit {
+    display: block; /* Inputs são block */
+}
+#sidebar-profile-menu.editing button.profile-edit {
+    display: flex; /* Botões Salvar/Cancelar são flex */
+}
+
+/* 3. Estilo Botão Cancelar */
+.cancel-btn {
+    background-color: transparent;
+    border: 1px solid #aaa; /* Borda sutil */
+    color: #aaa;
+}
+.cancel-btn:hover {
+    background-color: #444;
+    color: #f8f8f8;
+    border-color: #444;
+}
+
+/* 4. Ações agrupadas */
+.profile-actions {
+    margin-top: 15px; /* Espaço acima dos botões */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
 
-/* 1. Estilos Gerais */
+/* =================================================== */
+/* ============= ESTILOS PARA O TEMA CLARO ============= */
+/* =================================================== */
+
 body.light-mode {
-  background-color: #dbdbdb; /* Um cinza muito claro, mais suave que branco puro */
-  color: #333333;             /* Cor de texto principal escura */
-}
-
-/* 2. Cabeçalho e Botão de Tema */
-body.light-mode header p {
-  color: #666666; /* Cinza mais escuro para o subtítulo */
-}
-
-body.light-mode #trocar-tema {
-  color: #333333;
-  border-color: #333333;
-}
-
-body.light-mode #trocar-tema:hover {
-  background-color: #333333;
-  color: #ffffff;
-}
-
-/* 3. Cards de Resumo */
-body.light-mode .card {
-  background-color: #f1f1f1;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08); /* Sombra suave para destacar */
-}
-
-body.light-mode .card-titulo h3 {
-  color: #5a5a5a; /* Cor para "Entradas", "Saídas", "Saldo" */
-}
-
-/* 4. Lista de Transações */
-body.light-mode .transacoes li {
-  background-color: #f1f1f1;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-}
-
-body.light-mode .transacoes-acoes .acoes-button {
-  color: #666666;
-}
-
-body.light-mode .transacoes-acoes .acoes-button:hover {
-  background-color: #f1f1f1;
-  color: #333;
-}
-
-body.light-mode .dropdown-acoes {
-  background-color: #f1f1f1;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-}
-
-body.light-mode .dropdown-acoes a {
-  color: #333;
-}
-
-body.light-mode .dropdown-acoes a:hover {
-  background-color: #f1f1f1;
-}
-
-body.light-mode .dropdown-acoes a.btn-excluir:hover {
-  background-color: #e45454;
-  color: #fff;
-}
-
-body.light-mode .dropdown-acoes a.btn-editar:hover {
-    background-color: #c9c9c981;
-}
-
-
-/* 5. Formulário de Nova Transação */
-body.light-mode .nova-transacao {
-  background: #f1f1f1;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-}
-
-body.light-mode .nova-transacao input[type="text"], 
-body.light-mode .nova-transacao input[type="number"] {
-  background-color: #4aac2334;
-  border: 1px solid #cccccc;
-  color: #333333;
-}
-
-body.light-mode .tipo-transacao label {
-  background-color: #f1f1f1;
-  color: #666666;
-  border: 1px solid #cccccc;
-}
-
-body.light-mode .tipo-transacao input[type="radio"]:checked + label {
-  background-color: #5DD62C; /* Mantém o verde para indicar seleção */
-  color: #f1f1f1;
-  border-color: #4aac23;
-}
-
-body.light-mode .nova-transacao button[type="submit"] {
-  color: #f1f1f1; /* Garante que o texto do botão seja branco/claro */
-}
-
-/* 6. Estilos do Modal de Edição */
-body.light-mode .modal-content {
-  background-color: #f1f1f1;
-}
-
-body.light-mode .modal-header {
-  border-bottom: 1px solid #dddddd;
-}
-
-body.light-mode .modal-close-btn {
-  color: #333333;
-}
-
-body.light-mode #form-edicao label {
-  color: #666666;
-}
-
-body.light-mode #form-edicao input[type="text"],
-body.light-mode #form-edicao input[type="number"] {
-  background-color: #f0f0f0;
-  border: 1px solid #cccccc;
-  color: #333333;
-}
-
-body.light-mode select {
-    background-color: #f0f0f0; 
-    border: 1px solid #cccccc; 
-    color: #333333; 
-    
-    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M6%2C9L0%2C3h12z%22%2F%3E%3C%2Fsvg%3E'); /* Cor da seta para #333333 */
-}
-
-body.light-mode select option {
-    background-color: #f0f0f0; 
-    color: #333333; 
-}
-
-body.light-mode select:focus {
-    border-color: #4aac23; 
-}
-
-/* =================================================== */
-/* ====== TEMA CLARO PARA A PÁGINA DE HISTÓRICO ====== */
-/* =================================================== */
-
-/* Ajusta o header da página de histórico */
-body.light-mode header .link-voltar {
-    color: #4aac23; /* Garante que o link "voltar" fique verde */
-}
-
-/* Estiliza a lista de transações no modo claro */
-body.light-mode .transacoes h2 {
+    background-color: #dbdbdb;
     color: #333333;
 }
 
-body.light-mode .transacoes li {
-    background-color: #ffffff;
+/* Cabeçalho */
+body.light-mode header p {
+    color: #666666;
+}
+body.light-mode .header-icon-btn {
+    color: #333333;
+}
+body.light-mode .header-icon-btn:hover {
+    color: #666666;
+}
+
+/* Cards */
+body.light-mode .card {
+    background-color: #f1f1f1;
     box-shadow: 0 1px 4px rgba(0,0,0,0.08);
 }
-
-body.light-mode .tag-categoria-saida {
-    background-color: rgba(228, 84, 84, 0.1); 
-    color: #e45454;
+body.light-mode .card-titulo h3 {
+    color: #5a5a5a;
 }
 
+/* Transações e Histórico */
+body.light-mode .transacoes li {
+    background-color: #f1f1f1;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+body.light-mode .transacoes h2 { /* Título "Ultimas Atualizações" / "Histórico" */
+    color: #333333;
+}
+body.light-mode .transacao-valor small {
+    color: #777777; /* Corrigido */
+}
+body.light-mode .tag-categoria-saida {
+    /* Cores já definem bem, mas garantimos */
+    color: #e45454;
+}
 body.light-mode .tag-categoria-entrada {
-    background-color: rgba(93, 214, 44, 0.1); 
     color: #5DD62C;
+}
+body.light-mode header .link-voltar { /* Link de voltar no Histórico */
+    color: #4aac23;
+}
+body.light-mode .transacoes-acoes .acoes-button {
+    color: #666666;
+}
+body.light-mode .transacoes-acoes .acoes-button:hover {
+    background-color: #e9e9e9; /* Corrigido */
+    color: #333;
+}
+body.light-mode .dropdown-acoes {
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+}
+body.light-mode .dropdown-acoes a {
+    color: #333;
+}
+body.light-mode .dropdown-acoes a:hover {
+    background-color: #e9e9e9; /* Corrigido */
+}
+body.light-mode .dropdown-acoes a.btn-excluir:hover {
+    background-color: #e45454;
+    color: #fff;
+}
+body.light-mode .dropdown-acoes a.btn-editar:hover {
+    background-color: #dddddd; /* Corrigido */
+}
+
+/* Formulário Nova Transação */
+body.light-mode .nova-transacao {
+    background: #f1f1f1;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+body.light-mode .nova-transacao input[type="text"],
+body.light-mode .nova-transacao input[type="number"],
+body.light-mode .nova-transacao select { /* Adicionado select */
+    background-color: #ffffff; /* Fundo branco para inputs */
+    border: 1px solid #cccccc;
+    color: #333333;
+}
+body.light-mode .tipo-transacao label {
+    background-color: #ffffff; /* Fundo branco */
+    color: #666666;
+    border: 1px solid #cccccc;
+}
+body.light-mode .tipo-transacao input[type="radio"]:checked + label {
+    background-color: #5DD62C;
+    color: #ffffff; /* Texto branco */
+    border-color: #4aac23;
+}
+body.light-mode .nova-transacao button[type="submit"] {
+    color: #ffffff; /* Texto branco */
+}
+
+/* Modal */
+body.light-mode .modal-content {
+    background-color: #f1f1f1;
+}
+body.light-mode .modal-header {
+    border-bottom: 1px solid #dddddd;
+}
+body.light-mode .modal-close-btn {
+    color: #333333;
+}
+body.light-mode #form-edicao label {
+    color: #666666;
+}
+body.light-mode #form-edicao input[type="text"],
+body.light-mode #form-edicao input[type="number"],
+body.light-mode #form-edicao select {
+    background-color: #ffffff; /* Fundo branco */
+    border: 1px solid #cccccc;
+    color: #333333;
+}
+
+/* Select Geral (já coberto acima, mas garantindo a seta) */
+body.light-mode select {
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M6%2C9L0%2C3h12z%22%2F%3E%3C%2Fsvg%3E');
+}
+body.light-mode select option {
+    background-color: #ffffff; /* Fundo branco */
+    color: #333333;
+}
+body.light-mode select:focus {
+    border-color: #4aac23;
+}
+
+/* Sidebar no Modo Claro */
+body.light-mode #sidebar {
+    background-color: #f1f1f1; /* Cor de fundo da sidebar */
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+}
+body.light-mode .sidebar-header {
+    border-bottom-color: #eeeeee;
+}
+body.light-mode .sidebar-button-link:hover,
+body.light-mode .sidebar-nav a:hover {
+    background-color: #e0e0e0; /* Fundo do hover mais escuro */
+}
+body.light-mode .sidebar-header-submenu {
+    border-bottom-color: #eeeeee;
+}
+body.light-mode .settings-description {
+    color: #666;
+}
+body.light-mode .profile-info p {
+    color: #666; /* Cor dos dados no modo claro */
+}
+body.light-mode .sidebar-divider {
+    border-top-color: #eeeeee; /* Linha divisória (light mode) */
+}
+body.light-mode .logout-btn:hover {
+    background-color: #e45454; /* Vermelho sólido */
+    color: #ffffff;
+}
+body.light-mode .profile-edit {
+    background-color: #ffffff;
+    border-color: #ccc;
+    color: #333;
+}
+body.light-mode .cancel-btn {
+    border-color: #999;
+    color: #666;
+}
+body.light-mode .cancel-btn:hover {
+    background-color: #eee;
+    color: #333;
+    border-color: #eee;
 }

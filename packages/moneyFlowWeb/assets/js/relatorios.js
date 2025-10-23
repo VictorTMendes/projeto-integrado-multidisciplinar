@@ -223,4 +223,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-}); // <-- O ERRO ESTAVA AQUI! Esta linha fecha o addEventListener. l
+    // Em relatorios.js
+
+    function renderizarGraficoPizza() {
+        const ctxPizza = document.getElementById('graficoPizzaCategorias');
+
+        if (!ctxPizza) return; 
+
+        const dadosPizza = prepararDadosPizza();
+        const options = getChartOptions(); // Pega as opções gerais
+
+    // Correção 1: Remove os eixos (números laterais)
+    delete options.scales;
+
+    // Atualiza o gráfico (ex: troca de tema)
+    if (graficoPizza) {
+        graficoPizza.data.labels = dadosPizza.labels;
+        graficoPizza.data.datasets[0].data = dadosPizza.data;
+        // Correção 2: Adiciona o 'borderWidth' ao dataset existente
+        graficoPizza.data.datasets[0].borderWidth = 0; 
+        graficoPizza.options = options; 
+        graficoPizza.update();
+        return;
+    }
+
+    // Cria o gráfico pela primeira vez
+    graficoPizza = new Chart(ctxPizza.getContext('2d'), {
+        type: 'doughnut', 
+        data: {
+            labels: dadosPizza.labels,
+            datasets: [{
+                label: 'Gastos',
+                data: dadosPizza.data,
+                backgroundColor: [ 
+                    '#e45454', '#3498db', '#9b59b6', '#e67e22', 
+                    '#f1c40f', '#1abc9c', '#2ecc71'
+                ],
+                hoverOffset: 4,
+                
+                // === ESTA É A CORREÇÃO 2 ===
+                // Remove as bordas brancas entre as fatias
+                borderWidth: 0 
+                // ==========================
+            }]
+        },
+        options: options // Usa as opções modificadas (sem eixos)
+    });
+    
+}
+    
+
+}); 
