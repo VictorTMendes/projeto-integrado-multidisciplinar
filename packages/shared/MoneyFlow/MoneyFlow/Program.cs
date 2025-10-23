@@ -1,6 +1,15 @@
 using MoneyFlow.Services;
+using Microsoft.EntityFrameworkCore;
+using MoneyFlow.Context;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// Configura o EF Core (se usar)
+builder.Services.AddDbContext<MoneyFlowContext>(options =>
+    options.UseSqlServer(connectionString));
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
