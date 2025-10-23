@@ -1,78 +1,58 @@
+# Compilação .NET
 bin/
 obj/
+[Ll]og/
+[Ll]ogs/
+
+# VSCode
+.vscode/
+.vs/
+*.code-workspace
+
+# Arquivos de usuário e cache
 *.user
+*.userosscache
 *.suo
 *.cache
-*.log
-*.vs/
+*.temp
+*.tmp
 
-# Dependencies
-/node_modules
-/.pnp
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# Dependências Node (se usar JS/TS no projeto)
+node_modules/
+.pnp/
 .pnp.js
 
-# Build artifacts
-/dist
-/build
-/out
-/.next
-/.expo
+# Build outputs
+dist/
+build/
+out/
+publish/
 
-# Log files
+# Configurações locais
+appsettings.Development.json
+local.settings.json
+secrets.json
+.env
+.env.*
+
+# Logs
+*.log
+*.tlog
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Editor directories and files
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-/.vs/
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-packages/shared/MoneyFlow/MoneyFlow/Models/Usuario/Usuario.cs
-
-# Arquivos de build do Visual Studio / .NET
-bin/
-obj/
-*.exe
-*.dll
-*.cache
-*.pdb
-*.log
-*.user
-*.vs/
-*.dbmdl
-*.opendb
-
-# Arquivos de build do MSBuild
-*.AssemblyInfoInputs.cache
-*.AssemblyReference.cache
-*.GeneratedMSBuildEditorConfig.editorconfig
-
-# Outros temporários
-*.suo
-*.tmp
-*.bak
+# Testes e cobertura
+TestResult*/
+coverage*/
+*.coverage
+*.coveragexml
