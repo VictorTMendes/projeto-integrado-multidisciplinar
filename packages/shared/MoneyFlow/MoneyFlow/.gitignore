@@ -1,6 +1,6 @@
 # Compilação .NET
-bin/
-obj/
+**/bin/
+**/obj/
 [Ll]og/
 [Ll]ogs/
 
