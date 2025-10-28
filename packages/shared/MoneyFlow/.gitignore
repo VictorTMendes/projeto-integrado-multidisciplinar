@@ -1,0 +1,58 @@
+# Compilação .NET
+**/bin/
+**/obj/
+[Ll]og/
+[Ll]ogs/
+
+# VSCode
+.vscode/
+.vs/
+*.code-workspace
+
+# Arquivos de usuário e cache
+*.user
+*.userosscache
+*.suo
+*.cache
+*.temp
+*.tmp
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# Dependências Node (se usar JS/TS no projeto)
+node_modules/
+.pnp/
+.pnp.js
+
+# Build outputs
+dist/
+build/
+out/
+publish/
+
+# Configurações locais
+appsettings.Development.json
+local.settings.json
+secrets.json
+.env
+.env.*
+
+# Logs
+*.log
+*.tlog
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testes e cobertura
+TestResult*/
+coverage*/
+*.coverage
+*.coveragexml
