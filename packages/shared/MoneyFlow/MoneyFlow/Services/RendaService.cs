@@ -1,5 +1,4 @@
-﻿using MoneyFlow.Models.Financeiro;
-using System.Xml.Linq;
+﻿using MoneyFlow.Models;
 
 namespace MoneyFlow.Services
 {
@@ -32,7 +31,7 @@ namespace MoneyFlow.Services
 
         public IEnumerable<Renda> ListarPorCategoria(string categoria)
         {
-            return _rendas.Where(r => r.Categoria.Equals(categoria, StringComparison.OrdinalIgnoreCase));
+            return _rendas.Where(r => r.Categoria.Nome.Equals(categoria, StringComparison.OrdinalIgnoreCase));
         }
 
         public Renda? AtualizarRenda(int id, Renda rendaAtualizada)

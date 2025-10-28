@@ -26,9 +26,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<UsuarioService>();
-builder.Services.AddSingleton<DespesaService>();
-builder.Services.AddSingleton<RendaService>();
+builder.Services.AddScoped<UsuarioService>();
+builder.Services.AddScoped<DespesaService>();
+builder.Services.AddScoped<RendaService>();
 
 var app = builder.Build();
 

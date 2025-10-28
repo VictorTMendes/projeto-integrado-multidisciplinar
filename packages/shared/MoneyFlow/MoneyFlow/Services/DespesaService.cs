@@ -1,5 +1,4 @@
-﻿using MoneyFlow.Models.Financeiro;
-using System.Xml.Linq;
+﻿using MoneyFlow.Models;
 
 namespace MoneyFlow.Services
 {
@@ -32,7 +31,7 @@ namespace MoneyFlow.Services
 
         public IEnumerable<Despesa> ListarPorCategoria(string categoria)
         {
-            return _despesas.Where(d => d.Categoria.Equals(categoria, StringComparison.OrdinalIgnoreCase));
+            return _despesas.Where(d => d.Categoria.Nome.Equals(categoria, StringComparison.OrdinalIgnoreCase));
         }
 
         public Despesa? AtualizarDespesa(int id, Despesa despesaAtualizada)

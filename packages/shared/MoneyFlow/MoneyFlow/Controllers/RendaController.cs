@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MoneyFlow.Models.Financeiro;
+using MoneyFlow.Models;
 using MoneyFlow.Services;
 
 namespace MoneyFlow.Controllers

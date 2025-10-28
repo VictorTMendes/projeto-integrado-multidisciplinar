@@ -1,6 +1,8 @@
-﻿namespace MoneyFlow.DTO
+﻿using MoneyFlow.Models;
+
+namespace MoneyFlow.DTO
 {
-    public class UsuarioDTO
+    public class UsuarioDTO : Usuario
     {
         public string Email { get; set; }
 
