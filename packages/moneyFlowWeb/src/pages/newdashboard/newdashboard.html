@@ -1,296 +1,242 @@
 <!DOCTYPE html>
 <html lang="PT-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MF Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MF Dashboard</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
-    <script src="https://unpkg.com/imask"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <script src="https://unpkg.com/imask"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="./newdashboard.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="./newdashboard.css">
 </head>
-  <body id="dashboard">
-    <div class="container">
-       <header>
-    <div class="header">
+
+<body id="dashboard">
+  <div class="container">
+    <header>
+      <div class="header">
         <h1>Money Flow</h1>
         <p>Controle suas finanças de forma intelingente</p>
-    </div>
+      </div>
 
-        <div class="header-acoes">
-            <a href="../relatorios/relatorios.html" class="link-button">
-                <i class="fas fa-chart-pie"></i> <span>Relatórios</span>
-            </a>
-    
-            <button id="open-sidebar-btn" class="header-icon-btn">
-            <i class="fas fa-user-circle"></i> </button>
-        </div>
+      <div class="header-acoes">
+        <a href="../relatorios/relatorios.html" class="link-button">
+          <i class="fas fa-chart-pie"></i> <span>Relatórios</span>
+        </a>
 
+        <button id="open-sidebar-btn" class="header-icon-btn">
+          <i class="fas fa-user-circle"></i>
+        </button>
+      </div>
     </header>
 
-        <section class="cards">
-            <div class="card">
-                <div class="card-titulo">
-                    <h3>Entradas</h3>
-                    <i class="ph-bold ph-arrow-circle-up icon-entrada"></i>
-                </div>
-                <p>R$ 2.050,00</p>
-            </div>
-            <div class="card">
-                <div class="card-titulo">
-                    <h3>Saídas</h3>
-                    <i class="ph-bold ph-arrow-circle-down icon-saida"></i>
-                </div>
-                <p>R$ 500,00</p>
-            </div>
-            <div class="card">
-                <div class="card-titulo">
-                    <h3>Saldo</h3>
-                    <i class="ph-bold ph-scales icon-saldo"></i>
-                </div>
-                <p>R$ 1.550,00</p>
-            </div>
-        </section>
+    <!-- Cards dinâmicos -->
+    <section class="cards">
+      <div class="card">
+        <div class="card-titulo">
+          <h3>Entradas</h3>
+          <i class="ph-bold ph-arrow-circle-up icon-entrada"></i>
+        </div>
+        <p id="entradas">R$ 0,00</p>
+      </div>
+
+      <div class="card">
+        <div class="card-titulo">
+          <h3>Saídas</h3>
+          <i class="ph-bold ph-arrow-circle-down icon-saida"></i>
+        </div>
+        <p id="saidas">R$ 0,00</p>
+      </div>
+
+      <div class="card">
+        <div class="card-titulo">
+          <h3>Saldo</h3>
+          <i class="ph-bold ph-scales icon-saldo"></i>
+        </div>
+        <p id="saldo">R$ 0,00</p>
+      </div>
+    </section>
 
     <main>
-        <div class="main-content">
-            <div class="transacoes">
-                <div class="transacoes-header">
-                    <h2>Ultimas Atualizações</h2>
-                    <a href="../historico/historico.html">Ver mais</a>
-                </div>
-                <ul>
-                    <li>
-                        <div class="transacao-info">
-                            <span class="tag-categoria-saida">Alimentação</span>
-                            <p>Mercado</p>
-                        </div>
-                            <div class="transacao-valor-saida">
-                                <div class="transacao-valor">
-                                    <span>- R$ 500,00</span>
-                                    <small>15/10/2025</small>
-                                </div>
-                        </div>
+      <div class="main-content">
+        <!-- Transações Dinâmicas -->
+        <div class="transacoes">
+          <div class="transacoes-header">
+            <h2>Ultimas Atualizações</h2>
+            <a href="../historico/historico.html">Ver mais</a>
+          </div>
 
-                        <div class="transacao-acoes">
-                            <button class="acoes-button">
-                                <i class="fas fa-ellipsis-v"></i> 
-                            </button>
-
-                            <div class="dropdown-acoes">
-                                <a href="#" class="btn-editar"> 
-                                    <i class="fas fa-pencil-alt"></i> Editar 
-                                </a>
-                                <a href="#" class="btn-excluir">
-                                    <i class="fas fa-trash"></i> Excluir
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    
-                    <li>
-                        <div class="transacao-info">
-                            <span class="tag-categoria-entrada">Salário</span>
-                            <p>Recebimento</p>
-                        </div>
-                        <div class="transacao-valor-entrada">
-                            <div class="transacao-valor">
-                                <span>+ R$ 2.050,00</span>
-                                <small>28/09/2025</small>
-                            </div>
-                        </div>
-                    
-                        <div class="transacao-acoes">
-                                <button class="acoes-button">
-                                    <i class="fas fa-ellipsis-v"></i> 
-                                </button>
-
-                            <div class="dropdown-acoes"> 
-                                <a href="#" class="btn-editar"> 
-                                    <i class="fas fa-pencil-alt"></i> Editar </a>
-
-                                    <a href="#" class="btn-excluir"><i class="fas fa-trash"></i> Excluir</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="nova-transacao">
-                <h2>Nova Transação</h2>
-                <form>
-                    <label>Tipo de Transação</label>
-                    <div class="tipo-transacao">
-                        <input type="radio" id="entrada" name="tipo" value="entrada" checked>
-                        <label for="entrada">Entrada</label>
-
-                        <input type="radio" id="saida" name="tipo" value="saida">
-                        <label for="saida">Saída</label>
-                    </div>
-
-                    <label for="valor">Valor</label>
-                    <input type="text" id="valor" placeholder="R$ 0,00">
-
-                    <label for="descricao">Descrição</label>
-                    <input type="text" id="descricao" placeholder="Descreva a transação...">
-
-                    <label for="categoria">Categoria</label>
-                    <select name="Categoria" id="categoria" required>
-                        <option value="" disabled selected>Selecione uma categoria</option>
-                        <option value="Salario">Salário</option>
-                        <option value="Alimentacao">Alimentação</option>
-                        <option value="Transporte">Transporte</option>
-                        <option value="Moradia">Moradia</option>
-                        <option value="Lazer">Lazer</option>
-                        <option value="Saude">Saúde</option>
-                        <option value="Outros">Outros</option>
-                    </select> 
-
-                    <button type="submit">Adicionar</button>
-                </form>
-            </div>
-
-            <div id="modal-edicao" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>Editar Transação</h2>
-                        <button class="modal-close-btn">&times;</button>
-                    </div>
-
-                    <form id="form-edicao">
-                        <label for="valor-edicao">Valor</label>
-                        <input type="text" id="valor-edicao" required>
-
-                        <label for="descricao-edicao">Descrição</label>
-                        <input type="text" id="descricao-edicao" required>
-
-                        <label for="categoria-edicao">Categoria</label>
-                        <select id="categoria-edicao" name="CategoriaEdicao" required>
-                            <option value="" disabled>Selecione uma categoria</option>
-                            <option value="Salario">Salário</option>
-                            <option value="Alimentacao">Alimentação</option>
-                            <option value="Transporte">Transporte</option>
-                            <option value="Moradia">Moradia</option>
-                            <option value="Lazer">Lazer</option>
-                            <option value="Saude">Saúde</option>
-                            <option value="Outros">Outros</option>
-                        </select>
-
-                        <button type="submit">Salvar Alterações</button>
-                    </form>
-                    
-                </div>
-            </div>
+          <ul id="ultimas-transacoes">
+            <!-- Itens das transações serão inseridos aqui via JS -->
+          </ul>
         </div>
+
+        <!-- Nova Transação -->
+        <div class="nova-transacao">
+          <h2>Nova Transação</h2>
+          <form id="form-nova-transacao">
+            <label>Tipo de Transação</label>
+            <div class="tipo-transacao">
+              <input type="radio" id="entrada" name="tipo" value="entrada" checked>
+              <label for="entrada">Entrada</label>
+
+              <input type="radio" id="saida" name="tipo" value="saida">
+              <label for="saida">Saída</label>
+            </div>
+
+            <label for="valor">Valor</label>
+            <input type="text" id="valor" placeholder="R$ 0,00" required>
+
+            <label for="descricao">Descrição</label>
+            <input type="text" id="descricao" placeholder="Descreva a transação..." required>
+
+            <label for="categoria">Categoria</label>
+            <select name="Categoria" id="categoria" required>
+              <option value="" disabled selected>Selecione uma categoria</option>
+              <option value="Salario">Salário</option>
+              <option value="Alimentacao">Alimentação</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Moradia">Moradia</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Saude">Saúde</option>
+              <option value="Outros">Outros</option>
+            </select>
+
+            <button type="submit">Adicionar</button>
+          </form>
+        </div>
+
+        <!-- Modal Edição -->
+        <div id="modal-edicao" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>Editar Transação</h2>
+              <button class="modal-close-btn">&times;</button>
+            </div>
+
+            <form id="form-edicao">
+              <label for="valor-edicao">Valor</label>
+              <input type="text" id="valor-edicao" required>
+
+              <label for="descricao-edicao">Descrição</label>
+              <input type="text" id="descricao-edicao" required>
+
+              <label for="categoria-edicao">Categoria</label>
+              <select id="categoria-edicao" name="CategoriaEdicao" required>
+                <option value="" disabled>Selecione uma categoria</option>
+                <option value="Salario">Salário</option>
+                <option value="Alimentacao">Alimentação</option>
+                <option value="Transporte">Transporte</option>
+                <option value="Moradia">Moradia</option>
+                <option value="Lazer">Lazer</option>
+                <option value="Saude">Saúde</option>
+                <option value="Outros">Outros</option>
+              </select>
+
+              <button type="submit">Salvar Alterações</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 
-    <div id="sidebar-overlay"></div>
+  <div id="sidebar-overlay"></div>
 
-<aside id="sidebar">
-    
+  <aside id="sidebar">
     <div class="sidebar-header">
-        <h2>Menu</h2>
-        <button id="close-sidebar-btn" class="header-icon-btn">&times;</button>
+      <h2>Menu</h2>
+      <button id="close-sidebar-btn" class="header-icon-btn">&times;</button>
     </div>
 
     <div class="sidebar-content-wrapper">
-    
-        <div id="sidebar-main-menu" class="sidebar-panel">
-            <nav class="sidebar-nav">
-                <button id="open-profile-panel" type="button" class="sidebar-button-link">
-                    <i class="fas fa-user"></i>
-                    <span>Perfil</span>
-                </button>
-                
-                <button id="open-settings-panel" type="button" class="sidebar-button-link">
-                    <i class="fas fa-cog"></i>
-                    <span>Configuração</span>
-                </button>
-            </nav>
-        </div>
+      <div id="sidebar-main-menu" class="sidebar-panel">
+        <nav class="sidebar-nav">
+          <button id="open-profile-panel" type="button" class="sidebar-button-link">
+            <i class="fas fa-user"></i>
+            <span>Perfil</span>
+          </button>
 
-        <div id="sidebar-settings-menu" class="sidebar-panel">
-            <div class="sidebar-header-submenu">
-                <button id="close-settings-panel" type="button" class="back-btn">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <h2>Configurações</h2>
-            </div>
+          <button id="open-settings-panel" type="button" class="sidebar-button-link">
+            <i class="fas fa-cog"></i>
+            <span>Configuração</span>
+          </button>
+        </nav>
+      </div>
 
-            <div class="sidebar-nav">
-                <button id="trocar-tema" class="sidebar-button-link">
-                    <i class="fas fa-sun"></i>
-                    <span>Alternar Tema</span>
-                </button>
-            </div>
-        </div>
-
-        <div id="sidebar-profile-menu" class="sidebar-panel"> 
-            <div class="sidebar-header-submenu">
-            <button id="close-profile-panel" type="button" class="back-btn">
+      <div id="sidebar-settings-menu" class="sidebar-panel">
+        <div class="sidebar-header-submenu">
+          <button id="close-settings-panel" type="button" class="back-btn">
             <i class="fas fa-arrow-left"></i>
-            </button>
-            <h2>Perfil</h2>
-    </div>
-    
-    <div class="sidebar-profile-content sidebar-nav"> 
-        
-        <div class="profile-info">
+          </button>
+          <h2>Configurações</h2>
+        </div>
+
+        <div class="sidebar-nav">
+          <button id="trocar-tema" class="sidebar-button-link">
+            <i class="fas fa-sun"></i>
+            <span>Alternar Tema</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="sidebar-profile-menu" class="sidebar-panel">
+        <div class="sidebar-header-submenu">
+          <button id="close-profile-panel" type="button" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <h2>Perfil</h2>
+        </div>
+
+        <div class="sidebar-profile-content sidebar-nav">
+          <div class="profile-info">
             <p><strong>Nome:</strong>
-                <span id="profile-name" class="profile-display">Seu Nome</span>
-                <input type="text" id="edit-profile-name" class="profile-edit" style="display: none;" required">
+              <span id="profile-name" class="profile-display">Seu Nome</span>
+              <input type="text" id="edit-profile-name" class="profile-edit" style="display: none;" required>
             </p>
             <p><strong>Email:</strong>
-                <span id="profile-email" class="profile-display">seu.email@example.com</span>
-                <input type="email" id="edit-profile-email" class="profile-edit" style="display: none;" required>
+              <span id="profile-email" class="profile-display">seu.email@example.com</span>
+              <input type="email" id="edit-profile-email" class="profile-edit" style="display: none;" required>
             </p>
-            </div>
-        
-        <hr class="sidebar-divider"> 
+          </div>
 
-        <div class="profile-actions"> 
+          <hr class="sidebar-divider">
+
+          <div class="profile-actions">
             <button id="edit-profile-btn" class="sidebar-button-link profile-display">
-                <i class="fas fa-edit"></i>
-                <span>Editar Perfil</span>
+              <i class="fas fa-edit"></i>
+              <span>Editar Perfil</span>
             </button>
-            
+
             <button id="save-profile-btn" class="sidebar-button-link profile-edit" style="display: none;">
-                <i class="fas fa-save"></i>
-                <span>Salvar</span>
+              <i class="fas fa-save"></i>
+              <span>Salvar</span>
             </button>
+
             <button id="cancel-edit-btn" class="sidebar-button-link profile-edit cancel-btn" style="display: none;">
-                <i class="fas fa-times"></i>
-                <span>Cancelar</span>
+              <i class="fas fa-times"></i>
+              <span>Cancelar</span>
             </button>
 
-            <button id="logout-btn" class="sidebar-button-link logout-btn profile-display"> 
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Sair</span>
+            <button id="logout-btn" class="sidebar-button-link logout-btn profile-display">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Sair</span>
             </button>
+          </div>
         </div>
-        </div>
-</div>
+      </div>
+    </div>
+  </aside>
 
-    </div> 
-    </aside>
-
-           
-
-            <script src="../../../assets/js/visual/relatorios.js"></script>
-           
-            <script src="../../../assets/js/visual/tema.js"></script>
-            <script src="../../../assets/js/visual/edicao-transacoes.js"></script>
-
-            <script src="../../../assets/js/visual/mascaras.js"></script>
-
-            <script src="../../../assets/js/visual/sidebar.js"></script>
-
-            <script src="../../../assets/js/visual/editar-perfil.js"></script>
+  <script src="../../../assets/js/visual/relatorios.js"></script>
+  <script src="../../../assets/js/visual/tema.js"></script>
+  <script src="../../../assets/js/visual/edicao-transacoes.js"></script>
+  <script src="../../../assets/js/visual/mascaras.js"></script>
+  <script src="../../../assets/js/visual/sidebar.js"></script>
+  <script src="../../../assets/js/visual/editar-perfil.js"></script>
+  <script src="../../../assets/js/connection/dashboard.js" defer></script>
 </body>
 </html>
