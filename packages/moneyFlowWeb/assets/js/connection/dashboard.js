@@ -37,7 +37,7 @@ async function apiFetch(url, options = {}) {
 // Carrega categorias da API
 async function carregarCategorias() {
   try {
-    const categorias = await apiFetch(`${apiBaseTeste}/categorias`);
+    const categorias = await apiFetch(`${apiBase}/categorias`);
     
     const selectCategorias = document.getElementById("categoria");
     const selectCategoriasEdicao = document.getElementById("categoria-edicao");
@@ -77,8 +77,8 @@ async function carregarCategorias() {
 async function carregarDados() {
   try {
     const [despesas, rendas] = await Promise.all([
-      apiFetch(`${apiBaseTeste}/despesas`),
-      apiFetch(`${apiBaseTeste}/rendas`)
+      apiFetch(`${apiBase}/despesas`),
+      apiFetch(`${apiBase}/rendas`)
     ]);
 
     atualizarDashboard(rendas, despesas);
@@ -178,7 +178,7 @@ async function excluirTransacao(id, tipo) {
 
   try {
     const endpoint = tipo === "entrada" ? "rendas" : "despesas";
-    await apiFetch(`${apiBaseTeste}/${endpoint}/${id}`, { method: "DELETE" });
+    await apiFetch(`${apiBase}/${endpoint}/${id}`, { method: "DELETE" });
     alert("Transação excluída com sucesso!");
     carregarDados();
   } catch (error) {
@@ -232,11 +232,11 @@ document
     const endpoint = tipo === "entrada" ? "rendas" : "despesas";
 
     console.log("🚀 Tipo:", tipo);
-    console.log("🚀 Endpoint:", `${apiBaseTeste}/${endpoint}`);
+    console.log("🚀 Endpoint:", `${apiBase}/${endpoint}`);
     console.log("🚀 Enviando transação:", novaTransacao);
 
     try {
-      const response = await apiFetch(`${apiBaseTeste}/${endpoint}`, {
+      const response = await apiFetch(`${apiBase}/${endpoint}`, {
         method: "POST",
         body: JSON.stringify(novaTransacao),
       });
@@ -290,7 +290,7 @@ document
     const endpoint = tipo === "entrada" ? "rendas" : "despesas";
 
     try {
-      await apiFetch(`${apiBaseTeste}/${endpoint}/${id}`, {
+      await apiFetch(`${apiBase}/${endpoint}/${id}`, {
         method: "PUT",
         body: JSON.stringify(transacaoEditada),
       });
