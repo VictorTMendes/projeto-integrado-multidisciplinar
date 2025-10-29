@@ -39,8 +39,6 @@ async function carregarCategorias() {
   try {
     const categorias = await apiFetch(`${apiBaseTeste}/categorias`);
     
-    console.log("📦 Dados recebidos da API:", categorias);
-    
     const selectCategorias = document.getElementById("categoria");
     const selectCategoriasEdicao = document.getElementById("categoria-edicao");
     
@@ -52,14 +50,11 @@ async function carregarCategorias() {
     // Limpa opções existentes
     selectCategorias.innerHTML = '<option value="" disabled selected>Selecione uma categoria</option>';
     selectCategoriasEdicao.innerHTML = '<option value="" disabled>Selecione uma categoria</option>';
-    
-    // Adiciona categorias dinamicamente
+
     categorias.forEach(cat => {
-      // Usa PascalCase (C#) em vez de camelCase
-      const id = cat.Id;      // ← Letra maiúscula
-      const nome = cat.Nome;  // ← Letra maiúscula
+      const id = cat.id;
+      const nome = cat.nome;
       
-      console.log(`➕ Adicionando categoria: ID=${id}, Nome=${nome}`);
       
       const option1 = document.createElement("option");
       option1.value = id;
@@ -72,9 +67,8 @@ async function carregarCategorias() {
       selectCategoriasEdicao.appendChild(option2);
     });
     
-    console.log("✅ Categorias carregadas com sucesso!");
   } catch (error) {
-    console.error("❌ Erro ao carregar categorias:", error);
+    console.error("Erro ao carregar categorias:", error);
     alert("Erro ao carregar categorias. Verifique se a API está rodando.");
   }
 }
