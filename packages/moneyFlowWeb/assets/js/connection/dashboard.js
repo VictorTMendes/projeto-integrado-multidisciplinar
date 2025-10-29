@@ -24,21 +24,72 @@ async function apiFetch(url, options = {}) {
       ...options.headers
     }
   });
-  if (!res.ok) throw new Error(await res.text());
+  
+  if (!res.ok) {
+    const errorText = await res.text();
+    console.error("❌ Erro na requisição:", errorText);
+    throw new Error(errorText);
+  }
+  
   return res.json();
+}
+
+// Carrega categorias da API
+async function carregarCategorias() {
+  try {
+    const categorias = await apiFetch(`${apiBaseTeste}/categorias`);
+    
+    console.log("📦 Dados recebidos da API:", categorias);
+    
+    const selectCategorias = document.getElementById("categoria");
+    const selectCategoriasEdicao = document.getElementById("categoria-edicao");
+    
+    if (!selectCategorias || !selectCategoriasEdicao) {
+      console.error("❌ Elementos select não encontrados no DOM");
+      return;
+    }
+    
+    // Limpa opções existentes
+    selectCategorias.innerHTML = '<option value="" disabled selected>Selecione uma categoria</option>';
+    selectCategoriasEdicao.innerHTML = '<option value="" disabled>Selecione uma categoria</option>';
+    
+    // Adiciona categorias dinamicamente
+    categorias.forEach(cat => {
+      // Usa PascalCase (C#) em vez de camelCase
+      const id = cat.Id;      // ← Letra maiúscula
+      const nome = cat.Nome;  // ← Letra maiúscula
+      
+      console.log(`➕ Adicionando categoria: ID=${id}, Nome=${nome}`);
+      
+      const option1 = document.createElement("option");
+      option1.value = id;
+      option1.textContent = nome;
+      selectCategorias.appendChild(option1);
+      
+      const option2 = document.createElement("option");
+      option2.value = id;
+      option2.textContent = nome;
+      selectCategoriasEdicao.appendChild(option2);
+    });
+    
+    console.log("✅ Categorias carregadas com sucesso!");
+  } catch (error) {
+    console.error("❌ Erro ao carregar categorias:", error);
+    alert("Erro ao carregar categorias. Verifique se a API está rodando.");
+  }
 }
 
 // Carrega rendas e despesas reais
 async function carregarDados() {
   try {
     const [despesas, rendas] = await Promise.all([
-      apiFetch(`${apiBase}/despesas`),
-      apiFetch(`${apiBase}/rendas`)
+      apiFetch(`${apiBaseTeste}/despesas`),
+      apiFetch(`${apiBaseTeste}/rendas`)
     ]);
 
     atualizarDashboard(rendas, despesas);
   } catch (error) {
-    console.error("Erro ao carregar dados:", error);
+    console.error("❌ Erro ao carregar dados:", error);
   }
 }
 
@@ -49,9 +100,14 @@ function atualizarDashboard(rendas, despesas) {
   const saldoEl = document.getElementById("saldo");
   const listaEl = document.getElementById("ultimas-transacoes");
 
-  let totalRendas = rendas.reduce((s, r) => s + r.valor, 0);
-  let totalDespesas = despesas.reduce((s, d) => s + d.valor, 0);
+  // Usa maiúscula por causa do PropertyNamingPolicy = null
+  let totalRendas = rendas.reduce((s, r) => s + parseFloat(r.valor || r.Valor || 0), 0);
+  let totalDespesas = despesas.reduce((s, d) => s + parseFloat(d.valor || d.Valor || 0), 0);
   let saldo = totalRendas - totalDespesas;
+
+  console.log("💰 Total Rendas:", totalRendas);
+  console.log("💸 Total Despesas:", totalDespesas);
+  console.log("💵 Saldo:", saldo);
 
   entradasEl.textContent = `R$ ${totalRendas.toFixed(2)}`;
   saidasEl.textContent = `R$ ${totalDespesas.toFixed(2)}`;
@@ -61,7 +117,7 @@ function atualizarDashboard(rendas, despesas) {
   const todas = [
     ...rendas.map(r => ({ ...r, tipo: "entrada" })),
     ...despesas.map(d => ({ ...d, tipo: "saida" }))
-  ].sort((a, b) => new Date(b.data) - new Date(a.data));
+  ].sort((a, b) => new Date(b.data || b.Data) - new Date(a.data || a.Data));
 
   listaEl.innerHTML = "";
 
@@ -81,16 +137,23 @@ function atualizarDashboard(rendas, despesas) {
         : "transacao-valor-saida";
     const sinal = t.tipo === "entrada" ? "+" : "-";
 
+    // Suporta tanto camelCase quanto PascalCase
+    const valor = t.valor || t.Valor || 0;
+    const data = t.data || t.Data;
+    const descricao = t.descricao || t.Descricao || t.titulo || t.Titulo;
+    const id = t.id || t.Id;
+    const categoriaNome = t.categoria?.nome || t.Categoria?.Nome || 'Sem categoria';
+
     li.innerHTML = `
       <div class="transacao-info">
-        <span class="${tipoClasse}">${t.categoria}</span>
-        <p>${t.titulo || t.descricao}</p>
+        <span class="${tipoClasse}">${categoriaNome}</span>
+        <p>${descricao}</p>
       </div>
 
       <div class="${valorClasse}">
         <div class="transacao-valor">
-          <span>${sinal} R$ ${t.valor.toFixed(2)}</span>
-          <small>${new Date(t.data).toLocaleDateString("pt-BR")}</small>
+          <span>${sinal} R$ ${parseFloat(valor).toFixed(2)}</span>
+          <small>${new Date(data).toLocaleDateString("pt-BR")}</small>
         </div>
       </div>
 
@@ -100,10 +163,10 @@ function atualizarDashboard(rendas, despesas) {
         </button>
 
         <div class="dropdown-acoes">
-          <a href="#" class="btn-editar" onclick="abrirModalEdicao(${t.id}, '${t.tipo}')">
+          <a href="#" class="btn-editar" onclick="abrirModalEdicao(${id}, '${t.tipo}')">
             <i class="fas fa-pencil-alt"></i> Editar
           </a>
-          <a href="#" class="btn-excluir" onclick="excluirTransacao(${t.id}, '${t.tipo}')">
+          <a href="#" class="btn-excluir" onclick="excluirTransacao(${id}, '${t.tipo}')">
             <i class="fas fa-trash"></i> Excluir
           </a>
         </div>
@@ -119,9 +182,15 @@ async function excluirTransacao(id, tipo) {
   const confirmacao = confirm("Deseja realmente excluir esta transação?");
   if (!confirmacao) return;
 
-  const endpoint = tipo === "entrada" ? "rendas" : "despesas";
-  await apiFetch(`${apiBase}/${endpoint}/${id}`, { method: "DELETE" });
-  carregarDados();
+  try {
+    const endpoint = tipo === "entrada" ? "rendas" : "despesas";
+    await apiFetch(`${apiBaseTeste}/${endpoint}/${id}`, { method: "DELETE" });
+    alert("Transação excluída com sucesso!");
+    carregarDados();
+  } catch (error) {
+    console.error("❌ Erro ao excluir transação:", error);
+    alert("Erro ao excluir transação.");
+  }
 }
 
 // Adicionar nova transação
@@ -133,31 +202,59 @@ document
     const tipo = document.querySelector('input[name="tipo"]:checked').value;
     const valorInput = document.getElementById("valor").value
       .replace("R$", "")
-      .replace(".", "")
+      .replace(/\./g, "")
       .replace(",", ".")
       .trim();
+
+    const descricao = document.getElementById("descricao").value.trim();
+    const categoriaId = parseInt(document.getElementById("categoria").value);
+    
+    // Validações
+    if (!descricao) {
+      alert("Por favor, preencha a descrição!");
+      return;
+    }
+    
+    if (!categoriaId || isNaN(categoriaId)) {
+      alert("Por favor, selecione uma categoria!");
+      return;
+    }
+
+    if (!valorInput || parseFloat(valorInput) <= 0) {
+      alert("Por favor, insira um valor válido!");
+      return;
+    }
 
     const usuarioId = parseInt(localStorage.getItem("usuarioId")) || 0;
 
     const novaTransacao = {
+      descricao: descricao,
       valor: parseFloat(valorInput),
-      descricao: document.getElementById("descricao").value,
-      categoria: document.getElementById("categoria").value,
       data: new Date().toISOString(),
-      usuarioId: parseInt(usuarioId)
+      categoriaId: categoriaId,
+      usuarioId: usuarioId
     };
 
     const endpoint = tipo === "entrada" ? "rendas" : "despesas";
 
+    console.log("🚀 Tipo:", tipo);
+    console.log("🚀 Endpoint:", `${apiBaseTeste}/${endpoint}`);
     console.log("🚀 Enviando transação:", novaTransacao);
 
-    await apiFetch(`${apiBase}/${endpoint}`, {
-      method: "POST",
-      body: JSON.stringify(novaTransacao),
-    });
+    try {
+      const response = await apiFetch(`${apiBaseTeste}/${endpoint}`, {
+        method: "POST",
+        body: JSON.stringify(novaTransacao),
+      });
 
-    e.target.reset();
-    carregarDados();
+      console.log("✅ Resposta:", response);
+      alert("Transação adicionada com sucesso!");
+      e.target.reset();
+      carregarDados();
+    } catch (error) {
+      console.error("❌ Erro ao adicionar transação:", error);
+      alert("Erro ao adicionar transação: " + error.message);
+    }
   });
 
 // Modal de edição
@@ -183,27 +280,37 @@ document
     const valorEditado = document
       .getElementById("valor-edicao")
       .value.replace("R$", "")
-      .replace(".", "")
+      .replace(/\./g, "")
       .replace(",", ".")
       .trim();
 
+    const categoriaId = parseInt(document.getElementById("categoria-edicao").value);
+
     const transacaoEditada = {
-      valor: parseFloat(valorEditado),
       descricao: document.getElementById("descricao-edicao").value,
-      categoria: document.getElementById("categoria-edicao").value,
+      valor: parseFloat(valorEditado),
+      categoriaId: categoriaId,
       data: new Date().toISOString(),
     };
 
     const endpoint = tipo === "entrada" ? "rendas" : "despesas";
 
-    await apiFetch(`${apiBase}/${endpoint}/${id}`, {
-      method: "PUT",
-      body: JSON.stringify(transacaoEditada),
-    });
+    try {
+      await apiFetch(`${apiBaseTeste}/${endpoint}/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(transacaoEditada),
+      });
 
-    modal.style.display = "none";
-    carregarDados();
+      alert("Transação atualizada com sucesso!");
+      modal.style.display = "none";
+      carregarDados();
+    } catch (error) {
+      console.error("❌ Erro ao editar transação:", error);
+      alert("Erro ao editar transação.");
+    }
   });
 
-// Inicializa a dashboard
-carregarDados();
+(async function inicializar() {
+  await carregarCategorias();
+  await carregarDados();
+})();
