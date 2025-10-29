@@ -1,4 +1,4 @@
-const apiUrl = "http://localhost:5212/api/usuarios";
+const apiUrl = "https://moneyflowapi-1.onrender.com/api/usuarios";
 
 document.getElementById("register-form").addEventListener("submit", async (e) => {
   e.preventDefault();

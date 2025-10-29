@@ -1,4 +1,5 @@
-const apiBase = "http://localhost:5212/api";
+const apiBase = "https://moneyflowapi-1.onrender.com/api"
+const apiBaseTeste = "https://localhost:7249/api"
 const token = localStorage.getItem("token");
 const nome = localStorage.getItem("usuarioNome");
 
@@ -10,7 +11,7 @@ if (!token) {
 // Logout
 document.getElementById("logout-btn").addEventListener("click", () => {
   localStorage.clear();
-  window.location.href = "/login.html";
+  window.location.href = "../login/login.html";
 });
 
 // Função genérica para requisições autenticadas
