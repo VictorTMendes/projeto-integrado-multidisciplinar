@@ -19,6 +19,55 @@ body{
     flex-direction: column;
     height: 100vh;
 }
+
+/* Estilos para o Overlay de Loading */
+.loading-overlay {
+    position: fixed; /* Fixa na tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro semi-transparente */
+    display: flex; /* Para centralizar o conteúdo */
+    flex-direction: column; /* Spinner e texto em coluna */
+    justify-content: center; /* Centraliza verticalmente */
+    align-items: center; /* Centraliza horizontalmente */
+    z-index: 9999; /* Garante que fique por cima de tudo */
+    opacity: 0; /* Escondido por padrão */
+    visibility: hidden; /* Escondido por padrão */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transição suave */
+}
+
+/* Estado visível do overlay */
+.loading-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Estilo do Spinner (círculo giratório) */
+.spinner {
+    border: 8px solid rgba(255, 255, 255, 0.3); /* Cor clara do "fundo" do spinner */
+    border-top: 8px solid #007bff; /* Cor principal do spinner (azul) */
+    border-radius: 50%; /* Faz um círculo */
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite; /* Animação de giro */
+    margin-bottom: 15px; /* Espaço entre spinner e texto */
+}
+
+/* Animação de giro */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Estilo do texto "Carregando..." */
+.loading-overlay p {
+    color: #ffffff; /* Texto branco */
+    font-size: 1.2em;
+    font-family: Arial, sans-serif;
+}
+
 .container{
     background-color: #202020;
     border-radius: 30px;
@@ -229,3 +278,117 @@ body{
 .container.active .toggle-right{
     transform: translateX(200%);
 }
+
+/* =================================================== */
+/* =========== ESTILOS RESPONSIVOS LOGIN ============= */
+/* =================================================== */
+
+/* --- Para Telas Pequenas (Celulares, ~768px ou menos) --- */
+@media (max-width: 768px) {
+
+    /* 1. Ajusta o Container Principal */
+    .container {
+        width: 90%; /* Ocupa mais largura da tela */
+        max-width: 480px; /* Limita a largura máxima no celular */
+        height: auto; /* Altura automática para caber o conteúdo empilhado */
+        min-height: 500px; /* Garante uma altura mínima */
+        box-shadow: none; /* Remove a sombra de desktop */
+        overflow: visible; /* Permite que o conteúdo defina a altura */
+        position: relative; /* Garante contexto para filhos */
+        margin-top: 20px; /* Adiciona espaço no topo */
+        margin-bottom: 20px; /* Adiciona espaço embaixo */
+    }
+
+    /* 2. Empilha os Contêineres de Formulário */
+    .form-container {
+        position: relative; /* Remove posicionamento absoluto */
+        width: 100%;
+        height: auto; /* Altura baseada no conteúdo */
+        left: 0;
+        top: 0;
+        transform: none !important; /* DESATIVA o deslize horizontal */
+        transition: none; /* Remove a animação */
+        z-index: 1;
+        padding: 40px 20px; /* Adiciona padding interno */
+    }
+
+    /* 3. Lógica de Visibilidade dos Formulários (Sem animação de slide) */
+    .form-container.sign-in {
+        display: flex; /* Mostra login por padrão */
+        flex-direction: column; /* Garante que itens internos fiquem em coluna */
+    }
+    .form-container.sign-up {
+        display: none; /* Esconde registro por padrão */
+        flex-direction: column;
+    }
+
+    /* Quando .container tiver a classe .active (modo registro) */
+    .container.active .form-container.sign-in {
+        display: none; /* Esconde login */
+    }
+    .container.active .form-container.sign-up {
+        display: flex; /* Mostra registro */
+    }
+
+
+    /* 4. Empilha e Ajusta o Container de Toggle (Bem-vindo) */
+    .toggle-container {
+        position: relative; /* Remove posicionamento absoluto */
+        width: 100%;
+        height: auto; /* Altura baseada no conteúdo */
+        left: 0;
+        top: 0;
+        transform: none !important; /* DESATIVA o deslize horizontal */
+        transition: none; /* Remove a animação */
+        border-radius: 0 0 8px 8px; /* Arredonda cantos inferiores se o container principal tiver */
+        /* Pode precisar remover background ou ajustar se ele for complexo */
+    }
+    /* Oculta o fundo animado (se houver) que só faz sentido lado a lado */
+     .toggle-container .toggle::before { display: none; }
+
+
+    /* 5. Ajusta os Painéis de Toggle */
+    .toggle {
+        position: relative;
+        width: 100%;
+        height: auto;
+        left: 0;
+        top: 0;
+        transform: none !important;
+        border-radius: 0; /* Remove bordas que faziam sentido no modo desktop */
+    }
+    .toggle-panel {
+        position: relative; /* Remove posicionamento absoluto */
+        width: 100%;
+        height: auto;
+        transform: none !important; /* Desativa movimentos */
+        padding: 30px 20px; /* Adiciona padding */
+        display: flex; /* Garante display flex para centralizar itens */
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* 6. Lógica de Visibilidade dos Painéis de Toggle */
+    .toggle-panel.toggle-left {
+         display: none; /* Esconde "Bem vindo de volta!" por padrão */
+    }
+    .toggle-panel.toggle-right {
+         display: flex; /* Mostra "Seja bem vindo!" por padrão */
+    }
+
+    /* Quando .container tiver a classe .active (modo registro) */
+    .container.active .toggle-panel.toggle-left {
+        display: flex; /* Mostra "Bem vindo de volta!" */
+    }
+    .container.active .toggle-panel.toggle-right {
+        display: none; /* Esconde "Seja bem vindo!" */
+    }
+
+    /* Ajustes finos */
+    .toggle h1 { font-size: 1.5em; } /* Reduz tamanho do título */
+    .toggle p { font-size: 0.9em; } /* Reduz tamanho do parágrafo */
+    .toggle button { margin-top: 15px; } /* Ajusta margem do botão */
+
+}
+
