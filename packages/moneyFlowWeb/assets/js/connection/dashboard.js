@@ -37,7 +37,7 @@ async function apiFetch(url, options = {}) {
 // Carrega categorias da API
 async function carregarCategorias() {
   try {
-    const categorias = await apiFetch(`${apiBase}/categorias`);
+    const categorias = await apiFetch(`${apiBaseTeste}/categorias`);
     
     const selectCategorias = document.getElementById("categoria");
     const selectCategoriasEdicao = document.getElementById("categoria-edicao");
@@ -76,14 +76,21 @@ async function carregarCategorias() {
 // Carrega rendas e despesas reais
 async function carregarDados() {
   try {
-    const [despesas, rendas] = await Promise.all([
-      apiFetch(`${apiBase}/despesas`),
-      apiFetch(`${apiBase}/rendas`)
+    const [despesas, rendas] = await Promise.allSettled([
+      apiFetch(`${apiBaseTeste}/despesas`),
+      apiFetch(`${apiBaseTeste}/rendas`)
     ]);
 
-    atualizarDashboard(rendas, despesas);
+    console.log("📊 Resultado despesas:", despesas);
+    console.log("📊 Resultado rendas:", rendas);
+
+    if (rendas.status === "fulfilled") {
+      atualizarDashboard(rendas.value, despesas.status === "fulfilled" ? despesas.value : []);
+    } else {
+      console.error("❌ Falha ao carregar rendas:", rendas.reason);
+    }
   } catch (error) {
-    console.error("❌ Erro ao carregar dados:", error);
+    console.error("❌ Erro inesperado:", error);
   }
 }
 
@@ -99,46 +106,50 @@ function atualizarDashboard(rendas, despesas) {
   let totalDespesas = despesas.reduce((s, d) => s + parseFloat(d.valor || d.Valor || 0), 0);
   let saldo = totalRendas - totalDespesas;
 
-  console.log("💰 Total Rendas:", totalRendas);
-  console.log("💸 Total Despesas:", totalDespesas);
-  console.log("💵 Saldo:", saldo);
-
   entradasEl.textContent = `R$ ${totalRendas.toFixed(2)}`;
   saidasEl.textContent = `R$ ${totalDespesas.toFixed(2)}`;
   saldoEl.textContent = `R$ ${saldo.toFixed(2)}`;
 
-  // Junta rendas e despesas pra exibir as últimas
   const todas = [
-    ...rendas.map(r => ({ ...r, tipo: "entrada" })),
-    ...despesas.map(d => ({ ...d, tipo: "saida" }))
-  ].sort((a, b) => new Date(b.data || b.Data) - new Date(a.data || a.Data));
+    ...rendas.map(r => ({
+      ...r,
+      tipo: "entrada",
+      dataTransacao: new Date(
+        r.data || r.dataRenda || r.Data || r.DataRenda || r.dataDespesa || r.DataDespesa
+      )
+    })),
+    ...despesas.map(d => ({
+      ...d,
+      tipo: "saida",
+      dataTransacao: new Date(
+        d.data || d.dataDespesa || d.Data || d.DataDespesa || d.dataRenda || d.DataRenda
+      )
+    }))
+  ];
+
+  // 🔥 Ordena globalmente por data de transação (mais recente primeiro)
+  todas.sort((a, b) => b.dataTransacao - a.dataTransacao);
 
   listaEl.innerHTML = "";
 
-  if (todas.length === 0) {
-    listaEl.innerHTML = `<li><p>Você ainda não possui transações registradas.</p></li>`;
-    return;
-  }
+todas.slice(0, 10).forEach(t => {
+  const li = document.createElement("li");
 
-  todas.slice(0, 5).forEach(t => {
-    const li = document.createElement("li");
+  const tipoClasse =
+    t.tipo === "entrada" ? "tag-categoria-entrada" : "tag-categoria-saida";
+  const valorClasse =
+    t.tipo === "entrada"
+      ? "transacao-valor-entrada"
+      : "transacao-valor-saida";
+  const sinal = t.tipo === "entrada" ? "+" : "-";
 
-    const tipoClasse =
-      t.tipo === "entrada" ? "tag-categoria-entrada" : "tag-categoria-saida";
-    const valorClasse =
-      t.tipo === "entrada"
-        ? "transacao-valor-entrada"
-        : "transacao-valor-saida";
-    const sinal = t.tipo === "entrada" ? "+" : "-";
+  const valor = t.valor || t.Valor || 0;
+  const data = t.dataTransacao;
+  const descricao = t.descricao || t.Descricao || t.titulo || t.Titulo;
+  const id = t.id || t.Id;
+  const categoriaNome = t.categoria?.nome || t.Categoria?.Nome || "Sem categoria";
 
-    // Suporta tanto camelCase quanto PascalCase
-    const valor = t.valor || t.Valor || 0;
-    const data = t.data || t.Data;
-    const descricao = t.descricao || t.Descricao || t.titulo || t.Titulo;
-    const id = t.id || t.Id;
-    const categoriaNome = t.categoria?.nome || t.Categoria?.Nome || 'Sem categoria';
-
-    li.innerHTML = `
+  li.innerHTML = `
       <div class="transacao-info">
         <span class="${tipoClasse}">${categoriaNome}</span>
         <p>${descricao}</p>
@@ -178,7 +189,7 @@ async function excluirTransacao(id, tipo) {
 
   try {
     const endpoint = tipo === "entrada" ? "rendas" : "despesas";
-    await apiFetch(`${apiBase}/${endpoint}/${id}`, { method: "DELETE" });
+    await apiFetch(`${apiBaseTeste}/${endpoint}/${id}`, { method: "DELETE" });
     alert("Transação excluída com sucesso!");
     carregarDados();
   } catch (error) {
@@ -232,11 +243,11 @@ document
     const endpoint = tipo === "entrada" ? "rendas" : "despesas";
 
     console.log("🚀 Tipo:", tipo);
-    console.log("🚀 Endpoint:", `${apiBase}/${endpoint}`);
+    console.log("🚀 Endpoint:", `${apiBaseTeste}/${endpoint}`);
     console.log("🚀 Enviando transação:", novaTransacao);
 
     try {
-      const response = await apiFetch(`${apiBase}/${endpoint}`, {
+      const response = await apiFetch(`${apiBaseTeste}/${endpoint}`, {
         method: "POST",
         body: JSON.stringify(novaTransacao),
       });
@@ -290,7 +301,7 @@ document
     const endpoint = tipo === "entrada" ? "rendas" : "despesas";
 
     try {
-      await apiFetch(`${apiBase}/${endpoint}/${id}`, {
+      await apiFetch(`${apiBaseTeste}/${endpoint}/${id}`, {
         method: "PUT",
         body: JSON.stringify(transacaoEditada),
       });
