@@ -32,17 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
         { valor: 2500, tipo: "entrada", categoria: "Salario", data: "2025-05-05" },
         { valor: 400, tipo: "saida", categoria: "Alimentacao", data: "2025-05-15" },
     ];
-    // ====== FIM DOS DADOS FICTÍCIOS ======
-
-
-    // ==========================================================
-    // ESTE É O "RESTO DO CÓDIGO" QUE ESTAVA FALTANDO
-    // ==========================================================
+    // FIM DOS DADOS FICTÍCIOS 
 
     let graficoPizza = null;
     let graficoBarras = null;
 
-    // --- Funções de Processamento de Dados ---
+    // Funções de Processamento de Dados 
 
     function prepararDadosPizza() {
         const gastosPorCategoria = {}; 
@@ -69,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dataReceitas = [];
         const dataDespesas = [];
 
-        // Fixamos a data de "hoje" para 21/10/2025 para que o teste seja consistente
+       
         const hoje = new Date(2025, 9, 21); // Mês 9 é Outubro (0-11)
         const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 
@@ -261,13 +256,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 ],
                 hoverOffset: 4,
                 
-                // === ESTA É A CORREÇÃO 2 ===
-                // Remove as bordas brancas entre as fatias
                 borderWidth: 0 
-                // ==========================
+                
             }]
         },
-        options: options // Usa as opções modificadas (sem eixos)
+        options: options 
     });
     
 }

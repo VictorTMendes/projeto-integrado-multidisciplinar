@@ -62,7 +62,7 @@
 
     <main>
       <div class="main-content">
-        <!-- Transações Dinâmicas -->
+     
         <div class="transacoes">
           <div class="transacoes-header">
             <h2>Ultimas Atualizações</h2>
@@ -70,11 +70,9 @@
           </div>
 
           <ul id="ultimas-transacoes">
-            <!-- Itens das transações serão inseridos aqui via JS -->
           </ul>
         </div>
 
-        <!-- Nova Transação -->
         <div class="nova-transacao">
           <h2>Nova Transação</h2>
           <form id="form-nova-transacao">
@@ -164,6 +162,12 @@
             <i class="fas fa-cog"></i>
             <span>Configuração</span>
           </button>
+
+          <button id="clear-history-btn" class="sidebar-button-link">
+            <i class="fas fa-trash"></i>
+            <span>Limpar Histórico</span>
+          </button>
+          
         </nav>
       </div>
 
@@ -206,6 +210,7 @@
           <hr class="sidebar-divider">
 
           <div class="profile-actions">
+
             <button id="edit-profile-btn" class="sidebar-button-link profile-display">
               <i class="fas fa-edit"></i>
               <span>Editar Perfil</span>
@@ -221,10 +226,15 @@
               <span>Cancelar</span>
             </button>
 
+            <button id="delete-account-btn" class="sidebar-button-link logout-btn profile-display">
+            <i class="fas fa-trash-alt"></i>
+            <span>Apagar Conta</span>
+
             <button id="logout-btn" class="sidebar-button-link logout-btn profile-display">
               <i class="fas fa-sign-out-alt"></i>
               <span>Sair</span>
             </button>
+            
           </div>
         </div>
       </div>
@@ -237,6 +247,7 @@
   <script src="../../../assets/js/visual/mascaras.js"></script>
   <script src="../../../assets/js/visual/sidebar.js"></script>
   <script src="../../../assets/js/visual/editar-perfil.js"></script>
+  <script src="../../../assets/js/visual/clear-histórico.js"></script>
   <script src="../../../assets/js/connection/dashboard.js" defer></script>
 
 </body>

@@ -21,6 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Seleciona TODOS os elementos que devem aparecer no modo "Edição"
     const editElements = profilePanel.querySelectorAll('.profile-edit');
 
+    // --- NOVO: Função para validar o formato do e-mail ---
+    function isEmailValido(email) {
+      // Expressão Regular simples para checar o formato do e-mail
+      const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regexEmail.test(email);
+    }
+    // --------------------------------------------------------
+
     // --- 2. Função principal para alternar os modos ---
     function toggleEditMode(isEditing) {
         if (isEditing) {
@@ -34,8 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
             displayElements.forEach(el => el.style.display = 'none');
             
             // 3. Mostra os elementos de edição
-            // Usamos 'block' ou 'flex' dependendo do seu CSS, 'block' é mais seguro.
             editElements.forEach(el => el.style.display = 'block'); 
+
+            // NOVO: Limpa a borda vermelha (caso tenha dado erro antes)
+            profileEmailInput.style.borderColor = ''; 
 
         } else {
             // -- MODO DE VISUALIZAÇÃO --
@@ -55,19 +65,31 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleEditMode(true); // Ativa o modo de edição
     });
 
-    // Quando o usuário clicar em "Salvar Alterações"
+    // --- NOVO: Lógica de "Salvar" ATUALIZADA com Validação ---
     saveBtn.addEventListener('click', () => {
-        // 1. Salva os novos valores (copia dos 'inputs' para os 'spans')
+        
+        const emailDigitado = profileEmailInput.value;
+
+        // 1. ETAPA DE VALIDAÇÃO
+        if (!isEmailValido(emailDigitado)) {
+            // Se for INVÁLIDO:
+            alert('Formato de e-mail inválido. Por favor, corrija.');
+            profileEmailInput.style.borderColor = 'red'; // Destaca o campo
+            profileEmailInput.focus(); // Foca no campo
+            
+            // IMPORTANTE: Para a execução e NÃO salva
+            return; 
+        }
+
+        // 2. Se for VÁLIDO (continua o código original):
+        // Limpa qualquer estilo de erro
+        profileEmailInput.style.borderColor = ''; 
+
+        // 3. Salva os novos valores (copia dos 'inputs' para os 'spans')
         profileNameSpan.textContent = profileNameInput.value;
-        profileEmailSpan.textContent = profileEmailInput.value;
+        profileEmailSpan.textContent = emailDigitado; // Usa a variável já criada
 
-        // ------------------------------------------------------------------
-        // TODO: É AQUI que você adicionará a lógica para salvar
-        // os novos valores (profileNameInput.value e profileEmailInput.value)
-        // em seu banco de dados (ex: usando a API fetch).
-        // ------------------------------------------------------------------
-
-        // 2. Volta para o modo de visualização
+        // 4. Volta para o modo de visualização
         toggleEditMode(false);
     });
 
@@ -87,8 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (openProfileBtn) {
         openProfileBtn.addEventListener('click', () => {
-            // Esconde o menu principal e mostra o de perfil
-            // (Você pode querer adicionar uma classe para uma animação de slide)
             mainMenu.style.display = 'none';
             profilePanel.style.display = 'block';
         });
@@ -96,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (closeProfileBtn) {
         closeProfileBtn.addEventListener('click', () => {
-            // Esconde o menu de perfil e mostra o principal
             profilePanel.style.display = 'none';
             mainMenu.style.display = 'block';
         });
