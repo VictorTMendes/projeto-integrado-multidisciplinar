@@ -241,7 +241,7 @@ body{
     width: 200%;
     transform: translateX(0);
     transition: all 0.6s ease-in-out;
-}    
+}     
 
 .container.active .toggle{
     transform: translateX(50%);
@@ -283,7 +283,6 @@ body{
 /* =========== ESTILOS RESPONSIVOS LOGIN ============= */
 /* =================================================== */
 
-/* --- Para Telas Pequenas (Celulares, ~768px ou menos) --- */
 @media (max-width: 768px) {
 
     /* 1. Ajusta o Container Principal */
@@ -392,3 +391,76 @@ body{
 
 }
 
+/* =================================================== */
+/* ====== CSS VER SENHA (CORREÇÃO DE ESPECIFICIDADE) ===== */
+/* =================================================== */
+
+/* 1. O container (Igual ao anterior) */
+.password-container {
+  position: relative;
+  width: 100%;
+  margin: 8px 0;
+}
+
+/* 2. O input (Igual ao anterior) */
+.password-container input[type="password"],
+.password-container input[type="text"] {
+  background-color: #0f0f0f;
+  border: none;
+  font-size: 13px;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
+  color: #f8f8f8;
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 10px 45px 10px 15px;
+}
+
+/* 3. O botão (COM SELETOR MAIS FORTE E RESET) */
+/* Usamos .container .password-container... para "ganhar" do .container button */
+.container .password-container .toggle-password-btn {
+  
+  /* --- POSICIONAMENTO --- */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  width: 45px;
+  height: 100%;
+  
+  /* --- RESET DOS ESTILOS DO .container button --- */
+  background-color: transparent; /* Tira o fundo verde */
+  padding: 0; /* Tira o padding grande */
+  margin-top: 0; /* Tira a margem do topo */
+  border: none; /* Tira a borda */
+  border-radius: 0; /* Garante que não tenha borda arredondada */
+  font-weight: normal; /* Reseta o negrito */
+  letter-spacing: normal; /* Reseta o espaçamento */
+  text-transform: none; /* Tira o uppercase */
+  
+  /* --- ESTILO DO ÍCONE --- */
+  cursor: pointer;
+  color: #888;
+  font-size: 16px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* --- EFEITO HOVER --- */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+/* 4. Faz o botão aparecer no hover (Igual ao anterior) */
+.password-container:hover .toggle-password-btn {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 5. Faz o botão ficar visível ao digitar (Igual ao anterior) */
+.password-container input:focus + .toggle-password-btn {
+  opacity: 1;
+  visibility: visible;
+}
