@@ -173,7 +173,6 @@ main {
     gap: 15px;
 }
 
-/* Renomeado: Use as classes específicas se precisar de estilos diferentes */
 .tag-categoria-entrada, .tag-categoria-saida {
     padding: 5px 10px;
     border-radius: 12px;
