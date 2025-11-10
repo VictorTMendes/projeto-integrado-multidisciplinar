@@ -27,7 +27,7 @@ async function apiFetch(url, options = {}) {
   
   if (!res.ok) {
     const errorText = await res.text();
-    console.error("❌ Erro na requisição:", errorText);
+    console.error("Erro na requisição:", errorText);
     throw new Error(errorText);
   }
   
@@ -43,7 +43,7 @@ async function carregarCategorias() {
     const selectCategoriasEdicao = document.getElementById("categoria-edicao");
     
     if (!selectCategorias || !selectCategoriasEdicao) {
-      console.error("❌ Elementos select não encontrados no DOM");
+      console.error("Elementos select não encontrados no DOM");
       return;
     }
     
@@ -81,16 +81,16 @@ async function carregarDados() {
       apiFetch(`${apiBase}/rendas`)
     ]);
 
-    console.log("📊 Resultado despesas:", despesas);
-    console.log("📊 Resultado rendas:", rendas);
+    console.log("Resultado despesas:", despesas);
+    console.log("Resultado rendas:", rendas);
 
     if (rendas.status === "fulfilled") {
       atualizarDashboard(rendas.value, despesas.status === "fulfilled" ? despesas.value : []);
     } else {
-      console.error("❌ Falha ao carregar rendas:", rendas.reason);
+      console.error("Falha ao carregar rendas:", rendas.reason);
     }
   } catch (error) {
-    console.error("❌ Erro inesperado:", error);
+    console.error("Erro inesperado:", error);
   }
 }
 
@@ -132,7 +132,7 @@ function atualizarDashboard(rendas, despesas) {
 
   listaEl.innerHTML = "";
 
-todas.slice(0, 10).forEach(t => {
+todas.slice(0, 8).forEach(t => {
   const li = document.createElement("li");
 
   const tipoClasse =
@@ -193,7 +193,7 @@ async function excluirTransacao(id, tipo) {
     alert("Transação excluída com sucesso!");
     carregarDados();
   } catch (error) {
-    console.error("❌ Erro ao excluir transação:", error);
+    console.error("Erro ao excluir transação:", error);
     alert("Erro ao excluir transação.");
   }
 }
@@ -242,9 +242,9 @@ document
 
     const endpoint = tipo === "entrada" ? "rendas" : "despesas";
 
-    console.log("🚀 Tipo:", tipo);
-    console.log("🚀 Endpoint:", `${apiBaseTeste}/${endpoint}`);
-    console.log("🚀 Enviando transação:", novaTransacao);
+    console.log("Tipo:", tipo);
+    console.log("Endpoint:", `${apiBaseTeste}/${endpoint}`);
+    console.log("Enviando transação:", novaTransacao);
 
     try {
       const response = await apiFetch(`${apiBase}/${endpoint}`, {
@@ -252,12 +252,12 @@ document
         body: JSON.stringify(novaTransacao),
       });
 
-      console.log("✅ Resposta:", response);
+      console.log("Resposta:", response);
       alert("Transação adicionada com sucesso!");
       e.target.reset();
       carregarDados();
     } catch (error) {
-      console.error("❌ Erro ao adicionar transação:", error);
+      console.error("Erro ao adicionar transação:", error);
       alert("Erro ao adicionar transação: " + error.message);
     }
   });
@@ -310,7 +310,7 @@ document
       modal.style.display = "none";
       carregarDados();
     } catch (error) {
-      console.error("❌ Erro ao editar transação:", error);
+      console.error("Erro ao editar transação:", error);
       alert("Erro ao editar transação.");
     }
   });

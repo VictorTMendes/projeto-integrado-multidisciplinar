@@ -25,9 +25,9 @@ document.getElementById("register-form").addEventListener("submit", async (e) =>
     const result = await res.json();
 
     // Armazena dados básicos do usuário
-    localStorage.setItem("usuarioId", result.usuario.Id);
-    localStorage.setItem("usuarioNome", result.usuario.Nome);
-    localStorage.setItem("usuarioEmail", result.usuario.Email);
+    localStorage.setItem("usuarioId", result.usuario.id);
+    localStorage.setItem("usuarioNome", result.usuario.nome);
+    localStorage.setItem("usuarioEmail", result.usuario.email);
 
     // Exibe mensagem e redireciona
     alert(result.message || "Usuário criado com sucesso!");
@@ -62,11 +62,12 @@ document.getElementById("sign-in-form").addEventListener("submit", async (e) => 
     }
 
     const result = await res.json();
+    console.log("RETORNO DA API DE LOGIN:", result);
 
     // Salva o usuário (e token, se houver) no localStorage
-    localStorage.setItem("usuarioId", result.usuario.Id);
-    localStorage.setItem("usuarioNome", result.usuario.Nome);
-    localStorage.setItem("usuarioEmail", result.usuario.Email);
+    localStorage.setItem("usuarioId", result.usuario.id);
+    localStorage.setItem("usuarioNome", result.usuario.nome);
+    localStorage.setItem("usuarioEmail", result.usuario.email);
 
     localStorage.setItem("token", result.token);
     window.location.href = "./../newdashboard/newdashboard.html";
