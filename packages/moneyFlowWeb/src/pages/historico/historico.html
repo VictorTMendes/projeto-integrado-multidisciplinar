@@ -30,95 +30,113 @@
         <h2>Todas as Transações</h2>
         <ul></ul>
     </div>
+
+    <!-- <div class="filtro-container">
+        <label for="filtro-categoria">Filtrar por Categoria:</label>
+        <select id="filtro-categoria">
+            <option value="all">Todas as Categorias</option>
+            <option value="1">Salário</option>
+            <option value="2">Alimentação</option>
+            <option value="3">Transporte</option>
+            <option value="4">Moradia</option>
+            <option value="5">Lazer</option>
+            <option value="6">Saúde</option>
+            <option value="7">Outros</option>
+        </select>
+    </div>
+
+    <ul id="lista-historico">
+    </ul> -->
+
  </main>
 
-        <aside id="sidebar">
+    <aside id="sidebar">
     
-    <div class="sidebar-header">
-        <h2>Menu</h2>
-        <button id="close-sidebar-btn" class="header-icon-btn">&times;</button>
-    </div>
+        <div class="sidebar-header">
+            <h2>Menu</h2>
+            <button id="close-sidebar-btn" class="header-icon-btn">&times;</button>
+        </div>
 
-    <div class="sidebar-content-wrapper">
-    
-        <div id="sidebar-main-menu" class="sidebar-panel">
-            <nav class="sidebar-nav">
-                <button id="open-profile-panel" type="button" class="sidebar-button-link">
-                    <i class="fas fa-user"></i>
-                    <span>Perfil</span>
+        <div class="sidebar-content-wrapper">
+        
+            <div id="sidebar-main-menu" class="sidebar-panel">
+                <nav class="sidebar-nav">
+                    <button id="open-profile-panel" type="button" class="sidebar-button-link">
+                        <i class="fas fa-user"></i>
+                        <span>Perfil</span>
+                    </button>
+                    
+                    <button id="open-settings-panel" type="button" class="sidebar-button-link">
+                        <i class="fas fa-cog"></i>
+                        <span>Configuração</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div id="sidebar-settings-menu" class="sidebar-panel">
+                <div class="sidebar-header-submenu">
+                    <button id="close-settings-panel" type="button" class="back-btn">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h2>Configurações</h2>
+                </div>
+
+                <div class="sidebar-nav">
+                    <button id="trocar-tema" class="sidebar-button-link">
+                        <i class="fas fa-sun"></i>
+                        <span>Alternar Tema</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="sidebar-profile-menu" class="sidebar-panel"> 
+                <div class="sidebar-header-submenu">
+                <button id="close-profile-panel" type="button" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
                 </button>
+                <h2>Perfil</h2>
+            </div>
+        
+            <div class="sidebar-profile-content sidebar-nav"> 
                 
-                <button id="open-settings-panel" type="button" class="sidebar-button-link">
-                    <i class="fas fa-cog"></i>
-                    <span>Configuração</span>
-                </button>
-            </nav>
-        </div>
+                    <div class="profile-info">
+                        <p><strong>Nome:</strong>
+                            <span id="profile-name" class="profile-display">Seu Nome</span>
+                            <input type="text" id="edit-profile-name" class="profile-edit" style="display: none;">
+                        </p>
+                        <p><strong>Email:</strong>
+                            <span id="profile-email" class="profile-display">seu.email@example.com</span>
+                            <input type="email" id="edit-profile-email" class="profile-edit" style="display: none;">
+                        </p>
+                        </div>
+                    
+                    <hr class="sidebar-divider"> 
 
-        <div id="sidebar-settings-menu" class="sidebar-panel">
-            <div class="sidebar-header-submenu">
-                <button id="close-settings-panel" type="button" class="back-btn">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <h2>Configurações</h2>
+                <div class="profile-actions"> 
+                     <button id="edit-profile-btn" class="sidebar-button-link profile-display">
+                        <i class="fas fa-edit"></i>
+                        <span>Editar Perfil</span>
+                     </button>
+                        
+                    <button id="save-profile-btn" class="sidebar-button-link profile-edit" style="display: none;">
+                        <i class="fas fa-save"></i>
+                        <span>Salvar Alterações</span>
+                    </button>
+                    <button id="cancel-edit-btn" class="sidebar-button-link profile-edit cancel-btn" style="display: none;">
+                        <i class="fas fa-times"></i>
+                        <span>Cancelar</span>
+                    </button>
+
+                    <button id="logout-btn" class="sidebar-button-link logout-btn profile-display"> 
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </button>
+                </div>
             </div>
-
-            <div class="sidebar-nav">
-                <button id="trocar-tema" class="sidebar-button-link">
-                    <i class="fas fa-sun"></i>
-                    <span>Alternar Tema</span>
-                </button>
-            </div>
         </div>
 
-        <div id="sidebar-profile-menu" class="sidebar-panel"> 
-            <div class="sidebar-header-submenu">
-            <button id="close-profile-panel" type="button" class="back-btn">
-            <i class="fas fa-arrow-left"></i>
-            </button>
-            <h2>Perfil</h2>
-    </div>
-    
-    <div class="sidebar-profile-content sidebar-nav"> 
-        
-        <div class="profile-info">
-            <p><strong>Nome:</strong>
-                <span id="profile-name" class="profile-display">Seu Nome</span>
-                <input type="text" id="edit-profile-name" class="profile-edit" style="display: none;">
-            </p>
-            <p><strong>Email:</strong>
-                <span id="profile-email" class="profile-display">seu.email@example.com</span>
-                <input type="email" id="edit-profile-email" class="profile-edit" style="display: none;">
-            </p>
-            </div>
-        
-        <hr class="sidebar-divider"> 
-
-        <div class="profile-actions"> 
-            <button id="edit-profile-btn" class="sidebar-button-link profile-display">
-                <i class="fas fa-edit"></i>
-                <span>Editar Perfil</span>
-            </button>
-            
-            <button id="save-profile-btn" class="sidebar-button-link profile-edit" style="display: none;">
-                <i class="fas fa-save"></i>
-                <span>Salvar Alterações</span>
-            </button>
-            <button id="cancel-edit-btn" class="sidebar-button-link profile-edit cancel-btn" style="display: none;">
-                <i class="fas fa-times"></i>
-                <span>Cancelar</span>
-            </button>
-
-            <button id="logout-btn" class="sidebar-button-link logout-btn profile-display"> 
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Sair</span>
-            </button>
-        </div>
-        </div>
-</div>
-
-    </div> 
     </aside>
+            <!-- <script src="../../../assets/js/visual/filtro-historico.js"></script> -->
             <script src="../../../assets/js/connection/usuario-info.js" defer></script>
             <script src="../../../assets/js/connection/historico.js" defer></script>
             <script src="../../../assets/js/visual/tema.js" defer></script>
