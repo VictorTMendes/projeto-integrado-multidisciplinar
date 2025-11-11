@@ -15,6 +15,7 @@
     </div>
     
     <div class="container" id="container">
+        
         <div class="form-container sign-up">
             <form id="register-form">
                 <h2>Crie uma conta</h2>
@@ -31,41 +32,40 @@
                 <button type="submit">Registrar-se</button>
             </form>
         </div>
-        <div class="container" id="container">
-            <div class="form-container sign-in">
-                <form id="sign-in-form">
-                    <h2>Entrar na sua conta</h2>
-                    <input id="email-login" name="email" type="email" placeholder="email" required>
-                    
-                    <div class="password-container">
-                        <input id="password-login" name="password" type="password" placeholder="Senha" required>
-                        <button type="button" class="toggle-password-btn" data-input="password-login">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
 
-                    <a href="Esqueci-senha.html" class="forgot-passoword-link">Esqueceu sua senha?</a>
-                    <button type="submit">Entrar</button>
-                </form>
-            </div>
-            <div class="toggle-container">
-                <div class="toggle">
-                    <div class="toggle-panel toggle-left">
-                        <h1>Bem vindo de volta!</h1>
-                        <p>Insira seus dados pessoais para utilizar todos os recursos do site</p>
-                        <button class="hiden" id="login">Entrar</button>
-                    </div>
-                    <div class="toggle-panel toggle-right">
-                        <h1>Seja bem vindo ao MoneyFlow!</h1>
-                        <p>Registre seus dados pessoais para utilizar todos os recursos do site</p>
-                        <button class="hiden" id="register">Regristrar-se</button>
-                    </div>
+        <div class="form-container sign-in">
+            <form id="sign-in-form">
+                <h2>Entrar na sua conta</h2>
+                <input id="email-login" name="email" type="email" placeholder="email" required>
+                
+                <div class="password-container">
+                    <input id="password-login" name="password" type="password" placeholder="Senha" required>
+                    <button type="button" class="toggle-password-btn" data-input="password-login">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+
+                <a href="Esqueci-senha.html" class="forgot-passoword-link">Esqueceu sua senha?</a>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Bem vindo de volta!</h1>
+                    <p>Insira seus dados pessoais para utilizar todos os recursos do site</p>
+                    <button class="hiden" id="login">Entrar</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Seja bem vindo ao MoneyFlow!</h1>
+                    <p>Registre seus dados pessoais para utilizar todos os recursos do site</p>
+                    <button class="hiden" id="register">Regristrar-se</button>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="../../../assets/js/visual/loading.js"></script>
+    </div> <script src="../../../assets/js/visual/loading.js"></script>
     <script src="../../../assets/js/connection/script.js" defer></script>
     <script src="../../../assets/js/connection/api.js" defer></script>
     <script src="../../../assets/js/connection/usuario.js" defer></script>

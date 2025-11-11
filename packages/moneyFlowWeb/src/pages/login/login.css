@@ -309,6 +309,8 @@ body{
         transition: none; /* Remove a animação */
         z-index: 1;
         padding: 40px 20px; /* Adiciona padding interno */
+        transform: none;
+        transition: none;
     }
 
     /* 3. Lógica de Visibilidade dos Formulários (Sem animação de slide) */
@@ -355,6 +357,7 @@ body{
         top: 0;
         transform: none !important;
         border-radius: 0; /* Remove bordas que faziam sentido no modo desktop */
+        transition: none;
     }
     .toggle-panel {
         position: relative; /* Remove posicionamento absoluto */
