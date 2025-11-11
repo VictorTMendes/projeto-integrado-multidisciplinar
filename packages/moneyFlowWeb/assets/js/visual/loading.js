@@ -1,74 +1,56 @@
-// Funções para mostrar e esconder o loading overlay
-function showLoading() {
-    const loadingOverlay = document.getElementById('loading-overlay');
-    if (loadingOverlay) {
-        loadingOverlay.classList.add('show');
-    }
-}
-
-function hideLoading() {
-    const loadingOverlay = document.getElementById('loading-overlay');
-    if (loadingOverlay) {
-        loadingOverlay.classList.remove('show');
-    }
-}
-
-// --- Exemplo de como usar no seu formulário de Login/Registro ---
 document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('login-form'); // Assuma que seu form tem ID 'login-form'
-    const registerForm = document.getElementById('register-form'); // Assuma que seu form tem ID 'register-form'
 
-    if (loginForm) {
-        loginForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Impede o envio padrão do formulário
+    // 1. IDs CORRIGIDOS: Apontam para seu formulário e overlay
+    const loginForm = document.getElementById('sign-in-form');
+    const loadingOverlay = document.getElementById('loading-overlay');
 
-            showLoading(); // Mostra a tela de carregamento
+    if (loginForm && loadingOverlay) {
+        
+        loginForm.addEventListener('submit', (event) => {
+            // Impede o envio padrão
+            event.preventDefault(); 
+            
+            // 2. MOSTRA o carregador
+            loadingOverlay.classList.add('show');
 
-            // --- SIMULAÇÃO DE UMA REQUISIÇÃO DE LOGIN ---
-            // Substitua isso pela sua lógica real de login (fetch, axios, etc.)
-            try {
-                // await fetch('/api/login', { /* suas opções aqui */ });
-                await new Promise(resolve => setTimeout(resolve, 2000)); // Simula 2 segundos de carregamento
-                
-                // Se o login for bem-sucedido:
-                alert('Login realizado com sucesso!');
-                window.location.href = '../dashboard/newdashboard.html'; // Redireciona para o dashboard
-                
-            } catch (error) {
-                console.error('Erro no login:', error);
-                alert('Falha no login. Tente novamente.');
-            } finally {
-                hideLoading(); // Esconde a tela de carregamento, mesmo se houver erro
-            }
+            // 3. IDs CORRIGIDOS: Pega os valores dos campos certos
+            const email = document.getElementById('email-login').value;
+            const senha = document.getElementById('password-login').value;
+
+            // 4. CHAME SUA LÓGICA DE LOGIN AQUI
+            // (Provavelmente uma função do seu 'api.js' ou 'usuario.js')
+            // Vou usar um exemplo simulado
+            fazerLogin(email, senha);
         });
     }
 
-    if (registerForm) {
-        registerForm.addEventListener('submit', async (event) => {
-            event.preventDefault(); // Impede o envio padrão do formulário
+    // Esta função deve ser substituída pela sua lógica real de API
+    async function fazerLogin(email, senha) {
+        
+        try {
+            //
+            // --- COLOQUE SUA LÓGICA DE LOGIN REAL AQUI ---
+            // Ex: const resultado = await suaFuncaoDeLogin(email, senha);
+            //
+            // Exemplo de simulação (apague isso no código real):
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            // Fim da simulação
+            
+            // SUCESSO: Redireciona
+            alert("Login com sucesso! Redirecionando...");
+            window.location.href = '../dashboard/newdashboard.html'; // Mude para sua página
 
-            showLoading(); // Mostra a tela de carregamento
+        } catch (error) {
+            // ERRO: Mostra a falha
+            console.error('Falha no login:', error);
+            alert('Email ou senha inválidos!');
 
-            // --- SIMULAÇÃO DE UMA REQUISIÇÃO DE REGISTRO ---
-            // Substitua isso pela sua lógica real de registro (fetch, axios, etc.)
-            try {
-                // await fetch('/api/register', { /* suas opções aqui */ });
-                await new Promise(resolve => setTimeout(resolve, 2500)); // Simula 2.5 segundos de carregamento
-
-                // Se o registro for bem-sucedido:
-                alert('Registro realizado com sucesso! Faça login para continuar.');
-                window.location.href = 'login.html'; // Redireciona para a página de login
-                
-            } catch (error) {
-                console.error('Erro no registro:', error);
-                alert('Falha no registro. Tente novamente.');
-            } finally {
-                hideLoading(); // Esconde a tela de carregamento
+        } finally {
+            // 5. SEMPRE executa: ESCONDE o carregador
+            // (Isso acontece em caso de sucesso ou erro)
+            if (loadingOverlay) {
+                loadingOverlay.classList.remove('show');
             }
-        });
+        }
     }
-
-    // Opcional: Esconder o loading se a página for recarregada e ele estiver visível
-    // (Útil se o navegador voltar com cache ou se houver um erro antes do hideLoading)
-    window.addEventListener('load', hideLoading); 
 });
