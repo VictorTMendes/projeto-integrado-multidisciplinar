@@ -1,56 +1,70 @@
+// Espera o HTML ser totalmente carregado
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. IDs CORRIGIDOS: Apontam para seu formulário e overlay
-    const loginForm = document.getElementById('sign-in-form');
+    // Pega os elementos do formulário que vamos usar
+    const loginForm = document.getElementById('login-form');
+    const loginButton = document.getElementById('loginButton');
+    const messageArea = document.getElementById('message-area');
+
+    // PEGA O SEU NOVO OVERLAY DE LOADING
     const loadingOverlay = document.getElementById('loading-overlay');
 
-    if (loginForm && loadingOverlay) {
+    // Escuta o evento de "submit" (envio) do formulário
+    loginForm.addEventListener('submit', (event) => {
         
-        loginForm.addEventListener('submit', (event) => {
-            // Impede o envio padrão
-            event.preventDefault(); 
-            
-            // 2. MOSTRA o carregador
-            loadingOverlay.classList.add('show');
+        // Impede que a página recarregue
+        event.preventDefault();
 
-            // 3. IDs CORRIGIDOS: Pega os valores dos campos certos
-            const email = document.getElementById('email-login').value;
-            const senha = document.getElementById('password-login').value;
 
-            // 4. CHAME SUA LÓGICA DE LOGIN AQUI
-            // (Provavelmente uma função do seu 'api.js' ou 'usuario.js')
-            // Vou usar um exemplo simulado
-            fazerLogin(email, senha);
-        });
-    }
+        // Limpa mensagens de erro ou sucesso anteriores
+        messageArea.textContent = '';
+        messageArea.className = '';
 
-    // Esta função deve ser substituída pela sua lógica real de API
-    async function fazerLogin(email, senha) {
+        // ATIVA O "CARREGANDO..."
+        // Em vez de mudar o botão, agora mostramos o overlay
+        loadingOverlay.classList.add('show');
         
-        try {
-            //
-            // --- COLOQUE SUA LÓGICA DE LOGIN REAL AQUI ---
-            // Ex: const resultado = await suaFuncaoDeLogin(email, senha);
-            //
-            // Exemplo de simulação (apague isso no código real):
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            // Fim da simulação
+        // (Ainda é bom desabilitar o botão para evitar cliques duplos)
+        loginButton.disabled = true;
+
+        // CHAMA A FUNÇÃO DE VALIDAÇÃO
+        simularValidacao(email, senha);
+    });
+
+    /**
+     * Esta é uma função de validação SIMULADA.
+     * Ela finge estar "conversando com o servidor" por 2 segundos.
+     */
+    function simularValidacao(email, senha) {
+        console.log("Enviando para o servidor (simulado):", email, senha);
+
+        // Simula uma espera de 2 segundos (2000ms)
+        setTimeout(() => {
             
-            // SUCESSO: Redireciona
-            alert("Login com sucesso! Redirecionando...");
-            window.location.href = '../../../src/pages/newdashboard/newdashboard.html'; // Mude para sua página
+            // DESATIVA O "CARREGANDO..."
+            // Esconde o overlay
+            loadingOverlay.classList.remove('show');
+            
+            // Reabilita o botão
+            loginButton.disabled = false;
 
-        } catch (error) {
-            // ERRO: Mostra a falha
-            console.error('Falha no login:', error);
-            alert('Email ou senha inválidos!');
+            // VERIFICA OS DADOS (Lógica Fictícia)
+            if (email === 'teste@gmail.com' && senha === '123') {
+                
+                // SUCESSO
+                messageArea.textContent = 'Login bem-sucedido! Redirecionando...';
+                messageArea.className = 'success';
+                
+                // Aqui você redirecionaria para a página principal
+                // Ex: setTimeout(() => { window.location.href = '/dashboard'; }, 1000);
 
-        } finally {
-            // 5. SEMPRE executa: ESCONDE o carregador
-            // (Isso acontece em caso de sucesso ou erro)
-            if (loadingOverlay) {
-                loadingOverlay.classList.remove('show');
+            } else {
+                
+                // ERRO
+                messageArea.textContent = 'Email ou senha inválidos.';
+                messageArea.className = 'error';
             }
-        }
+
+        }, 2000); // 2000 milissegundos = 2 segundos
     }
 });

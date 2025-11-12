@@ -27,20 +27,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = document.getElementById('logout-btn');           
 
     // --- FUNÇÕES ---
-
-    // Abre a Sidebar Principal
     const openSidebar = () => {
         if (body) body.classList.add('sidebar-open');
     };
 
-    // Fecha a Sidebar Principal (e reseta sub-menus e edição)
+   
     const closeSidebar = () => {
         if (body) body.classList.remove('sidebar-open');
         if (sidebar) {
             sidebar.classList.remove('settings-open');
             sidebar.classList.remove('profile-open'); 
         }
-        // ADICIONADO: Garante que saia do modo de edição ao fechar
+        
         if (profilePanel) profilePanel.classList.remove('editing'); 
     };
 
@@ -55,11 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
             sidebar.classList.remove('settings-open');
             sidebar.classList.remove('profile-open');
         }
-        // ADICIONADO: Garante que saia do modo de edição ao voltar
+
         if (profilePanel) profilePanel.classList.remove('editing'); 
     };
-
-    // --- EVENT LISTENERS ---
 
     // Sidebar Principal
     if (openBtn) openBtn.addEventListener('click', openSidebar);
@@ -82,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
         closeProfileBtn.addEventListener('click', closeSubmenu); 
     }
 
-    // --- LÓGICA DE EDIÇÃO INLINE DO PERFIL (NOVO) ---
     if (editProfileBtn && profilePanel && inputName && inputEmail && displayName && displayEmail) {
         editProfileBtn.addEventListener('click', () => {
             // Copia valores atuais para os inputs
@@ -95,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (cancelEditBtn && profilePanel) {
         cancelEditBtn.addEventListener('click', () => {
-            // Desativa o modo de edição
+           
             profilePanel.classList.remove('editing');
         });
     }
@@ -110,31 +105,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // --- AQUI VOCÊ SALVARIA OS DADOS ---
+            
             console.log("Salvando - Nome:", newName, "Email:", newEmail);
-            // Ex: localStorage.setItem('userName', newName);
-            //     localStorage.setItem('userEmail', newEmail);
-            //     saveProfileData(newName, newEmail); // Função de API
-            // ------------------------------------
 
-            // Atualiza os spans com os novos valores
             displayName.textContent = newName;
             displayEmail.textContent = newEmail;
 
-            // Desativa o modo de edição
             profilePanel.classList.remove('editing');
-
-            // Feedback (opcional)
-            // alert('Perfil atualizado!'); 
         });
     }
-
-    // Ação de Logout (mantém a mesma lógica)
-    // if (logoutBtn) {
-    //     logoutBtn.addEventListener('click', () => {
-    //         console.log("Ação: Logout (Implementar)");
-    //         alert("Simulando Logout..."); 
-    //         closeSidebar(); 
-    //     });
-    // }
 });

@@ -1,12 +1,10 @@
 const apiBase = "https://moneyflowapi-1.onrender.com/api";
 const token = localStorage.getItem("token");
 
-// Redireciona se não estiver logado
 if (!token) {
   window.location.href = "/login.html";
 }
 
-// Função genérica de fetch autenticado
 async function apiFetch(url, options = {}) {
   const res = await fetch(url, {
     ...options,
@@ -59,7 +57,6 @@ async function carregarHistorico() {
   }
 }
 
-// Renderiza a lista completa
 function renderizarLista(transacoes) {
   const ul = document.querySelector(".transacoes ul");
   ul.innerHTML = "";
