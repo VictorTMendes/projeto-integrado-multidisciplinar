@@ -130,11 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Ação de Logout (mantém a mesma lógica)
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', () => {
-            console.log("Ação: Logout (Implementar)");
-            alert("Simulando Logout..."); 
-            closeSidebar(); 
-        });
-    }
+    // if (logoutBtn) {
+    //     logoutBtn.addEventListener('click', () => {
+    //         console.log("Ação: Logout (Implementar)");
+    //         alert("Simulando Logout..."); 
+    //         closeSidebar(); 
+    //     });
+    // }
 });

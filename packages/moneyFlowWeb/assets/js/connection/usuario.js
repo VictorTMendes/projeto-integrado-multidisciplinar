@@ -1,4 +1,5 @@
 const apiUrl = "https://moneyflowapi-1.onrender.com/api/usuarios";
+const apiBaseTeste = "https://localhost:7249/api"
 
 document.getElementById("register-form").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -76,5 +77,62 @@ document.getElementById("sign-in-form").addEventListener("submit", async (e) => 
   } catch (error) {
     console.error("Erro:", error);
     alert("Erro de conexão com o servidor");
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const deleteBtn = document.getElementById("delete-account-btn");
+
+  if (deleteBtn) {
+    deleteBtn.addEventListener("click", async () => {
+      const usuarioId = localStorage.getItem("usuarioId");
+      const token = localStorage.getItem("token");
+
+      if (!usuarioId || !token) {
+        alert("Erro: usuário não autenticado.");
+        return;
+      }
+
+      const confirmacao = confirm(
+        "Tem certeza que deseja excluir sua conta?\n\nTodos os seus dados financeiros serão apagados permanentemente."
+      );
+      if (!confirmacao) return;
+
+      try {
+        const res = await fetch(`${apiBaseTeste}/excluir/${usuarioId}`, {
+          method: "DELETE",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+
+        if (!res.ok) {
+          const erro = await res.text();
+          alert("Erro ao excluir conta: " + erro);
+          return;
+        }
+
+        alert("Conta excluída com sucesso!");
+        localStorage.clear();
+        window.location.href = "../login/login.html"; // redireciona para login
+      } catch (error) {
+        console.error("Erro ao excluir conta:", error);
+        alert("Falha de conexão com o servidor.");
+      }
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutBtn = document.getElementById("logout-btn");
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      const confirmar = confirm("Tem certeza que deseja sair da conta?");
+      if (!confirmar) return;
+
+      localStorage.clear();
+      window.location.href = "../../../src/pages/login/login.html";
+    });
   }
 });
