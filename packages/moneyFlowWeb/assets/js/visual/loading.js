@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // SUCESSO: Redireciona
             alert("Login com sucesso! Redirecionando...");
-            window.location.href = '../../../src/pages/dashboard/newdashboard.html'; // Mude para sua página
+            window.location.href = '../../../src/pages/newdashboard/newdashboard.html'; // Mude para sua página
 
         } catch (error) {
             // ERRO: Mostra a falha
