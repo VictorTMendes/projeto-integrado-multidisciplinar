@@ -1,70 +1,90 @@
-// Espera o HTML ser totalmente carregado
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Pega os elementos do formulário que vamos usar
-    const loginForm = document.getElementById('login-form');
-    const loginButton = document.getElementById('loginButton');
-    const messageArea = document.getElementById('message-area');
-
-    // PEGA O SEU NOVO OVERLAY DE LOADING
+    // --- 1. PEGANDO TODOS OS ELEMENTOS ---
+    const loginForm = document.getElementById('sign-in-form');
     const loadingOverlay = document.getElementById('loading-overlay');
+    
+    // Assumindo que seu botão de login está DENTRO do formulário
+    const loginButton = loginForm ? loginForm.querySelector('button[type="submit"]') : null;
+    
+    // Assumindo que você tem uma área de mensagem (se não tiver, o "alert" no catch funcionará)
+    // Você pode criar um <p id="login-message-area"></p> no seu HTML
+    const messageArea = document.getElementById('login-message-area'); 
 
-    // Escuta o evento de "submit" (envio) do formulário
-    loginForm.addEventListener('submit', (event) => {
+    if (loginForm && loadingOverlay && loginButton) {
         
-        // Impede que a página recarregue
-        event.preventDefault();
+        loginForm.addEventListener('submit', (event) => {
+            // Impede o envio padrão
+            event.preventDefault(); 
+            
+            // Limpa erros antigos
+            if (messageArea) messageArea.textContent = '';
+            
+            // MOSTRA o carregador e DESABILITA o botão
+            loadingOverlay.classList.add('show');
+            loginButton.disabled = true;
 
+            const email = document.getElementById('email-login').value;
+            const senha = document.getElementById('password-login').value;
 
-        // Limpa mensagens de erro ou sucesso anteriores
-        messageArea.textContent = '';
-        messageArea.className = '';
-
-        // ATIVA O "CARREGANDO..."
-        // Em vez de mudar o botão, agora mostramos o overlay
-        loadingOverlay.classList.add('show');
-        
-        // (Ainda é bom desabilitar o botão para evitar cliques duplos)
-        loginButton.disabled = true;
-
-        // CHAMA A FUNÇÃO DE VALIDAÇÃO
-        simularValidacao(email, senha);
-    });
+            // Chama a lógica de login
+            fazerLogin(email, senha);
+        });
+    }
 
     /**
-     * Esta é uma função de validação SIMULADA.
-     * Ela finge estar "conversando com o servidor" por 2 segundos.
+     * Função de Login (Simulada)
+   
      */
-    function simularValidacao(email, senha) {
-        console.log("Enviando para o servidor (simulado):", email, senha);
+    async function fazerLogin(email, senha) {
+        
+        try {
+            // --- INÍCIO DA SIMULAÇÃO ---
+            // (Substitua esta parte pela sua chamada de API real)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            // --- FIM DA SIMULAÇÃO ---
 
-        // Simula uma espera de 2 segundos (2000ms)
-        setTimeout(() => {
             
-            // DESATIVA O "CARREGANDO..."
-            // Esconde o overlay
-            loadingOverlay.classList.remove('show');
-            
-            // Reabilita o botão
-            loginButton.disabled = false;
-
-            // VERIFICA OS DADOS (Lógica Fictícia)
+            // --- 2. LÓGICA DE VALIDAÇÃO ---
             if (email === 'teste@gmail.com' && senha === '123') {
                 
-                // SUCESSO
-                messageArea.textContent = 'Login bem-sucedido! Redirecionando...';
-                messageArea.className = 'success';
+                // SUCESSO:
+                // O alert é opcional, pois o redirecionamento é imediato
+                // alert("Login com sucesso! Redirecionando...");
+                window.location.href = '../dashboard/newdashboard.html';
                 
-                // Aqui você redirecionaria para a página principal
-                // Ex: setTimeout(() => { window.location.href = '/dashboard'; }, 1000);
+                // O script para aqui, pois a página vai mudar
 
             } else {
                 
-                // ERRO
-                messageArea.textContent = 'Email ou senha inválidos.';
-                messageArea.className = 'error';
+                // FALHA (Login/Senha errados):
+                // Lança um erro para ser pego pelo "catch"
+                throw new Error('Email ou senha inválidos.');
             }
 
-        }, 2000); // 2000 milissegundos = 2 segundos
+        } catch (error) {
+            
+            // --- 3. CONTROLE DE ERRO (QUALQUER FALHA) ---
+            
+            console.error('Falha no login:', error.message);
+            
+            // Mostra o erro para o usuário
+            if (messageArea) {
+                messageArea.textContent = error.message;
+            } else {
+                alert(error.message); // Fallback se a 'messageArea' não existir
+            }
+
+            // ESCONDE o carregador
+            if (loadingOverlay) {
+                loadingOverlay.classList.remove('show');
+            }
+            
+            // REABILITA o botão para o usuário tentar de novo
+            if (loginButton) {
+                loginButton.disabled = false;
+            }
+        }
+        // O 'finally' foi removido daqui propositalmente.
     }
 });

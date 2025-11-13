@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Money Flow - Relatórios</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="./relatorios.css"> <link rel="stylesheet" href="../newdashboard/newdashboard.css"> <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> 
+    <link rel="stylesheet" href="../newdashboard/newdashboard.css"> 
+    <link rel="stylesheet" href="./relatorios.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
@@ -44,90 +46,109 @@
             </div>
         </section>
 
-    </div> <div id="sidebar-overlay"></div>
-    <aside id="sidebar">
+    </div> 
+    
+    <div id="sidebar-overlay"></div>
 
+    <aside id="sidebar">
         <div class="sidebar-header">
-            <h2>Menu</h2>
-            <button id="close-sidebar-btn" class="header-icon-btn">&times;</button>
+        <h2>Menu</h2>
+        <button id="close-sidebar-btn" class="header-icon-btn">&times;</button>
         </div>
 
         <div class="sidebar-content-wrapper">
+        <div id="sidebar-main-menu" class="sidebar-panel">
+            <nav class="sidebar-nav">
+            <button id="open-profile-panel" type="button" class="sidebar-button-link">
+                <i class="fas fa-user"></i>
+                <span>Perfil</span>
+            </button>
 
-            <div id="sidebar-main-menu" class="sidebar-panel">
-                <nav class="sidebar-nav">
-                    <button id="open-profile-panel" type="button" class="sidebar-button-link">
-                        <i class="fas fa-user"></i>
-                        <span>Perfil</span>
-                    </button>
-                    <button id="open-settings-panel" type="button" class="sidebar-button-link">
-                        <i class="fas fa-cog"></i>
-                        <span>Configuração</span>
-                    </button>
-                </nav>
+            <button id="open-settings-panel" type="button" class="sidebar-button-link">
+                <i class="fas fa-cog"></i>
+                <span>Configuração</span>
+            </button> 
+            </nav>
+        </div>
+
+        <div id="sidebar-settings-menu" class="sidebar-panel">
+            <div class="sidebar-header-submenu">
+            <button id="close-settings-panel" type="button" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h2>Configurações</h2>
             </div>
 
-            <div id="sidebar-settings-menu" class="sidebar-panel">
-                <div class="sidebar-header-submenu">
-                    <button id="close-settings-panel" type="button" class="back-btn">
-                        <i class="fas fa-arrow-left"></i>
-                    </button>
-                    <h2>Configurações</h2>
-                </div>
-                <div class="sidebar-nav">
-                    <p class="settings-description">Escolha sua preferência de tema.</p>
-                    <button id="trocar-tema" class="sidebar-button-link">
-                        <i class="fas fa-sun"></i>
-                        <span>Alternar Tema</span>
-                    </button>
-                </div>
+            <div class="sidebar-nav">
+            <button id="trocar-tema" class="sidebar-button-link">
+                <i class="fas fa-sun"></i>
+                <span>Alternar Tema</span>
+            </button>
+
+            <button id="clear-history-btn" class="sidebar-button-link">
+                <i class="fas fa-trash"></i>
+                <span>Limpar Histórico</span>
+            </button>
+            </div>
+        </div>
+
+        <div id="sidebar-profile-menu" class="sidebar-panel">
+            <div class="sidebar-header-submenu">
+            <button id="close-profile-panel" type="button" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h2>Perfil</h2>
             </div>
 
-            <div id="sidebar-profile-menu" class="sidebar-panel">
-                <div class="sidebar-header-submenu">
-                    <button id="close-profile-panel" type="button" class="back-btn">
-                        <i class="fas fa-arrow-left"></i>
-                    </button>
-                    <h2>Perfil</h2>
-                </div>
-                <div class="sidebar-profile-content sidebar-nav">
-                    <div class="profile-info">
-                        <p><strong>Nome:</strong>
-                            <span id="profile-name" class="profile-display">Seu Nome</span>
-                            <input type="text" id="edit-profile-name" class="profile-edit" style="display: none;">
-                        </p>
-                        <p><strong>Email:</strong>
-                            <span id="profile-email" class="profile-display">seu.email@example.com</span>
-                            <input type="email" id="edit-profile-email" class="profile-edit" style="display: none;">
-                        </p>
-                    </div>
-                    <hr class="sidebar-divider">
-                    <div class="profile-actions">
-                        <button id="edit-profile-btn" class="sidebar-button-link profile-display">
-                            <i class="fas fa-edit"></i>
-                            <span>Editar Perfil</span>
-                        </button>
-                        <button id="save-profile-btn" class="sidebar-button-link profile-edit" style="display: none;">
-                            <i class="fas fa-save"></i>
-                            <span>Salvar Alterações</span>
-                        </button>
-                        <button id="cancel-edit-btn" class="sidebar-button-link profile-edit cancel-btn" style="display: none;">
-                            <i class="fas fa-times"></i>
-                            <span>Cancelar</span>
-                        </button>
-                        <button id="logout-btn" class="sidebar-button-link logout-btn profile-display">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Sair</span>
-                        </button>
-                    </div>
-                </div>
+            <div class="sidebar-profile-content sidebar-nav">
+            <div class="profile-info">
+                <p><strong>Nome:</strong>
+                <span id="profile-name" class="profile-display">Seu Nome</span>
+                <input type="text" id="edit-profile-name" class="profile-edit" style="display: none;" required>
+                </p>
+                <p><strong>Email:</strong>
+                <span id="profile-email" class="profile-display">seu.email@example.com</span>
+                <input type="email" id="edit-profile-email" class="profile-edit" style="display: none;" required>
+                </p>
             </div>
 
-        </div> 
+            <hr class="sidebar-divider">
+
+            <div class="profile-actions">
+
+                <button id="edit-profile-btn" class="sidebar-button-link profile-display">
+                <i class="fas fa-edit"></i>
+                <span>Editar Perfil</span>
+                </button>
+
+                <button id="save-profile-btn" class="sidebar-button-link profile-edit" style="display: none;">
+                <i class="fas fa-save"></i>
+                <span>Salvar</span>
+                </button>
+
+                <button id="cancel-edit-btn" class="sidebar-button-link profile-edit cancel-btn" style="display: none;">
+                <i class="fas fa-times"></i>
+                <span>Cancelar</span>
+                </button>
+
+                <button id="delete-account-btn" class="sidebar-button-link logout-btn profile-display">
+                <i class="fas fa-trash-alt"></i>
+                <span>Apagar Conta</span>
+                </button>
+
+                <button id="logout-btn" class="sidebar-button-link logout-btn profile-display">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sair</span>
+                </button>
+
+            </div>
+            </div>
+        </div>
+        </div>
     </aside>
 
     <script src="../../../assets/js/visual/tema.js"></script>
-    <!-- <script src="../../../assets/js/visual/relatorios.js"></script> -->
+    <script src="../../../assets/js/visual/relatorios.js"></script>
     <script src="../../../assets/js/connection/usuario-info.js"></script>
     <script src="../../../assets/js/visual/sidebar.js"></script>
     <script src="../../../assets/js/connection/relatorios.js"></script>

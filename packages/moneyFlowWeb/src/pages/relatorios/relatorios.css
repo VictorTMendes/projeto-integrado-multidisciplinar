@@ -70,21 +70,27 @@ header p {
 
 /* Botão de trocar tema */
 #trocar-tema {
-    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    background-color: transparent;
-    color: #f0f0f0;         
-    border: 1px solid #f0f0f0; 
-    border-radius: 5px;
+    transition: background-color 0.2s;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
     font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    transition: background-color 0.3s, color 0.3s;
 }
 
 #trocar-tema:hover {
-    background-color: #f0f0f0;
-    color: #1e1e1e;
-} 
+     background-color: #333;
+}
 
 /* ===================================== */
 /* ======= ESTILOS DOS GRÁFICOS ======== */
@@ -139,8 +145,8 @@ body.light-mode #trocar-tema {
 }
 
 body.light-mode #trocar-tema:hover {
-    background-color: #333333;
-    color: #ffffff;
+    background-color: #e0e0e0;
+    color: #333;
 }
 
 /* Tema claro para os gráficos */

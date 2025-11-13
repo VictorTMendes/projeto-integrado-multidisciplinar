@@ -1,68 +1,45 @@
-// 1. Espera o HTML ser totalmente carregado
-    document.addEventListener('DOMContentLoaded', () => {
+import { registerUser, loginUser } from '../../script/api.js';
 
-        // 2. Pega os elementos do formulário que vamos usar
-        const loginForm = document.getElementById('login-form');
-        const loginButton = document.getElementById('loginButton');
-        const messageArea = document.getElementById('message-area');
+const formRegister = document.getElementById('form-register');
+const formLogin = document.getElementById('form-login');
+const msgRegister = document.getElementById('msg-register');
+const msgLogin = document.getElementById('msg-login');
 
-        // 3. Escuta o evento de "submit" (envio) do formulário
-        loginForm.addEventListener('submit', (event) => {
-            
-            // 4. Impede que a página recarregue (comportamento padrão)
-            event.preventDefault();
+function setMsg(el, text, ok=false){
+  if(!el) return;
+  el.textContent = text;
+  el.style.color = ok ? 'green' : 'red';
+}
 
-            // 5. Pega os valores que o usuário digitou
-            const email = document.getElementById('email').value;
-            const senha = document.getElementById('senha').value;
+formRegister?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('reg-name')?.value.trim();
+  const email = document.getElementById('reg-email')?.value.trim();
+  const password = document.getElementById('reg-password')?.value;
+  setMsg(msgRegister, 'Enviando...', true);
+  try {
+    const data = await registerUser({ name, email, password });
+    setMsg(msgRegister, `Registrado: id=${data.id} email=${data.email}`, true);
+    console.log('Registro OK', data);
+  } catch (err) {
+    setMsg(msgRegister, err.message);
+    console.error('Erro registro', err);
+  }
+});
 
-            // 6. Limpa mensagens de erro ou sucesso anteriores
-            messageArea.textContent = '';
-            messageArea.className = '';
-
-            // 7. ATIVA O "CARREGANDO..."
-            //    Adiciona a classe 'loading' (o CSS cuida da animação)
-            //    e desabilita o botão para evitar cliques duplos.
-            loginButton.classList.add('loading');
-            loginButton.disabled = true;
-
-            // 8. CHAMA A FUNÇÃO DE VALIDAÇÃO
-            //    (No futuro, você trocará isso por uma chamada 'fetch' para sua API)
-            simularValidacao(email, senha);
-        });
-
-        /**
-         * Esta é uma função de validação SIMULADA.
-         * Ela finge estar "conversando com o servidor" por 2 segundos.
-         */
-        function simularValidacao(email, senha) {
-            console.log("Enviando para o servidor (simulado):", email, senha);
-
-            // Simula uma espera de 2 segundos (2000ms)
-            setTimeout(() => {
-                
-                // 9. DESATIVA O "CARREGANDO..."
-                //    Remove a classe 'loading' e reabilita o botão.
-                loginButton.classList.remove('loading');
-                loginButton.disabled = false;
-
-                // 10. VERIFICA OS DADOS (Lógica Fictícia)
-                if (email === 'teste@gmail.com' && senha === '123') {
-                    
-                    // SUCESSO
-                    messageArea.textContent = 'Login bem-sucedido! Redirecionando...';
-                    messageArea.className = 'success';
-                    
-                    // Aqui você redirecionaria para a página principal
-                    // Ex: setTimeout(() => { window.location.href = '/dashboard'; }, 1000);
-
-                } else {
-                    
-                    // ERRO
-                    messageArea.textContent = 'Email ou senha inválidos.';
-                    messageArea.className = 'error';
-                }
-
-            }, 2000); // 2000 milissegundos = 2 segundos
-        }
-    });
+formLogin?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('login-email')?.value.trim();
+  const password = document.getElementById('login-password')?.value;
+  setMsg(msgLogin, 'Autenticando...', true);
+  try {
+    const data = await loginUser({ email, password });
+    setMsg(msgLogin, `Token: ${data.token?.substring(0,12)}...`, true);
+    console.log('Login OK', data);
+    localStorage.setItem('authToken', data.token);
+    localStorage.setItem('userEmail', data.user?.email || email);
+  } catch (err) {
+    setMsg(msgLogin, err.message);
+    console.error('Erro login', err);
+  }
+});

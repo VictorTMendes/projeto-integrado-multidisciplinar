@@ -636,7 +636,7 @@
         background-color: #333; /* Fundo do hover (dark mode) */
     }
 
-    /* Remove padding/gap antigo do sidebar-nav se ele contiver APENAS .sidebar-button-link ou a */
+    
     .sidebar-nav {
         display: flex;
         flex-direction: column;
