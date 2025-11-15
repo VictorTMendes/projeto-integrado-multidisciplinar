@@ -53,11 +53,8 @@ function destruirGrafico(chart) {
   }
 }
 
-// Função para pegar a cor do texto baseada no tema
 function getChartTextColor() {
-  // CORRIGIDO: Verifica a classe correta (light-mode ao invés de dark-theme)
   const isLightMode = document.body.classList.contains('light-mode');
-  // Modo claro = texto escuro, modo escuro = texto claro
   return isLightMode ? '#333' : '#e0e0e0';
 }
 
@@ -75,7 +72,6 @@ function gerarGraficos(rendas, despesas) {
   const corTextoGrafico = getChartTextColor();
   const corGrade = getChartGridColor();
 
-  // ---------- GRÁFICO DE PIZZA ----------
   const categoriasMap = {};
   despesas.forEach(d => {
     const cat = d.categoria?.nome || d.Categoria?.Nome || "Outros";
@@ -113,7 +109,6 @@ function gerarGraficos(rendas, despesas) {
     }
   });
 
-  // ---------- GRÁFICO DE BARRAS ----------
   const meses = Array.from({ length: 6 }, (_, i) => {
     const data = new Date();
     data.setMonth(data.getMonth() - (5 - i));

@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // *** SE TUDO DEU CERTO ***
             showMessage("Senha redefinida com sucesso! Redirecionando...", "success");
 
             setTimeout(() => {

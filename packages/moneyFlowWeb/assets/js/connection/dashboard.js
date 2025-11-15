@@ -127,7 +127,6 @@ function atualizarDashboard(rendas, despesas) {
     }))
   ];
 
-  // 🔥 Ordena globalmente por data de transação (mais recente primeiro)
   todas.sort((a, b) => b.dataTransacao - a.dataTransacao);
 
   listaEl.innerHTML = "";

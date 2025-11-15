@@ -1,6 +1,3 @@
-// ✅ usuario-info.js
-// Exibe nome e e-mail do usuário nas telas com sidebar
-
 const API_BASE = "https://moneyflowapi-1.onrender.com/api";
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -9,23 +6,23 @@ document.addEventListener("DOMContentLoaded", async () => {
   const usuarioNome = localStorage.getItem("usuarioNome");
   const usuarioEmail = localStorage.getItem("usuarioEmail");
 
-  // 🔒 Redireciona se não estiver logado
+  // Redireciona se não estiver logado
   if (!token) {
     window.location.href = "/pages/login/login.html";
     return;
   }
 
-  // 🔹 Logs de debug (pode remover depois)
+  // Logs de debug (pode remover depois)
   console.log("DEBUG usuario-info.js", { usuarioId, usuarioNome, usuarioEmail });
 
-  // 🔹 Atualiza o HTML
+  // Atualiza o HTML
   const nomeEl = document.getElementById("profile-name");
   const emailEl = document.getElementById("profile-email");
 
   if (nomeEl) nomeEl.textContent = usuarioNome || "Usuário não identificado";
   if (emailEl) emailEl.textContent = usuarioEmail || "Email não disponível";
 
-  // 🔹 Botão de logout
+  // Botão de logout
   const logoutBtn = document.getElementById("logout-btn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
