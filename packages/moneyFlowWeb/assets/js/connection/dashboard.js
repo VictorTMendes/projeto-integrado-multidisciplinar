@@ -309,8 +309,6 @@ document
       modal.style.display = "none";
       carregarDados();
     } catch (error) {
-      console.error("Erro ao editar transação:", error);
-      alert("Erro ao editar transação.");
     }
   });
 

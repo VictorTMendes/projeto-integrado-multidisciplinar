@@ -1,11 +1,7 @@
-// Em: ../../../assets/js/visual/edicao-transacoes.js
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Seleciona a lista principal <ul>
     const listaTransacoes = document.getElementById('ultimas-transacoes');
-    
-    // Seleciona os elementos do Modal (apenas uma vez)
+
     const modalEdicao = document.getElementById('modal-edicao');
     const formEdicao = document.getElementById('form-edicao');
     const btnFecharModal = modalEdicao?.querySelector('.modal-close-btn');
@@ -13,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const descricaoEdicaoInput = document.getElementById('descricao-edicao');
     const categoriaEdicaoSelect = document.getElementById('categoria-edicao');
 
-    // Chave do LocalStorage (mude se for diferente)
     const STORAGE_KEY = 'transactions';
 
     if (!listaTransacoes) {
@@ -21,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // --- FUNÇÕES DE CONTROLE DO DROPDOWN ---
     function fecharTodosOsDropdowns(exceptoEste = null) {
         document.querySelectorAll('.dropdown-acoes.show').forEach(dropdown => {
             if (dropdown !== exceptoEste) {
@@ -30,42 +24,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- LISTENER PRINCIPAL (DELEGAÇÃO DE EVENTO) ---
-    // Ouve cliques na LISTA INTEIRA (<ul>)
     listaTransacoes.addEventListener('click', (event) => {
-        
-        // --- LÓGICA DO MENU DE OPÇÕES (TRÊS PONTOS) ---
+
         const acoesButton = event.target.closest('.acoes-button');
         if (acoesButton) {
             event.stopPropagation();
             const dropdown = acoesButton.nextElementSibling;
             const estaAberto = dropdown.classList.contains('show');
-            fecharTodosOsDropdowns(null); // Fecha todos os outros
+            fecharTodosOsDropdowns(null);
             if (!estaAberto && dropdown) {
-                dropdown.classList.add('show'); // Abre o atual
+                dropdown.classList.add('show');
             }
-            return; // Ação concluída
+            return; 
         }
 
-        // --- LÓGICA DO BOTÃO DE EXCLUIR ---
         const botaoExcluir = event.target.closest('.btn-excluir');
         if (botaoExcluir) {
             event.preventDefault();
             const itemDaLista = botaoExcluir.closest('li');
-            const transacaoId = itemDaLista?.dataset.id; // Pega o data-id
+            const transacaoId = itemDaLista?.dataset.id; 
 
             if (!itemDaLista || !transacaoId) return;
 
             if (confirm('Tem certeza que deseja excluir esta transação?')) {
-                itemDaLista.remove(); // Remove da tela
-                removerTransacaoDoLocalStorage(transacaoId); // Remove dos dados
-                // TODO: Chamar sua função de atualizar os cards/gráficos
-                // ex: atualizarResumos();
+                itemDaLista.remove();
+                removerTransacaoDoLocalStorage(transacaoId); 
+
             }
-            return; // Ação concluída
+            return; 
         }
 
-        // --- LÓGICA DO BOTÃO DE EDITAR (ABRIR O MODAL) ---
         const botaoEditar = event.target.closest('.btn-editar');
         if (botaoEditar) {
             event.preventDefault();
@@ -74,32 +62,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!itemDaLista || !transacaoId || !modalEdicao) return;
 
-            // 1. Busca a transação original no localStorage
             const transacao = buscarTransacaoPorId(transacaoId);
             if (!transacao) return alert("Erro: Transação não encontrada.");
 
-            // 2. Preenche o formulário
             if (descricaoEdicaoInput) descricaoEdicaoInput.value = transacao.descricao || '';
             if (categoriaEdicaoSelect) categoriaEdicaoSelect.value = transacao.categoria || '';
 
-            // 3. CORREÇÃO DO NaN: Usa IMask para definir o valor
             if (valorEdicaoInput && valorEdicaoInput.imask) {
                 const valorNumerico = parseFloat(transacao.valor);
                 valorEdicaoInput.imask.typedValue = isNaN(valorNumerico) ? 0 : valorNumerico;
             } else if (valorEdicaoInput) {
-                valorEdicaoInput.value = transacao.valor; // Fallback (sem máscara)
+                valorEdicaoInput.value = transacao.valor;
             }
 
-            // 4. Guarda o ID da transação no formulário
             if (formEdicao) formEdicao.dataset.editingId = transacaoId;
 
-            // 5. Mostra o modal
             modalEdicao.classList.add('show');
-            return; // Ação concluída
+            return;
         }
     });
 
-    // Fecha dropdowns se clicar fora
     window.addEventListener('click', (event) => {
         if (!event.target.closest('.transacoes-acoes')) {
             fecharTodosOsDropdowns(null);
@@ -107,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // --- FUNÇÕES AUXILIARES DE DADOS (Helpers) ---
     function getTransactions() {
         return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
     }
@@ -125,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // --- LÓGICA DE FECHAR E SALVAR O MODAL ---
     function fecharModal() {
         if (modalEdicao) modalEdicao.classList.remove('show');
         if (formEdicao) formEdicao.removeAttribute('data-editing-id');
@@ -141,15 +121,13 @@ document.addEventListener('DOMContentLoaded', () => {
         formEdicao.addEventListener('submit', (event) => {
             event.preventDefault();
             const idParaEditar = formEdicao.dataset.editingId;
-            if (!idParaEditar) return alert("Erro: ID da transação não encontrado.");
 
-            // Pega os novos valores
             const novaDescricao = descricaoEdicaoInput?.value.trim();
             const novaCategoria = categoriaEdicaoSelect?.value;
             let novoValorNumerico = 0;
 
             if (valorEdicaoInput && valorEdicaoInput.imask) {
-                 novoValorNumerico = valorEdicaoInput.imask.number; // Pega o NÚMERO
+                 novoValorNumerico = valorEdicaoInput.imask.number;
             } else if (valorEdicaoInput) {
                  novoValorNumerico = parseFloat(valorEdicaoInput.value) || 0;
             }
@@ -168,21 +146,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             saveTransactions(transacoesSalvas);
 
-            // Atualiza o LI na tela (DOM)
             const itemDaListaNaTela = listaTransacoes.querySelector(`li[data-id="${idParaEditar}"]`);
             if (itemDaListaNaTela && transacaoOriginal) {
                  itemDaListaNaTela.querySelector('.transacao-info p').textContent = novaDescricao;
                  itemDaListaNaTela.querySelector('.transacao-info span[class*="tag-categoria"]').textContent = novaCategoria;
-                 // Formata o valor de volta
                  const tipo = transacaoOriginal.tipo;
                  const valorFormatado = novoValorNumerico.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
                  const prefixo = tipo === 'entrada' ? '+' : '-';
                  itemDaListaNaTela.querySelector('.transacao-valor span').textContent = `${prefixo} ${valorFormatado}`;
             }
             
-            // TODO: Chamar função para atualizar cards e gráficos
-            // ex: atualizarResumos(); 
-            // ex: renderizarGraficos(); 
             fecharModal();
         });
     }
